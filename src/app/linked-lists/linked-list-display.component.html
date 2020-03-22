@@ -1,0 +1,31 @@
+<div class="alert" [ngClass]="alertType">
+  <h6>Length of {{length}}</h6>
+  <div style="display: flex;">
+    <div style="flex: 1;margin: 5px;border: 1px solid green;border-radius: 4px;">
+      <h5>Head</h5>
+      <div style="display: flex;margin: 5px;">
+        <div style="flex: 1;margin: 5px;">Value:</div>
+        <div style="flex: 1;margin: 5px;background-color: white;">
+          {{getNodeValueText(head)}}
+        </div>
+        <div style="flex: 1;margin: 5px;">Next:</div>
+        <div style="flex: 1;margin: 5px;background-color: white;">
+          {{getNodeValueText(head.next)}}
+        </div>
+      </div>
+    </div>
+    <div style="flex: 1;margin: 5px;border: 1px solid green;border-radius: 4px;">
+      <h5>Tail</h5>
+      <div style="display: flex;margin: 5px;">
+        <div style="flex: 1;margin: 5px;">Value:</div>
+        <div style="flex: 1;margin: 5px;background-color: white;">
+          {{getNodeValueText(tail)}}
+        </div>
+        <div style="flex: 1;margin: 5px;">Next:</div>
+        <div style="flex: 1;margin: 5px;background-color: white;">
+          {{getNodeValueText(tail.next)}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

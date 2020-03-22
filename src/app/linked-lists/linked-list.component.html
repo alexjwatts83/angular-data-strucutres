@@ -1,1 +1,14 @@
-<p>linked-list works!</p>
+<div style="display: flex;margin-bottom: 10px;">
+  <input id="input-size" class="margin-5px-left" type="number" [(ngModel)]="inputValue" placeholder="Value" />
+  <button class="btn btn-primary margin-5px-left" type="button" (click)="append()">Append</button>
+  <button class="btn btn-primary margin-5px-left" type="button" (click)="prepend()">Prepend</button>
+</div>
+
+<h1>Linked Lists</h1>
+
+<div class="alert alert-info" role="alert" *ngIf="message">
+  <div>{{message}}</div>
+</div>
+
+<app-linked-list-display [head]="linkedList.head" [tail]="linkedList.tail" [length]="linkedList.length" [alertType]="'alert-success'">
+</app-linked-list-display>
