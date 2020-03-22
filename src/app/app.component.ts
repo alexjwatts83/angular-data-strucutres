@@ -7,4 +7,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-data-structures';
+  links = [
+    {
+      name: 'Home',
+      link: '/home'
+    },
+    {
+      name: 'BST',
+      link: '/binary-search-trees'
+    }
+  ];
+  started = new Date(2020, 3, 22, 16, 50, 0, 0);  
 }
