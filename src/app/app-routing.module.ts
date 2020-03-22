@@ -14,6 +14,12 @@ const routes: Routes = [
       .then(m => m.ArraysModule)
   },
   { 
+    path: 'hashes',
+    loadChildren: () => 
+      import('./hashes/hashes.module')
+      .then(m => m.HashesModule)
+  },
+  { 
     path: 'binary-search-trees',
     loadChildren: () => 
       import('./binary-search-trees/binary-search-trees.module')
