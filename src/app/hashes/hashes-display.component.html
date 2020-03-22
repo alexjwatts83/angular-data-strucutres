@@ -1,0 +1,26 @@
+<div class="alert" [ngClass]="alertType">
+  <h6>Keys</h6>
+  <div *ngIf="hashTableKeys.length == 0" style="padding: 5px;background-color: white;">
+    No Keys
+  </div>
+  <div *ngIf="hashTableKeys.length > 0" style="padding: 5px;background-color: white;">
+    <span *ngFor="let item of hashTableKeys; let i = index">
+      [{{i}}] {{item}} <span *ngIf="i < hashTableSize - 1">=></span>
+    </span>
+  </div>
+
+  <h6>Hash Table with size of {{ hashTableSize }}</h6>
+  <div *ngFor="let item of hashTableData; let i = index" style="display: flex;margin-bottom: 5px;">
+    <div style="flex: 1;padding: 5px;background-color: white;margin-right: 5px;">[{{i}}]</div>
+    <div style="flex: 3;padding: 5px;background-color: white;">
+      <div *ngIf="item === undefined">No Key Value Pairs</div>
+      <div *ngIf="item !== undefined">
+        <ul style="text-align: left;">
+          <li *ngFor="let kp of item; let j = index">
+            {{item[j][0]}} => {{item[j][1]}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

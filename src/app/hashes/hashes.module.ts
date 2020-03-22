@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { HashesComponent } from './hashes.component';
+import { HashesDisplayComponent } from './hashes-display.component';
 
 const routes: Routes = [
   {
@@ -13,12 +14,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [HashesComponent],
+  declarations: [HashesComponent, HashesDisplayComponent],
   imports: [
     CommonModule,
     FormsModule,
     RouterModule.forChild(routes)
   ],
-  exports: [HashesComponent]
+  exports: [HashesComponent, HashesDisplayComponent]
 })
 export class HashesModule { }
