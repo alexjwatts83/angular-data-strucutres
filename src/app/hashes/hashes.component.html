@@ -1,1 +1,51 @@
-<p>hashes works!</p>
+<div style="display: flex;margin-bottom: 10px;">
+  <input id="input-size" class="margin-5px-left" type="number" [(ngModel)]="inputSize" placeholder="Size" />
+  <button class="btn btn-success margin-5px-left" type="button" (click)="initHashTable()">Init</button>
+</div>
+<div style="display: flex;margin-bottom: 10px;">
+  <input id="input-key" class="margin-5px-left" type="text" [(ngModel)]="inputKey" placeholder="Key" />
+  <div>&nbsp;</div>
+  <input id="input-value" class="margin-5px-left" type="text" [(ngModel)]="inputValue" placeholder="Value" />
+  <button class="btn btn-primary margin-5px-left" type="button" (click)="set()" [disabled]="!isInputValid()">Set</button>
+</div>
+<div style="display: flex;">
+  <input id="input-get" class="margin-5px-left" type="text" [(ngModel)]="inputGetValue" placeholder="Key" />
+  <button class="btn btn-secondary margin-5px-left" type="button" (click)="get()" [disabled]="inputGetValue === undefined">Get</button>
+</div>
+
+<h1>Hash Tables</h1>
+
+<div class="alert alert-info" role="alert" *ngIf="message">
+  <div>{{message}}</div>
+</div>
+
+<div class="alert alert-success">
+  <div *ngIf="myHash.size === 0">Current Array is empty</div>
+  <div *ngIf="myHash.size > 0">
+    <div>Size of {{ myHash.size }}</div>
+    <h6>Keys</h6>
+    <div *ngIf="myHash.keys().length == 0" style="padding: 5px;background-color: white;">
+      No Keys
+    </div>
+    <div *ngIf="myHash.keys().length > 0" style="padding: 5px;background-color: white;">
+      <span *ngFor="let item of myHash.keys(); let i = index">
+        [{{i}}] {{item}} <span *ngIf="i < myHash.size - 1">=></span>
+      </span>
+    </div>
+
+    <h6>Hash Table</h6>
+    <div *ngFor="let item of myHash.data; let i = index" style="display: flex;margin-bottom: 5px;">
+      <div style="flex: 1;padding: 5px;background-color: white;margin-right: 5px;">[{{i}}]</div>
+      <div style="flex: 3;padding: 5px;background-color: white;">
+        <div *ngIf="item === undefined">No Key Value Pairs</div>
+        <div *ngIf="item !== undefined">
+          <ul style="text-align: left;">
+            <li *ngFor="let kp of item; let j = index">
+              {{item[j][0]}} => {{item[j][1]}}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -17,6 +17,9 @@ export class AppComponent {
       link: '/arrays'
     },
     {
+      name: 'Hashes',
+      link: '/hashes'
+    },    {
       name: 'BST',
       link: '/binary-search-trees'
     }
