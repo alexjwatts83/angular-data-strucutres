@@ -4,6 +4,7 @@
   <button class="btn btn-secondary margin-5px-left" type="button" (click)="get()" [disabled]="!inputValue">Get</button>
   <button class="btn btn-secondary margin-5px-left" type="button" (click)="addTen()">Add 10</button>
   <button class="btn btn-danger margin-5px-left" type="button" (click)="pop()" [disabled]="myArray.length === 0">Pop</button>
+  <button class="btn btn-warning margin-5px-left" type="button" (click)="shiftItems()" [disabled]="myArray.length === 0 || inputValue === undefined">Shift Items</button>
 </div>
 <h1>Arrays</h1>
 <div class="alert alert-primary" role="alert" *ngIf="message">

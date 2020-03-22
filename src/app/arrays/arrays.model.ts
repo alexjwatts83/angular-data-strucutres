@@ -27,7 +27,7 @@ export class MyArray {
     return lastItem;
   }
 
-  shiftItems(index) {
+  shiftItems(index: number) {
     for(let i = index; i < this.length - 1; i++) {
       this.data[i] = this.data[i + 1];
     }

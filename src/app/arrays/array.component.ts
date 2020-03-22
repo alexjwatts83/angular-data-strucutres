@@ -61,4 +61,10 @@ export class ArrayComponent implements OnInit {
     const popped = this.myArray.pop();
     this.message = `Popped item is, ${popped}`;
   }
+
+  shiftItems() {
+    const value = parseInt(this.inputValue);
+    this.myArray.shiftItems(value);
+    this.message = `Shifed at index ${value}`;
+  }
 }
