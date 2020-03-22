@@ -3,19 +3,26 @@
   <button class="btn btn-primary margin-5px-left" type="button" (click)="addNode()">Add Node</button>
   <button class="btn btn-secondary margin-5px-left" type="button" (click)="doesNotExists()">Value Exists</button>
 </div>
-<div>
-  <h1>Tree</h1>
-  <div *ngIf="message">
-    {{message}}
-  </div>
-  <div *ngIf="tree.root === null">Tree is empty</div>
-  <div *ngIf="tree.root !== null">
-    <div class="tree">
-      <ul>
-        <li>
-          <a href="#">{{tree.root.value}}</a>
-        </li>
-      </ul>
-    </div>
+<h1>Tree</h1>
+<div *ngIf="message">
+  {{message}}
+</div>
+<div *ngIf="tree.root === null">Tree is empty</div>
+<div *ngIf="tree.root !== null">
+  <!-- <pre>{{traverseTree(tree.root) | json}}</pre> -->
+  <div class="tree">
+    <ul>
+      <li>
+        <a href="#">{{tree.root.value}}</a>
+        <ul>
+          <li>
+            <a href="#">{{tree.root.left.value}}</a>
+          </li>
+          <li>
+            <a href="#">{{tree.root.right.value}}</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
   </div>
 </div>
