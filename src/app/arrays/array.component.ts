@@ -10,12 +10,17 @@ export class ArrayComponent implements OnInit {
   inputValue: string;
   message: string;
   myArray: MyArray;
+  previousArrayDisplay: any[];
+  currentArrayDisplay: any[];
   constructor() {
     this.myArray = new MyArray();
+    this.previousArrayDisplay = [];
+    this.currentArrayDisplay = [];
   }
 
   ngOnInit(): void {
-    console.log(this.inputValue);
+    this.previousArrayDisplay = [];
+    this.currentArrayDisplay = [];
   }
 
   get(): void {
@@ -27,6 +32,7 @@ export class ArrayComponent implements OnInit {
   }
 
   push(): void {
+    this.previousArrayDisplay = this.currentArrayDisplay;
     const value = parseInt(this.inputValue);
     this.myArray.push(value);
     this.message = `Added ${value}`;
@@ -37,6 +43,7 @@ export class ArrayComponent implements OnInit {
     for (let i = 0; i < this.myArray.length; i++) {
       displayArray.push(this.myArray.get(i));;
     }
+    this.currentArrayDisplay = displayArray;
     return displayArray;
   }
 
@@ -45,6 +52,7 @@ export class ArrayComponent implements OnInit {
   }
 
   addTen() {
+    this.previousArrayDisplay = this.currentArrayDisplay;
     const max = 1000;
     const len = 10;
     for(let i = 0; i < len; i++) {
@@ -55,6 +63,7 @@ export class ArrayComponent implements OnInit {
   }
 
   pop() {
+    this.previousArrayDisplay = this.currentArrayDisplay;
     if(this.myArray.length === 0) {
       return undefined;
     }
@@ -63,6 +72,7 @@ export class ArrayComponent implements OnInit {
   }
 
   shiftItems() {
+    this.previousArrayDisplay = this.currentArrayDisplay;
     const value = parseInt(this.inputValue);
     this.myArray.shiftItems(value);
     this.message = `Shifed at index ${value}`;

@@ -6,14 +6,29 @@
   <button class="btn btn-danger margin-5px-left" type="button" (click)="pop()" [disabled]="myArray.length === 0">Pop</button>
   <button class="btn btn-warning margin-5px-left" type="button" (click)="shiftItems()" [disabled]="myArray.length === 0 || inputValue === undefined">Shift Items</button>
 </div>
+
 <h1>Arrays</h1>
-<div class="alert alert-primary" role="alert" *ngIf="message">
-  <p>{{message}}</p>
+
+<div class="alert alert-info" role="alert" *ngIf="message">
+  <div>{{message}}</div>
 </div>
-<div *ngIf="myArray.length === 0">Array is empty</div>
-<div *ngIf="myArray.length > 0">
-  <div>Length of {{ myArray.length }}</div>
-  <span *ngFor="let item of getAsArray(); let i = index">
-    [{{i}}] {{item}} <span *ngIf="i < myArray.length - 1">=></span>
-  </span>
+
+<div class="alert alert-dark">
+  <div *ngIf="previousArrayDisplay.length === 0">Previous is empty</div>
+  <div *ngIf="previousArrayDisplay.length > 0">
+    <div>Length of {{ previousArrayDisplay.length }}</div>
+    <span *ngFor="let item of previousArrayDisplay; let i = index">
+      [{{i}}] {{item}} <span *ngIf="i < previousArrayDisplay.length - 1">=></span>
+    </span>
+  </div>
+</div>
+
+<div class="alert alert-success">
+  <div *ngIf="myArray.length === 0">Current Array is empty</div>
+  <div *ngIf="myArray.length > 0">
+    <div>Length of {{ myArray.length }}</div>
+    <span *ngFor="let item of getAsArray(); let i = index">
+      [{{i}}] {{item}} <span *ngIf="i < myArray.length - 1">=></span>
+    </span>
+  </div>
 </div>
