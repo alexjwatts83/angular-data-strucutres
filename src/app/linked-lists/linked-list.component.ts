@@ -24,7 +24,6 @@ export class LinkedListComponent implements OnInit {
   append(): void {
     this.linkedList.append(this.inputValue);
     this.message = `Append '${this.inputValue}'`;
-    console.log(this.linkedList.traverseLinkedList(0));
   }
 
   prepend(): void {

@@ -23,4 +23,14 @@ export class LinkedListDisplayComponent<T> implements OnInit {
     }
     return node.value;
   }
+
+  linkedListsToArray(): any[] {
+    const displayArray = [];
+    var currentNode = this.head;
+    while (currentNode !== null) {
+      displayArray.push(currentNode.value);
+      currentNode = currentNode.next;
+    }
+    return displayArray;
+  }
 }

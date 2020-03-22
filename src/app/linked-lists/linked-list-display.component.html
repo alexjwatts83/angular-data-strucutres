@@ -28,4 +28,9 @@
       </div>
     </div>
   </div>
+  <div style="text-align: left;">
+    <span *ngFor="let item of linkedListsToArray(); let i = index">
+      [{{i}}] {{item}} =>
+    </span>
+  </div>
 </div>
