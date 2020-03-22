@@ -8,6 +8,7 @@ import { BinarySearchTreesModule } from './binary-search-trees';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ArraysModule } from './arrays';
+import { LinkedListsModule } from './linked-lists';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ArraysModule } from './arrays';
     FormsModule,
     AppRoutingModule,
     BinarySearchTreesModule,
-    ArraysModule
+    ArraysModule,
+    LinkedListsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

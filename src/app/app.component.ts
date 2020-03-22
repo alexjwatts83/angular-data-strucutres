@@ -19,7 +19,12 @@ export class AppComponent {
     {
       name: 'Hashes',
       link: '/hashes'
-    },    {
+    },
+    {
+      name: 'Linked Lists',
+      link: '/linked-lists'
+    },
+    {
       name: 'BST',
       link: '/binary-search-trees'
     }

@@ -20,6 +20,12 @@ const routes: Routes = [
       .then(m => m.HashesModule)
   },
   { 
+    path: 'linked-lists',
+    loadChildren: () => 
+      import('./linked-lists/linked-lists.module')
+      .then(m => m.LinkedListsModule)
+  },
+  { 
     path: 'binary-search-trees',
     loadChildren: () => 
       import('./binary-search-trees/binary-search-trees.module')
