@@ -8,6 +8,12 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { 
+    path: 'arrays',
+    loadChildren: () => 
+      import('./arrays/arrays.module')
+      .then(m => m.ArraysModule)
+  },
+  { 
     path: 'binary-search-trees',
     loadChildren: () => 
       import('./binary-search-trees/binary-search-trees.module')

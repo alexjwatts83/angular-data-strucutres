@@ -11,6 +11,10 @@ export class AppComponent {
     {
       name: 'Home',
       link: '/home'
+    }    ,
+    {
+      name: 'Arrays',
+      link: '/arrays'
     },
     {
       name: 'BST',

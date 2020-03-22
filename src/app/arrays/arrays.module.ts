@@ -3,26 +3,22 @@ import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { BinarySearchTreeComponent } from './binary-search-tree.component';
+import { ArrayComponent } from './array.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: BinarySearchTreeComponent
+    component: ArrayComponent
   }
 ];
 
 @NgModule({
-  declarations: [
-    BinarySearchTreeComponent
-  ],
+  declarations: [ArrayComponent],
   imports: [
     CommonModule,
     FormsModule,
     RouterModule.forChild(routes)
   ],
-  exports: [
-    BinarySearchTreeComponent,
-  ]
+  exports: [ArrayComponent]
 })
-export class BinarySearchTreesModule { }
+export class ArraysModule { }

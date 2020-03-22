@@ -1,0 +1,17 @@
+<div style="display: flex;">
+  <input id="input-value" class="margin-5px-left" min="0" type="number" [(ngModel)]="inputValue" />
+  <button class="btn btn-primary margin-5px-left" type="button" (click)="push()" [disabled]="!inputValue">Push</button>
+  <button class="btn btn-secondary margin-5px-left" type="button" (click)="get()" [disabled]="!inputValue">Get</button>
+  <button class="btn btn-secondary margin-5px-left" type="button" (click)="addTen()">Add 10</button>
+</div>
+<h1>Arrays</h1>
+<div *ngIf="message">
+  {{message}}
+</div>
+<div *ngIf="myArray.length === 0">Array is empty</div>
+<div *ngIf="myArray.length > 0">
+  <div>Length of {{ myArray.length }}</div>
+  <span *ngFor="let item of getAsArray(); let i = index">
+    [{{i}}] {{item}} <span *ngIf="i < myArray.length - 1">=></span>
+  </span>
+</div>
