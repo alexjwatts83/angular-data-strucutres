@@ -29,6 +29,7 @@ export class ArrayComponent implements OnInit {
   push(): void {
     const value = parseInt(this.inputValue);
     this.myArray.push(value);
+    this.message = `Added ${value}`;
   }
 
   getAsArray(): any[] {
@@ -45,10 +46,12 @@ export class ArrayComponent implements OnInit {
 
   addTen() {
     const max = 1000;
-    for(let i = 0; i < 10; i++) {
+    const len = 10;
+    for(let i = 0; i < len; i++) {
       let value = this.getRandomInt(max);
       this.myArray.push(value);
     }
+    this.message = `Added ${len} numbers between 1 and ${max}`;
   }
 
   pop() {

@@ -6,8 +6,8 @@
   <button class="btn btn-danger margin-5px-left" type="button" (click)="pop()" [disabled]="myArray.length === 0">Pop</button>
 </div>
 <h1>Arrays</h1>
-<div *ngIf="message">
-  {{message}}
+<div class="alert alert-primary" role="alert" *ngIf="message">
+  <p>{{message}}</p>
 </div>
 <div *ngIf="myArray.length === 0">Array is empty</div>
 <div *ngIf="myArray.length > 0">
