@@ -3,6 +3,7 @@
   <button class="btn btn-primary margin-5px-left" type="button" (click)="push()" [disabled]="!inputValue">Push</button>
   <button class="btn btn-secondary margin-5px-left" type="button" (click)="get()" [disabled]="!inputValue">Get</button>
   <button class="btn btn-secondary margin-5px-left" type="button" (click)="addTen()">Add 10</button>
+  <button class="btn btn-danger margin-5px-left" type="button" (click)="pop()" [disabled]="myArray.length === 0">Pop</button>
 </div>
 <h1>Arrays</h1>
 <div *ngIf="message">

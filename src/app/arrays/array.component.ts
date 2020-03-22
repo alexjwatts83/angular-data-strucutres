@@ -50,4 +50,12 @@ export class ArrayComponent implements OnInit {
       this.myArray.push(value);
     }
   }
+
+  pop() {
+    if(this.myArray.length === 0) {
+      return undefined;
+    }
+    const popped = this.myArray.pop();
+    this.message = `Popped item is, ${popped}`;
+  }
 }
