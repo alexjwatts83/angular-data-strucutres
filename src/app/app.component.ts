@@ -17,5 +17,5 @@ export class AppComponent {
       link: '/binary-search-trees'
     }
   ];
-  started = new Date(2020, 3, 22, 16, 50, 0, 0);  
+  started = new Date(2020, 3, 22, 16, 50, 0, 0);
 }
