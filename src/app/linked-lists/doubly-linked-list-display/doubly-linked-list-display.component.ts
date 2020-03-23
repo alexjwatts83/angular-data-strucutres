@@ -28,7 +28,7 @@ export class DoublyLinkedListDisplayComponent<T> implements OnInit {
     const displayArray = [];
     var currentNode = this.head;
     while (currentNode !== null) {
-      displayArray.push(currentNode.value);
+      displayArray.push(currentNode);
       currentNode = currentNode.next;
     }
     return displayArray;

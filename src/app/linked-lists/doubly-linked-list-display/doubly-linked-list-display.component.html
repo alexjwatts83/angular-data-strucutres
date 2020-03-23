@@ -4,6 +4,10 @@
     <div style="flex: 1;margin: 5px;border: 1px solid green;border-radius: 4px;">
       <h5>Head</h5>
       <div style="display: flex;margin: 5px;">
+        <div style="flex: 1;margin: 5px;">Prev:</div>
+        <div style="flex: 1;margin: 5px;background-color: white;">
+          {{getNodeValueText(head.previous)}}
+        </div>
         <div style="flex: 1;margin: 5px;">Value:</div>
         <div style="flex: 1;margin: 5px;background-color: white;">
           {{getNodeValueText(head)}}
@@ -17,6 +21,11 @@
     <div style="flex: 1;margin: 5px;border: 1px solid green;border-radius: 4px;">
       <h5>Tail</h5>
       <div style="display: flex;margin: 5px;">
+        <div style="flex: 1;margin: 5px;">Prev:</div>
+        <div style="flex: 1;margin: 5px;background-color: white;">
+          {{getNodeValueText(tail.previous)}}
+        </div>
+
         <div style="flex: 1;margin: 5px;">Value:</div>
         <div style="flex: 1;margin: 5px;background-color: white;">
           {{getNodeValueText(tail)}}
@@ -28,9 +37,21 @@
       </div>
     </div>
   </div>
-  <div style="text-align: left;">
-    <span *ngFor="let item of linkedListsToArray(); let i = index">
-      [{{i}}] {{item}} =>
-    </span>
+  <div style="display: flex;">
+    <div *ngFor="let item of linkedListsToArray(); let i = index" 
+    style="padding: 0px;border: 1px solid green;border-radius: 4px;margin: 0 5px;">
+      <h6>[{{i}}]</h6>
+      <div style="display: flex;margin: 2px;">
+        <div style="flex: 1;margin: 2px;padding:2px;background-color: white;">
+          Prev:<br />{{getNodeValueText(item.previous)}}
+        </div>
+        <div style="flex: 1;margin: 2px;padding:2px;background-color: white;">
+          Val:<br />{{getNodeValueText(item)}}
+        </div>
+        <div style="flex: 1;margin: 2px;padding:2px;background-color: white;">
+          Next:<br />{{getNodeValueText(item.next)}}
+        </div>
+      </div>
+    </div>
   </div>
 </div>
