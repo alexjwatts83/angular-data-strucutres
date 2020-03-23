@@ -3,8 +3,14 @@
     <a class="navbar-brand" href="#">Data Structures and Algorithms {{started | date:'short'}} </a>
 
     <ul class="nav nav-pills">
-      <li class="nav-item" *ngFor="let link of links">
-        <a class="nav-link" routerLinkActive="active" [routerLink]="link.link">{{link.name}}</a>
+      <li class="nav-item" *ngFor="let link of links" [ngClass]="{'dropdown': link.children !== null }">
+        <a *ngIf="link.link && !link.children" class="nav-link" routerLinkActive="active" [routerLink]="link.link">{{link.name}}</a>
+        <a *ngIf="link.children" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" routerLinkActive="active" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{link.name}}
+        </a>
+        <div *ngIf="link.children" class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a *ngFor="let child of link.children" class="dropdown-item" routerLinkActive="active" [routerLink]="child.link">{{child.name}}</a>
+        </div>
       </li>
     </ul>
   </div>

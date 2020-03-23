@@ -22,7 +22,17 @@ export class AppComponent {
     },
     {
       name: 'Linked Lists',
-      link: '/linked-lists/singly'
+      link: '/linked-lists',
+      children: [
+        {
+          name: 'Singly Linked Lists',
+          link: '/linked-lists/singly'
+        },
+        {
+          name: 'Doubly Linked Lists',
+          link: '/linked-lists/doubly'
+        },
+      ]
     },
     {
       name: 'BST',
