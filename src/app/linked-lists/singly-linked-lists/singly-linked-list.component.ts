@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { SinglyLinkedList } from "../SinglyLinkedList";
 
 @Component({
-  selector: 'app-linked-list',
-  templateUrl: './linked-list.component.html',
-  styleUrls: ['./linked-list.component.scss']
+  selector: 'app-singly-inked-list',
+  templateUrl: './singly-linked-list.component.html',
+  styleUrls: ['./singly-linked-list.component.scss']
 })
-export class LinkedListComponent implements OnInit {
+export class SinglyLinkedListComponent implements OnInit {
   linkedList: SinglyLinkedList<number>;
   initialValue: number;
   inputValue: number;

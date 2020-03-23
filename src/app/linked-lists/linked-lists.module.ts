@@ -3,23 +3,29 @@ import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { LinkedListComponent } from './singly-linked-lists/linked-list.component';
-import { LinkedListDisplayComponent } from './singly-linked-lists/linked-list-display.component';
+import { SinglyLinkedListComponent } from './singly-linked-lists/singly-linked-list.component';
+import { SinglyLinkedListDisplayComponent } from './singly-linked-lists/singly-linked-list-display.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: LinkedListComponent
+    component: SinglyLinkedListComponent
   }
 ];
 
 @NgModule({
-  declarations: [LinkedListComponent, LinkedListDisplayComponent],
+  declarations: [
+    SinglyLinkedListComponent,
+    SinglyLinkedListDisplayComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
     RouterModule.forChild(routes)
   ],
-  exports: [LinkedListComponent, LinkedListDisplayComponent]
+  exports: [
+    SinglyLinkedListComponent,
+    SinglyLinkedListDisplayComponent
+  ]
 })
 export class LinkedListsModule { }
