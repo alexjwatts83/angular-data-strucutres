@@ -5,18 +5,31 @@ import { FormsModule } from '@angular/forms';
 
 import { SinglyLinkedListComponent } from './singly-linked-lists/singly-linked-list.component';
 import { SinglyLinkedListDisplayComponent } from './singly-linked-lists/singly-linked-list-display.component';
+import { DoublyLinkedListComponent } from './doubly-linked-list/doubly-linked-list.component';
+import { DoublyLinkedListDisplayComponent } from './doubly-linked-list-display/doubly-linked-list-display.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: SinglyLinkedListComponent
+    children: [
+      {
+        path: 'singly',
+        component: SinglyLinkedListComponent
+      },
+      {
+        path: 'doubly',
+        component: DoublyLinkedListComponent
+      }
+    ]
   }
 ];
 
 @NgModule({
   declarations: [
     SinglyLinkedListComponent,
-    SinglyLinkedListDisplayComponent
+    SinglyLinkedListDisplayComponent,
+    DoublyLinkedListComponent,
+    DoublyLinkedListDisplayComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +38,9 @@ const routes: Routes = [
   ],
   exports: [
     SinglyLinkedListComponent,
-    SinglyLinkedListDisplayComponent
+    SinglyLinkedListDisplayComponent,
+    DoublyLinkedListComponent,
+    DoublyLinkedListDisplayComponent
   ]
 })
 export class LinkedListsModule { }

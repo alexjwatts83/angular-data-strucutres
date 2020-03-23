@@ -26,6 +26,18 @@ const routes: Routes = [
       .then(m => m.LinkedListsModule)
   },
   { 
+    path: 'linked-lists/singly',
+    loadChildren: () => 
+      import('./linked-lists/linked-lists.module')
+      .then(m => m.LinkedListsModule)
+  },
+  { 
+    path: 'linked-lists/doubly',
+    loadChildren: () => 
+      import('./linked-lists/linked-lists.module')
+      .then(m => m.LinkedListsModule)
+  },
+  { 
     path: 'binary-search-trees',
     loadChildren: () => 
       import('./binary-search-trees/binary-search-trees.module')
