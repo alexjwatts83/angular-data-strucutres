@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { LinkedListNode } from './linked-lists.model';
+import { LinkedListNode } from '../linked-lists.model';
 
 @Component({
   selector: 'app-linked-list-display',

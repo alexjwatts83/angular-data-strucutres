@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SinglyLinkedList, LinkedListNode } from './linked-lists.model';
+import { SinglyLinkedList } from "../SinglyLinkedList";
 
 @Component({
   selector: 'app-linked-list',

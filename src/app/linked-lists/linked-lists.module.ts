@@ -3,8 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { LinkedListComponent } from './linked-list.component';
-import { LinkedListDisplayComponent } from './linked-list-display.component';
+import { LinkedListComponent } from './singly-linked-lists/linked-list.component';
+import { LinkedListDisplayComponent } from './singly-linked-lists/linked-list-display.component';
 
 const routes: Routes = [
   {
