@@ -39,6 +39,10 @@ export class AppComponent {
       link: '/stacks'
     },
     {
+      name: 'Queues',
+      link: '/queues'
+    },
+    {
       name: 'BST',
       link: '/binary-search-trees'
     }

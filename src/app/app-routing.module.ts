@@ -44,6 +44,12 @@ const routes: Routes = [
       .then(m => m.StacksModule)
   },
   { 
+    path: 'queues',
+    loadChildren: () => 
+      import('./queues/queues.module')
+      .then(m => m.QueuesModule)
+  },
+  { 
     path: 'binary-search-trees',
     loadChildren: () => 
       import('./binary-search-trees/binary-search-trees.module')
