@@ -42,7 +42,7 @@ export class BinarySearchTree<T> {
     }
   }
 
-  lookup(value) {
+  lookup(value: T) {
     let currentNode = this.root;
     while(currentNode !== null) {
       if(currentNode.value === value) {
