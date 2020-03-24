@@ -8,23 +8,37 @@ import { BinarySearchTree, TreeNode } from './binary-search-trees.model';
 })
 export class BinarySearchTreeComponent implements OnInit {
   tree: BinarySearchTree<number>;
-  inputValue: string;
+  inputValue: number;
   message: string;
   list: any;
-
+  max: number;
   constructor() { 
     this.tree = new BinarySearchTree<number>();
     const values = [43,41,60,48,75,67,99,80];
     for(let i = 0; i < values.length; i++) {
       this.tree.insert(values[i]);
     }
+    this.max = 1000;
+    this.inputValue = this.getRandomInt(this.max);
   }
 
   ngOnInit(): void {
     this.list = this.traverseTree(this.tree);
   }
 
+  getRandomInt(max: number) {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
+
   traverseTree<T>(bst: BinarySearchTree<T>) {
+    if (bst.root === null){
+      return [
+        {
+          title: `Root: EMPTY`,
+          children: []
+        }
+      ];
+    }
     const ls = [
       {
         title: `Root:${bst.root.value}`,
@@ -39,6 +53,14 @@ export class BinarySearchTreeComponent implements OnInit {
   }
 
   traverseTreeNode<T>(node: TreeNode<T>, dir: string) {
+    if (node === null){
+      return [
+        {
+          title: `${dir}:EMPTY`,
+          children: []
+        }
+      ];
+    }
     let treeNode = {
       title: `${dir}:${node.value}`,
       children: []
@@ -49,21 +71,35 @@ export class BinarySearchTreeComponent implements OnInit {
     }
 
     if (node.right !== null) {
-      treeNode.children.push(this.traverseTreeNode(node.right, 'L'));
+      treeNode.children.push(this.traverseTreeNode(node.right, 'R'));
     }
 
     return treeNode;
   }
 
   addNode() {
-    const nodeValue = parseInt(this.inputValue);
-    this.tree.insert(nodeValue);
+    this.tree.insert(this.inputValue);
     this.list = this.traverseTree(this.tree);
+    this.setMessage(`Added node '${this.inputValue}'`);
+  }
+
+  addRandomNode() {
+    this.inputValue = this.getRandomInt(this.max);
+    this.addNode();
+    this.setMessage(`Added Random Node '${this.inputValue}' between ${this.max}`);
+  }
+
+  setMessage(msg: string): void {
+    this.message = msg;
   }
 
   doesNotExists() {
-    const nodeValue = parseInt(this.inputValue);
-    const exists = this.tree.lookup(nodeValue);
-    this.message = `Value ${nodeValue} ${exists ? ' does exist :)' : ' does not exists :('}`;
+    const exists = this.tree.lookup(this.inputValue);
+    this.message = `Value ${this.inputValue} ${exists ? ' does exist :)' : ' does not exists :('}`;
+  }
+
+  reset() {
+    this.tree = new BinarySearchTree<number>();
+    this.list = this.traverseTree(this.tree);
   }
 }

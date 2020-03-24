@@ -1,7 +1,9 @@
 <div style="display: flex;">
   <input id="input-value" class="margin-5px-left" type="number" [(ngModel)]="inputValue" />
-  <button class="btn btn-primary margin-5px-left" type="button" (click)="addNode()">Add Node</button>
+  <button class="btn btn-primary margin-5px-left" type="button" (click)="addNode()">Add</button>
+  <button class="btn btn-primary margin-5px-left" type="button" (click)="addRandomNode()">Add Random</button>
   <button class="btn btn-secondary margin-5px-left" type="button" (click)="doesNotExists()">Value Exists</button>
+  <button class="btn btn-dark margin-5px-left" type="button" (click)="reset()">Reset</button>
 </div>
 <h1>Tree</h1>
 <div class="alert alert-info" role="alert" *ngIf="message">
