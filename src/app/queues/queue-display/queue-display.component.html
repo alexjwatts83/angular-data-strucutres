@@ -1,1 +1,46 @@
-<p>queue-display works!</p>
+<div class="alert" [ngClass]="alertType">
+  <h6>Length of {{queue.length}}</h6>
+  <div style="display: flex;">
+    <div style="flex: 1;margin: 5px;border: 1px solid green;border-radius: 4px;">
+      <h5>First</h5>
+      <div style="display: flex;margin: 5px;">
+        <div style="flex: 1;margin: 5px;">Value:</div>
+        <div style="flex: 1;margin: 5px;background-color: white;">
+          {{getNodeValueText(queue.first)}}
+        </div>
+        <div style="flex: 1;margin: 5px;">Next:</div>
+        <div style="flex: 1;margin: 5px;background-color: white;">
+          {{getNextNodeValueText(queue.first)}}
+        </div>
+      </div>
+    </div>
+    <div style="flex: 1;margin: 5px;border: 1px solid green;border-radius: 4px;">
+      <h5>Last</h5>
+      <div style="display: flex;margin: 5px;">
+        <div style="flex: 1;margin: 5px;">Value:</div>
+        <div style="flex: 1;margin: 5px;background-color: white;">
+          {{getNodeValueText(queue.last)}}
+        </div>
+        <div style="flex: 1;margin: 5px;">Next:</div>
+        <div style="flex: 1;margin: 5px;background-color: white;">
+          {{getNextNodeValueText(queue.last)}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: flex;flex-wrap: wrap;">
+    <div *ngFor="let item of queueToArray(); let i = index" 
+    style="padding: 0px;border: 1px solid green;border-radius: 4px;margin: 5px 5px;">
+      <h6>[{{i}}]</h6>
+      <div style="display: flex;margin: 2px;">
+        <div style="flex: 1;margin: 2px;padding:2px;background-color: white;">
+          Val<br />{{getNodeValueText(item)}}
+        </div>
+        <div style="flex: 1;margin: 2px;padding:2px;background-color: white;">
+          Next<br />{{getNodeValueText(item.next)}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

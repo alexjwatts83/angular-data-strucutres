@@ -1,1 +1,15 @@
-<p>queue works!</p>
+<div style="display: flex;margin-bottom: 10px;">
+  <input id="input-size" class="margin-5px-left" type="number" [(ngModel)]="inputValue" placeholder="Value" />
+  <button class="btn btn-primary margin-5px-left" type="button" (click)="enqueue()">Enqueue</button>
+  <button class="btn btn-secondary margin-5px-left" type="button" (click)="enqueueRandom()">Enqueue Random</button>
+  <button class="btn btn-primary margin-5px-left" type="button" (click)="dequeue()">Dequeue</button>
+  <button class="btn btn-primary margin-5px-left" type="button" (click)="peek()">Peek</button>
+</div>
+
+<h1>Queues</h1>
+
+<div class="alert alert-info" role="alert" *ngIf="message">
+  <div>{{message}}</div>
+</div>
+
+<app-queue-display [queue]="queue" [alertType]="'alert-success'"></app-queue-display>
