@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Stack, Node } from '../stacks.model';
+import { Stack } from '../stacks.model';
+import { SimpleNode } from '../../shared';
 
 @Component({
   selector: 'app-stack-display',
@@ -15,7 +16,7 @@ export class StackDisplayComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getNodeValueText<T>(node: Node<T>) {
+  getNodeValueText<T>(node: SimpleNode<T>) {
     console.log('node', node);
     if (node === null) {
       return 'NULL';
@@ -23,7 +24,7 @@ export class StackDisplayComponent implements OnInit {
     return node.value;
   }
 
-  getNextNodeValueText<T>(node: Node<T>) {
+  getNextNodeValueText<T>(node: SimpleNode<T>) {
     console.log('node', node);
     if (node === null) {
       return 'NULL';

@@ -1,16 +1,8 @@
-export class Node<T> {
-  value: T;
-  next: Node<T>;
-
-  constructor(value: T){
-    this.value = value;
-    this.next = null;
-  }
-}
+import { SimpleNode } from '../shared';
 
 export class Stack<T> {
-  top: Node<T>;
-  bottom: Node<T>;
+  top: SimpleNode<T>;
+  bottom: SimpleNode<T>;
   length: number;
 
   constructor(){
@@ -19,12 +11,12 @@ export class Stack<T> {
     this.length = 0;
   }
 
-  peek(): Node<T> {
+  peek(): SimpleNode<T> {
     return this.top;
   }
 
   push(value: T): Stack<T>{
-    const node = new Node(value);
+    const node = new SimpleNode(value);
 
     if (this.top === null) {
       this.top = node;
@@ -39,7 +31,7 @@ export class Stack<T> {
     return this;
   }
 
-  pop(): Node<T>{
+  pop(): SimpleNode<T>{
     if(this.isEmpty()) {
       
       return null;
