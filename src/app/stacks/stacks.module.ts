@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { StackComponent } from './stack/stack.component';
+import { StackDisplayComponent } from './stack-display/stack-display.component';
 
 const routes: Routes = [
   {
@@ -12,12 +13,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [StackComponent],
+  declarations: [StackComponent, StackDisplayComponent],
   imports: [
     CommonModule,
     FormsModule,
     RouterModule.forChild(routes)
   ],
-  exports: [StackComponent]
+  exports: [StackComponent, StackDisplayComponent]
 })
 export class StacksModule { }

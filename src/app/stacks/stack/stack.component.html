@@ -1,1 +1,14 @@
-<p>stack works!</p>
+<div style="display: flex;margin-bottom: 10px;">
+  <input id="input-size" class="margin-5px-left" type="number" [(ngModel)]="inputValue" placeholder="Value" />
+  <button class="btn btn-primary margin-5px-left" type="button" (click)="push()">Push</button>
+  <button class="btn btn-secondary margin-5px-left" type="button" (click)="pushRandom()">Append Random</button>
+  <button class="btn btn-primary margin-5px-left" type="button" (click)="pop()">Pop</button>
+</div>
+
+<h1>Stacks</h1>
+
+<div class="alert alert-info" role="alert" *ngIf="message">
+  <div>{{message}}</div>
+</div>
+
+<app-stack-display [stack]="stack" [alertType]="'alert-success'"></app-stack-display>

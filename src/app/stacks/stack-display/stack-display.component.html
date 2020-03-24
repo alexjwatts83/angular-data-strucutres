@@ -1,0 +1,46 @@
+<div class="alert" [ngClass]="alertType">
+  <h6>Length of {{stack.length}}</h6>
+  <div style="display: flex;">
+    <div style="flex: 1;margin: 5px;border: 1px solid green;border-radius: 4px;">
+      <h5>Top</h5>
+      <div style="display: flex;margin: 5px;">
+        <div style="flex: 1;margin: 5px;">Value:</div>
+        <div style="flex: 1;margin: 5px;background-color: white;">
+          {{getNodeValueText(stack.top)}}
+        </div>
+        <div style="flex: 1;margin: 5px;">Next:</div>
+        <div style="flex: 1;margin: 5px;background-color: white;">
+          {{getNextNodeValueText(stack.top)}}
+        </div>
+      </div>
+    </div>
+    <div style="flex: 1;margin: 5px;border: 1px solid green;border-radius: 4px;">
+      <h5>Bottom</h5>
+      <div style="display: flex;margin: 5px;">
+        <div style="flex: 1;margin: 5px;">Value:</div>
+        <div style="flex: 1;margin: 5px;background-color: white;">
+          {{getNodeValueText(stack.bottom)}}
+        </div>
+        <div style="flex: 1;margin: 5px;">Next:</div>
+        <div style="flex: 1;margin: 5px;background-color: white;">
+          {{getNextNodeValueText(stack.bottom)}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: flex;flex-wrap: wrap;">
+    <div *ngFor="let item of stackToArray(); let i = index" 
+    style="padding: 0px;border: 1px solid green;border-radius: 4px;margin: 5px 5px;">
+      <h6>[{{i}}]</h6>
+      <div style="display: flex;margin: 2px;">
+        <div style="flex: 1;margin: 2px;padding:2px;background-color: white;">
+          Val<br />{{getNodeValueText(item)}}
+        </div>
+        <div style="flex: 1;margin: 2px;padding:2px;background-color: white;">
+          Next<br />{{getNodeValueText(item.next)}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
