@@ -35,6 +35,10 @@ export class AppComponent {
       ]
     },
     {
+      name: 'Stacks',
+      link: '/stacks'
+    },
+    {
       name: 'BST',
       link: '/binary-search-trees'
     }

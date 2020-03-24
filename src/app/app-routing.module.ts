@@ -38,6 +38,12 @@ const routes: Routes = [
       .then(m => m.LinkedListsModule)
   },
   { 
+    path: 'stacks',
+    loadChildren: () => 
+      import('./stacks/stacks.module')
+      .then(m => m.StacksModule)
+  },
+  { 
     path: 'binary-search-trees',
     loadChildren: () => 
       import('./binary-search-trees/binary-search-trees.module')
