@@ -12,6 +12,7 @@ export class BinarySearchTreeComponent implements OnInit {
   message: string;
   list: any;
   max: number;
+
   constructor() { 
     this.tree = new BinarySearchTree<number>();
     const values = [43,41,60,48,75,67,99,80];
@@ -85,7 +86,13 @@ export class BinarySearchTreeComponent implements OnInit {
     return treeNode;
   }
 
+  savePrev(): void {
+    // const treeRef =  JSON.parse(JSON.stringify(this.list));
+    const treeRef = this.list;
+  }
+
   addNode() {
+    this.savePrev();
     this.tree.insert(this.inputValue);
     this.list = this.traverseTree(this.tree);
     this.setMessage(`Added node '${this.inputValue}'`);
@@ -109,5 +116,11 @@ export class BinarySearchTreeComponent implements OnInit {
   reset() {
     this.tree = new BinarySearchTree<number>();
     this.list = this.traverseTree(this.tree);
+  }
+
+  removeNode() {
+    const node = this.tree.remove(this.inputValue);
+    this.list = this.traverseTree(this.tree);
+    this.setMessage(node.msg);
   }
 }

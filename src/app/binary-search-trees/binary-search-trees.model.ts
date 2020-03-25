@@ -16,7 +16,7 @@ export class BinarySearchTree<T> {
     this.root = null;
   }
 
-  insert(value: T) {
+  insert(value: T): void {
     const newNode = new TreeNode(value);
     if (this.root === null) {
       this.root = newNode;
@@ -42,7 +42,7 @@ export class BinarySearchTree<T> {
     }
   }
 
-  lookup(value: T) {
+  lookup(value: T): TreeNode<T> {
     let currentNode = this.root;
     while(currentNode !== null) {
       if(currentNode.value === value) {
@@ -54,5 +54,36 @@ export class BinarySearchTree<T> {
       }
     }
     return currentNode;
+  }
+
+  remove(value: T): {msg: string, node: TreeNode<T>} {
+    const nodeToRemove =  this.lookup(value);
+    if (nodeToRemove === null) {
+      return {
+        msg: `Node with value of ${value} not found`,
+        node: null
+      };
+    }
+    const hasLeftNode = nodeToRemove.left !== null;
+    const hasRightNode = nodeToRemove.right !== null;
+
+    if (!hasLeftNode && !hasRightNode) {
+      console.log('Has No Child nodes');
+      return {
+        msg: `Node '${value}', Has No Child nodes`,
+        node: nodeToRemove
+      };
+    }
+    if (hasLeftNode && hasRightNode) {
+      return {
+        msg: `Node '${value}', Has Left and Right nodes`,
+        node: nodeToRemove
+      };
+    }
+
+    return {
+      msg: `Node '${value}', Has one Child node`,
+      node: nodeToRemove
+    };
   }
 }
