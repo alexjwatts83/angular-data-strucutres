@@ -1,5 +1,11 @@
 /*Now the CSS*/
-// http://jsfiddle.net/9zftw6o1/
+/* 
+better version
+https://codepen.io/anggaand123/pen/wexprZ
+*/
+.tree{
+	* {margin: 0; padding: 0;}
+}
 .tree ul {
 	padding-top: 20px; position: relative;
 	
@@ -97,6 +103,3 @@ right connector from last child*/
 .tree li a:hover+ul ul::before{
 	border-color:  #94a0b4;
 }
-
-/*Thats all. I hope you enjoyed it.
-Thanks :)*/

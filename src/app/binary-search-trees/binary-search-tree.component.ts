@@ -18,7 +18,7 @@ export class BinarySearchTreeComponent implements OnInit {
     for(let i = 0; i < values.length; i++) {
       this.tree.insert(values[i]);
     }
-    this.max = 1000;
+    this.max = 100;
     this.inputValue = this.getRandomInt(this.max);
   }
 
