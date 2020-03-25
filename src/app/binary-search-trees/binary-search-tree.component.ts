@@ -30,19 +30,25 @@ export class BinarySearchTreeComponent implements OnInit {
     return Math.floor(Math.random() * Math.floor(max));
   }
 
+  isNewNode(node: any): boolean {
+    return node.value === this.inputValue;
+  }
+
   traverseTree<T>(bst: BinarySearchTree<T>) {
     if (bst.root === null){
       return [
         {
           title: `Root: EMPTY`,
-          children: []
+          children: [],
+          isNewNode: false
         }
       ];
     }
     const ls = [
       {
         title: `Root:${bst.root.value}`,
-        children: []
+        children: [],
+        isNewNode: this.isNewNode(bst.root)
       }
     ];
 
@@ -57,13 +63,15 @@ export class BinarySearchTreeComponent implements OnInit {
       return [
         {
           title: `${dir}:EMPTY`,
-          children: []
+          children: [],
+          isNewNode: false
         }
       ];
     }
     let treeNode = {
       title: `${dir}:${node.value}`,
-      children: []
+      children: [],
+      isNewNode: this.isNewNode(node)
     };
 
     if (node.left !== null) {

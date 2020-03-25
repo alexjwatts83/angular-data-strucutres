@@ -27,3 +27,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 ng g c binary-search-trees/binary-search-tree --flat=true --skipTests=true --module=./app/binary-search-trees/binary-search-trees --export=true
+
+https://gist.github.com/arniebradfo/5cf89c362cc216df6fc1d9ca4d536b72
+https://netbasal.com/recursion-in-angular-components-1cd636269b12
+https://visualgo.net/bn/bst
