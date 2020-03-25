@@ -14,8 +14,10 @@
   <ul>
     <ng-template #recursiveList let-list>
       <li *ngFor="let item of list">
-        <a href="#" [style.background-color] = "item.isNewNode ? 'pink' : ''">{{item.title}}</a>
-        <ul *ngIf="item.children.length > 0">
+        <span [style.background-color] = "item.isNewNode ? 'pink' : ''">
+          {{item.title}}
+        </span>
+        <ul *ngIf="item.children && item.children.length > 0">
           <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.children }"></ng-container>
         </ul>
       </li>
