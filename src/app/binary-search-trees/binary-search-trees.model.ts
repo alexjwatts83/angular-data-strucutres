@@ -7,6 +7,22 @@ export class TreeNode<T>{
     this.left = null;
     this.right = null;
   }
+  toDisplay(name: string) {
+    let displayText = '';
+    if (this.left === null && this.right === null) {
+      displayText = `${name}: NULL<=[${this.value}]=>NULL`;
+
+    } else if (this.left !== null && this.right === null) {
+      displayText = `${name}: ${this.left.value}<=[${this.value}]=>NULL`;
+
+    } else if (this.left === null && this.right !== null) {
+      displayText = `${name}: NULL<=[${this.value}]=> ${this.right.value}`;
+
+    } else {
+      displayText = `${name}: ${this.left.value}<=[${this.value}]=>${this.right.value}`;
+    }
+    return displayText;
+  }
 }
 
 export class BinarySearchTree<T> {
@@ -32,12 +48,14 @@ export class BinarySearchTree<T> {
           break;
         }
         currentNode = currentNode.left;
-      } else {
+      } else if(value > currentNode.value)  {
         if(currentNode.right === null) {
           currentNode.right = newNode;
           break;
         }
         currentNode = currentNode.right;
+      } else {
+        break;
       }
     }
   }
@@ -56,6 +74,8 @@ export class BinarySearchTree<T> {
     return currentNode;
   }
 
+
+
   remove2(value: T): {msg: string, node: TreeNode<T>, parent: TreeNode<T>} {
     const result = {
       msg: `Node with value of ${value} not found`,
@@ -63,7 +83,7 @@ export class BinarySearchTree<T> {
       parent: null
     };
 
-    let parentNode = null;
+    let parentNode: TreeNode<T> = null;
     let currentNode = this.root;
     while(currentNode !== null) {
       if(currentNode.value === value){
@@ -83,12 +103,12 @@ export class BinarySearchTree<T> {
 
     result.node = currentNode;
     result.parent = parentNode;
-    const parentText = parentNode === null ? 'NULL' : parentNode.value;
-    result.msg = `Delete: ${currentNode.value} => parent: ${parentText}<br />sasd`;
+    console.log(currentNode.toDisplay('currentNode'));
+    console.log(parentNode.toDisplay('parentNode'));
 
     // check if a leaf node
     if (currentNode.left === null && currentNode.right === null) {
-      if (currentNode.value = parentNode.left.value) {
+      if (parentNode.left && currentNode.value === parentNode.left.value) {
         parentNode.left = null;
       } else {
         parentNode.right = null;
@@ -96,102 +116,13 @@ export class BinarySearchTree<T> {
     } else if (currentNode.left === null || currentNode.right === null) {
       const tempChild = currentNode.left === null ? currentNode.right : currentNode. left;
 
-      console.log(`parentNode: ${parentNode.left.value}<=[${parentNode.value}]=>${parentNode.right.value}`);
-
-      if (currentNode.left === null) {
-        console.log(`currentNode: NULL<=[${currentNode.value}]=>${currentNode.right.value}`);
-      } else {
-        console.log(`currentNode: ${currentNode.left.value}<=[${currentNode.value}]=>NULL`);
-      }
-
-      if (tempChild.left === null && tempChild.right === null) {
-        console.log(`tempChild: NULL<=[${tempChild.value}]=>NULL`);
-      } else if (tempChild.left !== null && tempChild.left === null) {
-        console.log(`tempChild: ${tempChild.left.value}<=[${tempChild.value}]=>NULL`);
-      } else if (tempChild.left !== null && tempChild.left === null) {
-        console.log(`tempChild: NULL<=[${tempChild.value}]=> ${tempChild.right.value}`);
-      } else {
-        console.log(`tempChild: ${tempChild.left.value}<=[${tempChild.value}]=>${tempChild.right.value}`);
-      }
-
-      if (currentNode.value === parentNode.left.value) {
-        console.log(`Setting parent ${parentNode.value} left tempChild: ${tempChild.value}`);
+      if (parentNode.left && currentNode.value === parentNode.left.value) {
         parentNode.left = tempChild;
       } else {
-        console.log(`Setting parent ${parentNode.value} right tempChild: ${tempChild.value}`);
         parentNode.right = tempChild;
       }
-      
-      console.log(parentNode);
     }
     return result;
-  }
-
-  remove(value: T): {msg: string, node: TreeNode<T>} {
-    const nodeToRemove =  this.lookup(value);
-    if (nodeToRemove === null) {
-      return {
-        msg: `Node with value of ${value} not found`,
-        node: null
-      };
-    }
-    const hasLeftNode = nodeToRemove.left !== null;
-    const hasRightNode = nodeToRemove.right !== null;
-
-    this.root = this.deleteRec(this.root, value);
-
-    console.log('root', this.root);
-
-    if (!hasLeftNode && !hasRightNode) {
-      console.log('Has No Child nodes');
-      return {
-        msg: `Node '${value}', Has No Child nodes`,
-        node: nodeToRemove
-      };
-    }
-    if (hasLeftNode && hasRightNode) {
-      return {
-        msg: `Node '${value}', Has Left and Right nodes`,
-        node: nodeToRemove
-      };
-    }
-
-    return {
-      msg: `Node '${value}', Has one Child node`,
-      node: nodeToRemove
-    };
-  }
-
-  deleteRec(node: TreeNode<T>, value: T) {
-    if (node === null) {
-      console.log('node is null');
-      return node;
-    }
-
-    if (value < node.value) {
-      console.log(`Deleting Left as ${value} < ${node.value}`);
-      node.left = this.deleteRec(node.left, value);
-    } else if (value > node.value) {
-      console.log(`Deleting Right as ${value} > ${node.value}`);
-      node.right = this.deleteRec(node.right, value);
-    } else {
-      if (node.left === null) {
-        const text = node.right === null ? 'NULL' : node.right.value;
-        console.log(`Returning Right ${text} to delete as left is null`);
-        return node.right;
-      } else if (node.right === null) {
-        const text = node.left === null ? 'NULL' : node.left.value;
-        console.log(`Returning Left ${text} to delete as right is null`);
-        return node.left;
-      }
-      const prevMin = node.value;
-      const minv = this.minValue(node.right);
-      console.log(`Setting Min value to ${minv} from ${prevMin}`);
-      node.value = minv;
-
-      console.log('Deleting Right again');
-      node.right = this.deleteRec(node.right, node.value);
-    }
   }
 
   minValue(node: TreeNode<T>) {
