@@ -14,16 +14,21 @@ export class BinarySearchTreeComponent implements OnInit {
   max: number;
 
   constructor() { 
+    this.max = 100;
+    this.inputValue = this.getRandomInt(this.max);
+    this.inputValue = 99;
+  }
+
+  ngOnInit(): void {
+    this.init();
+  }
+
+  init() {
     this.tree = new BinarySearchTree<number>();
     const values = [43,41,60,48,75,67,99,80];
     for(let i = 0; i < values.length; i++) {
       this.tree.insert(values[i]);
     }
-    this.max = 100;
-    this.inputValue = this.getRandomInt(this.max);
-  }
-
-  ngOnInit(): void {
     this.list = this.traverseTree(this.tree);
   }
 
@@ -119,7 +124,7 @@ export class BinarySearchTreeComponent implements OnInit {
   }
 
   removeNode() {
-    const node = this.tree.remove(this.inputValue);
+    const node = this.tree.remove2(this.inputValue);
     this.list = this.traverseTree(this.tree);
     this.setMessage(node.msg);
   }
