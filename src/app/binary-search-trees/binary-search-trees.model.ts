@@ -27,12 +27,14 @@ export class TreeNode<T>{
 
 export class BinarySearchTree<T> {
   root: TreeNode<T>;
-
+  insertSequence: T[];
   constructor() {
     this.root = null;
+    this.insertSequence = [];
   }
 
   insert(value: T): void {
+    this.insertSequence.push(value);
     const newNode = new TreeNode(value);
     if (this.root === null) {
       this.root = newNode;
@@ -180,15 +182,7 @@ export class BinarySearchTree<T> {
         parentNode.right = leftMostNode;
       }
     }
+    
     return result;
-  }
-
-  minValue(node: TreeNode<T>) {
-    let minv = node.value;
-    while (node.left !== null) {
-      minv = node.left.value;
-      node = node.left;
-    }
-    return minv;
   }
 }

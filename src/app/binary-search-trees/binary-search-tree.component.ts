@@ -8,9 +8,11 @@ import { BinarySearchTree, TreeNode } from './binary-search-trees.model';
 })
 export class BinarySearchTreeComponent implements OnInit {
   tree: BinarySearchTree<number>;
+  previousTree: BinarySearchTree<number>;
   inputValue: number;
   message: string;
   list: any;
+  prevList: any;
   max: number;
 
   constructor() { 
@@ -25,6 +27,7 @@ export class BinarySearchTreeComponent implements OnInit {
   }
 
   init() {
+    this.previousTree = new BinarySearchTree<number>();
     this.tree = new BinarySearchTree<number>();
     // const values = [43,41,60,48,75,67,99,80];
     let values = [43,41,42,60,48,50,75,45,67,99,44,46,49,55,65,68,80,100,40];
@@ -32,21 +35,7 @@ export class BinarySearchTreeComponent implements OnInit {
     for(let i = 0; i < values.length; i++) {
       this.tree.insert(values[i]);
     }
-    this.list = this.traverseTree(this.tree);
-  }
-
-  init2(max: number){
-    this.tree = new BinarySearchTree<number>();
-    let startingPoint = (max / 2) + 1;
-    let values = [startingPoint];
-    this.tree.insert(startingPoint);
-
-    for(let i = 1; i <= 21; i++) {
-      this.tree.insert(i);
-    }
-
-    this.list = this.traverseTree(this.tree);
-    console.log(values);
+    this.displayTree();
   }
 
   getRandomInt(max: number) {
@@ -109,15 +98,27 @@ export class BinarySearchTreeComponent implements OnInit {
   }
 
   savePrev(): void {
-    // const treeRef =  JSON.parse(JSON.stringify(this.list));
-    const treeRef = this.list;
+    const currentValues = [...this.tree.insertSequence];
+
+    // for(let i = 0; i < this.tree.insertSequence.length; i++) {
+    //   currentValues.push(this.tree.insertSequence[i]);
+    // }
+
+    for(let i = 0; i < currentValues.length; i++) {
+      this.previousTree.insert(currentValues[i]);
+    }
+  }
+
+  displayTree() {
+    this.list = this.traverseTree(this.tree);
+    this.prevList = this.traverseTree(this.previousTree);
   }
 
   addNode() {
     this.savePrev();
     this.tree.insert(this.inputValue);
-    this.list = this.traverseTree(this.tree);
     this.setMessage(`Added node '${this.inputValue}'`);
+    this.displayTree();
   }
 
   addRandomNode() {
@@ -137,12 +138,13 @@ export class BinarySearchTreeComponent implements OnInit {
 
   reset() {
     this.tree = new BinarySearchTree<number>();
-    this.list = this.traverseTree(this.tree);
+    this.displayTree();
   }
 
   removeNode() {
+    this.savePrev();
     const node = this.tree.remove2(this.inputValue);
-    this.list = this.traverseTree(this.tree);
     this.setMessage(node.msg);
+    this.displayTree();
   }
 }

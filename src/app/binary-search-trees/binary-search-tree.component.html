@@ -7,11 +7,32 @@
   <button class="btn btn-dark margin-5px-left" type="button" (click)="reset()">Reset</button>
   <button class="btn btn-danger margin-5px-left" type="button" (click)="removeNode()">Remove</button>
 </div>
+
 <h1>Tree</h1>
 <div class="alert alert-info" role="alert" *ngIf="message">
   <div>{{message}}</div>
 </div>
 
+<h5>PREV</h5>
+<div>
+  <div class="tree">
+    <ul>
+      <ng-template #recursivePrevList let-prevList>
+        <li *ngFor="let item of prevList">
+          <span [style.background-color] = "item.isNewNode ? 'pink' : ''">
+            {{item.title}}
+          </span>
+          <ul *ngIf="item.children && item.children.length > 0">
+            <ng-container *ngTemplateOutlet="recursivePrevList; context:{ $implicit: item.children }"></ng-container>
+          </ul>
+        </li>
+      </ng-template>
+      <ng-container *ngTemplateOutlet="recursivePrevList; context:{ $implicit: prevList }"></ng-container>
+    </ul>
+  </div>
+</div>
+
+<h5>CURR</h5>
 <div class="tree">
   <ul>
     <ng-template #recursiveList let-list>
@@ -27,3 +48,4 @@
     <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: list }"></ng-container>
   </ul>
 </div>
+<br />
