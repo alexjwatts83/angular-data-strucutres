@@ -1,0 +1,15 @@
+<div class="tree">
+  <ul>
+    <ng-template #recursivenodeList let-nodeList>
+      <li *ngFor="let item of nodeList">
+        <span [ngClass]="{ 'is-new-node': item.isNewNode }">
+          {{item.title}}
+        </span>
+        <ul *ngIf="item.children && item.children.length > 0">
+          <ng-container *ngTemplateOutlet="recursivenodeList; context:{ $implicit: item.children }"></ng-container>
+        </ul>
+      </li>
+    </ng-template>
+    <ng-container *ngTemplateOutlet="recursivenodeList; context:{ $implicit: nodeList }"></ng-container>
+  </ul>
+</div>

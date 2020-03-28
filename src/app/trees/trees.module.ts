@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { BinarySearchTreeComponent } from './binary-search-trees/';
 import { BinaryHeapComponent } from './binary-heaps/';
+import { TreeDisplayComponent } from './tree-display/tree-display.component';
 
 const routes: Routes = [
   {
@@ -24,7 +25,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     BinarySearchTreeComponent,
-    BinaryHeapComponent
+    BinaryHeapComponent,
+    TreeDisplayComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +35,8 @@ const routes: Routes = [
   ],
   exports: [
     BinarySearchTreeComponent,
-    BinaryHeapComponent
+    BinaryHeapComponent,
+    TreeDisplayComponent
   ]
 })
 export class TreesModule { }
