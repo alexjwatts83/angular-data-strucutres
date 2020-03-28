@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BinarySearchTree, TreeNode } from './binary-search-trees.model';
+import { BinarySearchTree } from './binary-search-trees.model';
+import { TreeNode } from '../trees.model';
 
 @Component({
   selector: 'app-binary-search-tree',
@@ -23,18 +24,17 @@ export class BinarySearchTreeComponent implements OnInit {
 
   ngOnInit(): void {
     this.init();
-    // this.init2(20);
   }
 
   init() {
     this.previousTree = new BinarySearchTree<number>();
     this.tree = new BinarySearchTree<number>();
-    // const values = [43,41,60,48,75,67,99,80];
     let values = [43,41,42,60,48,50,75,45,67,99,44,46,49,55,65,68,80,100,40];
-    values = [43,41,42,60,48,50,75,45,67,99,44,46,49,55,65,68,80,100,40];
+
     for(let i = 0; i < values.length; i++) {
       this.tree.insert(values[i]);
     }
+
     this.displayTree();
   }
 
@@ -99,10 +99,6 @@ export class BinarySearchTreeComponent implements OnInit {
 
   savePrev(): void {
     const currentValues = [...this.tree.insertSequence];
-
-    // for(let i = 0; i < this.tree.insertSequence.length; i++) {
-    //   currentValues.push(this.tree.insertSequence[i]);
-    // }
 
     for(let i = 0; i < currentValues.length; i++) {
       this.previousTree.insert(currentValues[i]);

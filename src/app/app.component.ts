@@ -43,8 +43,15 @@ export class AppComponent {
       link: '/queues'
     },
     {
-      name: 'BST',
-      link: '/binary-search-trees'
+      name: 'Trees',
+      link: '/trees',
+      children: [
+        {
+          name: 'Binary Search Trees',
+          link: '/trees/binary-search-trees'
+        },
+      ]
+
     },
     {
       name: 'Graphs',

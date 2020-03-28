@@ -26,18 +26,6 @@ const routes: Routes = [
       .then(m => m.LinkedListsModule)
   },
   { 
-    path: 'linked-lists/singly',
-    loadChildren: () => 
-      import('./linked-lists/linked-lists.module')
-      .then(m => m.LinkedListsModule)
-  },
-  { 
-    path: 'linked-lists/doubly',
-    loadChildren: () => 
-      import('./linked-lists/linked-lists.module')
-      .then(m => m.LinkedListsModule)
-  },
-  { 
     path: 'stacks',
     loadChildren: () => 
       import('./stacks/stacks.module')
@@ -50,10 +38,10 @@ const routes: Routes = [
       .then(m => m.QueuesModule)
   },
   { 
-    path: 'binary-search-trees',
+    path: 'trees',
     loadChildren: () => 
-      import('./binary-search-trees/binary-search-trees.module')
-      .then(m => m.BinarySearchTreesModule)
+      import('./trees/trees.module')
+      .then(m => m.TreesModule)
   },
   {
     path: 'graphs',

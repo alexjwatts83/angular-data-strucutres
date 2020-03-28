@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BinarySearchTreesModule } from './binary-search-trees';
+import { TreesModule } from './trees/trees.module';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ArraysModule } from './arrays';
@@ -20,7 +20,7 @@ import { LinkedListsModule } from './linked-lists';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    BinarySearchTreesModule,
+    TreesModule,
     ArraysModule,
     LinkedListsModule
   ],
