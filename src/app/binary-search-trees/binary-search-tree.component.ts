@@ -21,15 +21,32 @@ export class BinarySearchTreeComponent implements OnInit {
 
   ngOnInit(): void {
     this.init();
+    // this.init2(20);
   }
 
   init() {
     this.tree = new BinarySearchTree<number>();
-    const values = [43,41,60,48,75,67,99,80];
+    // const values = [43,41,60,48,75,67,99,80];
+    let values = [43,41,42,60,48,50,75,45,67,99,44,46,49,55,65,68,80,100,40];
+    values = [43,41,42,60,48,50,75,45,67,99,44,46,49,55,65,68,80,100,40];
     for(let i = 0; i < values.length; i++) {
       this.tree.insert(values[i]);
     }
     this.list = this.traverseTree(this.tree);
+  }
+
+  init2(max: number){
+    this.tree = new BinarySearchTree<number>();
+    let startingPoint = (max / 2) + 1;
+    let values = [startingPoint];
+    this.tree.insert(startingPoint);
+
+    for(let i = 1; i <= 21; i++) {
+      this.tree.insert(i);
+    }
+
+    this.list = this.traverseTree(this.tree);
+    console.log(values);
   }
 
   getRandomInt(max: number) {

@@ -121,6 +121,49 @@ export class BinarySearchTree<T> {
       } else {
         parentNode.right = tempChild;
       }
+    } else if (currentNode.left !== null && currentNode.right !== null) {
+      // find left most node
+      let leftMostNode = currentNode.right;
+      let leftMostNodeParent = null;
+      console.log(leftMostNode.toDisplay('leftMostNode'));
+      console.log("========================================");
+      while(leftMostNode.left !== null) {
+        leftMostNodeParent = leftMostNode;
+        leftMostNode = leftMostNode.left
+        console.log(leftMostNodeParent.toDisplay('leftMostNodeParent'));
+        console.log(leftMostNode.toDisplay('leftMostNode'));
+      }
+      console.log("========================================");
+      if (leftMostNodeParent){
+        console.log(leftMostNodeParent.toDisplay('leftMostNodeParent'));
+      } else {
+        console.log('leftMostNodeParent is NULL')
+      }
+      console.log(leftMostNode.toDisplay('leftMostNode'));
+      console.log("========================================");
+
+      if (leftMostNodeParent) {
+        leftMostNode.left = currentNode.left;
+        leftMostNode.right = currentNode.right;
+        leftMostNodeParent.left = null;
+        if (parentNode.left && parentNode.left.value === currentNode.value) {
+          parentNode.left = leftMostNode;
+        } else {
+          parentNode.right = leftMostNode;
+        }
+        console.log(leftMostNode.toDisplay('leftMostNode'));
+        console.log(parentNode.toDisplay('parentNode'));
+      } else {
+        leftMostNode.left = currentNode.left;
+        if (parentNode.left.value === currentNode.value){
+          parentNode.left = leftMostNode;
+        } else {
+          parentNode.right = leftMostNode;
+        }
+        console.log(leftMostNode.toDisplay('leftMostNode'));
+        console.log(parentNode.toDisplay('parentNode'));
+      }
+
     }
     return result;
   }
