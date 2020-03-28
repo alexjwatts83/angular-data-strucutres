@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { GraphComponent } from './graph/graph.component';
 import { GraphDisplayComponent } from './graph-display/graph-display.component';
 import { FormsModule } from '@angular/forms';
+import { GraphInfoComponent } from './graph-info/graph-info.component';
+import { GraphExampleComponent } from './graph-example/graph-example.component';
 
 const routes: Routes = [
   {
@@ -15,7 +17,9 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     GraphComponent,
-    GraphDisplayComponent
+    GraphDisplayComponent,
+    GraphInfoComponent,
+    GraphExampleComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +28,9 @@ const routes: Routes = [
   ],
   exports: [
     GraphComponent,
-    GraphDisplayComponent
+    GraphDisplayComponent,
+    GraphInfoComponent,
+    GraphExampleComponent
   ]
 })
 export class GraphsModule { }
