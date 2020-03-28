@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { BinarySearchTreeComponent } from './binary-search-trees/';
 import { BinaryHeapComponent } from './binary-heaps/';
 import { TreeDisplayComponent } from './tree-display/tree-display.component';
+import { TrieComponent } from './tries/trie/trie.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
       {
         path: 'binary-heaps',
         component: BinaryHeapComponent
+      },
+      {
+        path: 'tries',
+        component: TrieComponent
       }
     ]
   }
@@ -26,7 +31,8 @@ const routes: Routes = [
   declarations: [
     BinarySearchTreeComponent,
     BinaryHeapComponent,
-    TreeDisplayComponent
+    TreeDisplayComponent,
+    TrieComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +42,8 @@ const routes: Routes = [
   exports: [
     BinarySearchTreeComponent,
     BinaryHeapComponent,
-    TreeDisplayComponent
+    TreeDisplayComponent,
+    TrieComponent
   ]
 })
 export class TreesModule { }

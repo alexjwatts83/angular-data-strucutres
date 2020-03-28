@@ -53,6 +53,10 @@ export class AppComponent {
         {
           name: 'Binary Heaps',
           link: '/trees/binary-heaps'
+        },
+        {
+          name: 'Tries',
+          link: '/trees/tries'
         }
       ]
 
