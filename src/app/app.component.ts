@@ -50,6 +50,10 @@ export class AppComponent {
           name: 'Binary Search Trees',
           link: '/trees/binary-search-trees'
         },
+        {
+          name: 'Binary Heaps',
+          link: '/trees/binary-heaps'
+        }
       ]
 
     },

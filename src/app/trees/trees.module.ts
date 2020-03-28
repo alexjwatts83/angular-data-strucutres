@@ -3,14 +3,19 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { BinarySearchTreeComponent } from './binary-search-trees/';
+import { BinaryHeapComponent } from './binary-heaps/';
 
 const routes: Routes = [
   {
     path: '',
     children: [
       {
-        path: 'binary-search-trees'
-        ,component: BinarySearchTreeComponent
+        path: 'binary-search-trees',
+        component: BinarySearchTreeComponent
+      },
+      {
+        path: 'binary-heaps',
+        component: BinaryHeapComponent
       }
     ]
   }
@@ -18,7 +23,8 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    BinarySearchTreeComponent
+    BinarySearchTreeComponent,
+    BinaryHeapComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +32,8 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   exports: [
-    BinarySearchTreeComponent
+    BinarySearchTreeComponent,
+    BinaryHeapComponent
   ]
 })
 export class TreesModule { }
