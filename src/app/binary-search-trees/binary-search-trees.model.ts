@@ -84,86 +84,101 @@ export class BinarySearchTree<T> {
     };
 
     let parentNode: TreeNode<T> = null;
-    let currentNode = this.root;
-    while(currentNode !== null) {
-      if(currentNode.value === value){
+    let nodeToDelete = this.root;
+
+    while(nodeToDelete !== null) {
+      if(nodeToDelete.value === value){
         break;
-      } else if (value < currentNode.value) {
-        parentNode = currentNode;
-        currentNode = currentNode.left;
+      } else if (value < nodeToDelete.value) {
+        parentNode = nodeToDelete;
+        nodeToDelete = nodeToDelete.left;
       } else {
-        parentNode = currentNode;
-        currentNode = currentNode.right;
+        parentNode = nodeToDelete;
+        nodeToDelete = nodeToDelete.right;
       }
     }
 
-    if (currentNode === null) {
+    if (nodeToDelete === null) {
       return result;
     }
 
-    result.node = currentNode;
+    result.node = nodeToDelete;
     result.parent = parentNode;
-    console.log(currentNode.toDisplay('currentNode'));
-    console.log(parentNode.toDisplay('parentNode'));
 
-    // check if a leaf node
-    if (currentNode.left === null && currentNode.right === null) {
-      if (parentNode.left && currentNode.value === parentNode.left.value) {
+    if (nodeToDelete.left === null && nodeToDelete.right === null) {
+      if(nodeToDelete.value === this.root.value) {
+        this.root = null;
+        return result;
+      }
+      /*
+      Has no children nodes so set the left or righ node on the parent
+      to null based off the node to delete value
+      */
+      if (parentNode.left && nodeToDelete.value === parentNode.left.value) {
         parentNode.left = null;
       } else {
         parentNode.right = null;
       }
-    } else if (currentNode.left === null || currentNode.right === null) {
-      const tempChild = currentNode.left === null ? currentNode.right : currentNode. left;
+    } else if (nodeToDelete.left === null || nodeToDelete.right === null) {
+      /*
+      Node to delete has either a Left or Right node but not both
+      Has Left but no right, replace parent node left with delete nodes left
+          P          P
+         /          /
+        D          L
+       /
+      L
+      Has Right but no left, replace parent node right with delete nodes right
+      P             P
+       \             \
+        D             R
+         \
+          R
+      */
+      const tempChild = (nodeToDelete.left === null ) ? nodeToDelete.right : nodeToDelete. left;
+      if(nodeToDelete.value === this.root.value) {
+        this.root = tempChild;
+        return result;
+      }
 
-      if (parentNode.left && currentNode.value === parentNode.left.value) {
+      if (parentNode.left && nodeToDelete.value === parentNode.left.value) {
         parentNode.left = tempChild;
       } else {
         parentNode.right = tempChild;
       }
-    } else if (currentNode.left !== null && currentNode.right !== null) {
-      // find left most node
-      let leftMostNode = currentNode.right;
+    } else if (nodeToDelete.left !== null && nodeToDelete.right !== null) {
+      /*
+      Has left and right 
+      */
+      
+      if (nodeToDelete.value === this.root.value) {
+        const rootLeft = this.root.left;
+        this.root = this.root.right;
+        this.root.left = rootLeft;
+        return result;
+      }
+
+      // find left most node starting from the right
+      let leftMostNode = nodeToDelete.right;
       let leftMostNodeParent = null;
-      console.log(leftMostNode.toDisplay('leftMostNode'));
-      console.log("========================================");
       while(leftMostNode.left !== null) {
         leftMostNodeParent = leftMostNode;
         leftMostNode = leftMostNode.left
-        console.log(leftMostNodeParent.toDisplay('leftMostNodeParent'));
-        console.log(leftMostNode.toDisplay('leftMostNode'));
       }
-      console.log("========================================");
-      if (leftMostNodeParent){
-        console.log(leftMostNodeParent.toDisplay('leftMostNodeParent'));
-      } else {
-        console.log('leftMostNodeParent is NULL')
-      }
-      console.log(leftMostNode.toDisplay('leftMostNode'));
-      console.log("========================================");
 
       if (leftMostNodeParent) {
-        leftMostNode.left = currentNode.left;
-        leftMostNode.right = currentNode.right;
+        leftMostNode.left = nodeToDelete.left;
+        leftMostNode.right = nodeToDelete.right;
         leftMostNodeParent.left = null;
-        if (parentNode.left && parentNode.left.value === currentNode.value) {
-          parentNode.left = leftMostNode;
-        } else {
-          parentNode.right = leftMostNode;
-        }
-        console.log(leftMostNode.toDisplay('leftMostNode'));
-        console.log(parentNode.toDisplay('parentNode'));
       } else {
-        leftMostNode.left = currentNode.left;
-        if (parentNode.left.value === currentNode.value){
-          parentNode.left = leftMostNode;
-        } else {
-          parentNode.right = leftMostNode;
-        }
-        console.log(leftMostNode.toDisplay('leftMostNode'));
-        console.log(parentNode.toDisplay('parentNode'));
+        leftMostNode.left = nodeToDelete.left;
       }
 
+      if (parentNode.left && parentNode.left.value === nodeToDelete.value) {
+        parentNode.left = leftMostNode;
+      } else {
+        parentNode.right = leftMostNode;
+      }
     }
     return result;
   }
