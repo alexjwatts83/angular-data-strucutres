@@ -45,6 +45,10 @@ export class AppComponent {
     {
       name: 'BST',
       link: '/binary-search-trees'
+    },
+    {
+      name: 'Graphs',
+      link: '/graphs'
     }
   ];
   started = new Date(2020, 3, 22, 16, 50, 0, 0);

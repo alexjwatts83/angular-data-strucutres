@@ -55,6 +55,10 @@ const routes: Routes = [
       import('./binary-search-trees/binary-search-trees.module')
       .then(m => m.BinarySearchTreesModule)
   },
+  {
+    path: 'graphs',
+    loadChildren: () => import('./graphs/graphs.module').then(m => m.GraphsModule)
+  },
   { path: '**', component: PageNotFoundComponent }
 ];
 
