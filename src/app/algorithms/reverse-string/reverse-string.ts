@@ -8,6 +8,9 @@ export class ReverString {
   }
 
   reverseRecursive(str: string): string {
-    return '';
+    if (str.length === 0) {
+      return '';
+    }
+    return str[str.length-1] + this.reverseRecursive(str.substring(0,str.length-1));
   }
 }
