@@ -65,8 +65,13 @@ export class SortsComponent implements OnInit {
 
   createArray(): void {
     this.inputValue = '';
-    for(let i = 0; i < this.inputLength; i++) {
+    const addedNumbers = new Set();
+    while(addedNumbers.size < this.inputLength) {
       let value = this.getRandomInt(this.inputMax);
+      if (addedNumbers.has(value)) {
+        continue;
+      }
+      addedNumbers.add(value);
       this.inputValue = this.inputValue + value + ', ';
     }
     this.inputValue = this.inputValue.substring(0, this.inputValue.length - 2);
