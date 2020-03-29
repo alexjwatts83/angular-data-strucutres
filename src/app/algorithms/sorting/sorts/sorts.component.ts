@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { BubbleSort } from '.';
 
 @Component({
-  selector: 'app-bubble-sort',
-  templateUrl: './bubble-sort.component.html',
-  styleUrls: ['./bubble-sort.component.scss']
+  selector: 'app-sorts',
+  templateUrl: './sorts.component.html',
+  styleUrls: ['./sorts.component.scss']
 })
-export class BubbleSortComponent implements OnInit {
-  sort: BubbleSort<number>;
+export class SortsComponent implements OnInit {
+  bubbleSort: BubbleSort<number>;
   inputValue: string;
   unsortedArray: number[];
   sortedArray: number[];
@@ -18,7 +18,7 @@ export class BubbleSortComponent implements OnInit {
 
   constructor() { 
     this.inputValue = '99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0, 8, 300, 55, 3';
-    this.sort = new BubbleSort();
+    this.bubbleSort = new BubbleSort();
     this.unsortedArray = [];
     this.sortedArray = [];
     this.sortSequence = [];
@@ -40,7 +40,7 @@ export class BubbleSortComponent implements OnInit {
       this.unsortedArray.push(parseInt(unsortedArrayAsString[i]));
     }
 
-    this.sortedArray = this.sort.sort(this.unsortedArray)
+    this.sortedArray = this.bubbleSort.sort(this.unsortedArray)
   }
 
   getRandomInt(max: number) {

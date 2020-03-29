@@ -86,8 +86,8 @@ export class AppComponent {
           link: '/algorithms/reverse-string'
         },
         {
-          name: 'Bubble Sort',
-          link: '/algorithms/bubble-sort'
+          name: 'Sorting',
+          link: '/algorithms/sorting'
         },
       ]
     },

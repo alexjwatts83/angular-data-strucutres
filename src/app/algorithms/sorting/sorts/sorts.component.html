@@ -1,4 +1,4 @@
-<h1>Bubble Sort</h1>
+<h1>Sorting</h1>
 <div style="display: flex;margin-bottom: 10px;">
   <input id="input-value" class="margin-5px-left" min="0" type="number" [(ngModel)]="inputMin" placeholder="Min" />
   <input id="input-value" class="margin-5px-left" max="1000" type="number" [(ngModel)]="inputMax" placeholder="Max" />
@@ -18,13 +18,13 @@
   <div class="alert alert-info" style="flex: 1;margin: 10px;">
     <h2>Unsorted</h2>
     <p>
-      '{{unsortedArray | json}}'
+      {{unsortedArray | json}}
     </p>
   </div>
   <div class="alert alert-success" style="flex: 1;margin: 10px;">
-    <h2>Sorted</h2>
+    <h2>Bubble Sort</h2>
     <p>
-      '{{sortedArray | json}}'
+      {{sortedArray | json}}
     </p>
   </div>
 </div>

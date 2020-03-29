@@ -11,7 +11,6 @@ export class BubbleSort<T> {
     let maxLoop = maxIndex;
 
     while(iterationCount < maxIndex){
-
       while(index < maxLoop) {
         let left = sorted[index];
         let right = sorted[index+1];
