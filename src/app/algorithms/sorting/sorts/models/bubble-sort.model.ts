@@ -1,4 +1,6 @@
-export class BubbleSort<T> {
+import { SortAlgorithm } from './sorting.model';
+
+export class BubbleSort<T> implements SortAlgorithm<T> {
   sort(items: T[]): T[]{
     if (items.length <= 1) {
       return items;
