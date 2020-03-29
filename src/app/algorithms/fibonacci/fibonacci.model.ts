@@ -8,34 +8,27 @@ export class Fibonacci {
 
   fibonacciIterative(n: number): number{
     if (n < 2) {
-      console.log(`returing n = ${n}`);
       return n;
     }
 
     let nMinusOne = 1
     let nMinusTwo = 0;
-    console.log("==========================");
-    console.log(`n = ${n}`);
-    console.log("==========================");
-    for(let i = 3; i <= n; i++) {
-      console.log(`i = ${i}`);
-      console.log(`nMinusOne = ${nMinusOne}`);
-      console.log(`nMinusTwo = ${nMinusTwo}`);
+
+    for(let i = 2; i < n; i++) {
       let m1 = nMinusOne;
       let m2 = nMinusOne + nMinusTwo;
       nMinusTwo = m1;
       nMinusOne = m2;
     }
-    console.log("==========================");
-    console.log(`n = ${n}`);
-    console.log("==========================");
-    //code here;
+
     return nMinusOne + nMinusTwo;
   }
 
   fibonacciRecursive(n: number): number{
-    let answer = 1;
+    if (n < 2) {
+      return n;
+    }
     //code here;
-    return answer
+    return this.fibonacciRecursive(n - 1) + this.fibonacciRecursive(n - 2);
   }
 }

@@ -30,7 +30,7 @@ export class FibonacciComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.inputValue = 5;
+    this.inputValue = 10;
     this.calculate();
   }
 
