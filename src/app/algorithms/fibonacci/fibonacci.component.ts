@@ -31,19 +31,13 @@ export class FibonacciComponent implements OnInit {
 
   ngOnInit(): void {
     this.inputValue = 10;
-    this.calculate();
+    this.calculate(false);
   }
 
-  calculate(): void{
+  calculate(doLog: boolean): void{
+    this.fibonacci.doLog = doLog;
     this.answerIterative = this.fibonacci.fibonacciIterative(this.inputValue);
     this.answerRecursive = this.fibonacci.fibonacciRecursive(this.inputValue);
-    // this.factorialEquation = [];
-    // this.factorialEquation.push(`${this.inputValue}!`);
-    // this.factorialEquation.push(`=`);
-    // this.factorialEquation.push(`${this.inputValue}`);
-    // for(let i = this.inputValue -1; i > 0; i--){
-    //   this.factorialEquation.push(`x`);
-    //   this.factorialEquation.push(`${i}`);
-    // }
+    this.fibonacci.doLog = false;
   }
 }

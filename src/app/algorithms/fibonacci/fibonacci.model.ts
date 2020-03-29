@@ -1,4 +1,5 @@
 export class Fibonacci {
+  doLog = false;
   // Given a number N return the index value of the Fibonacci sequence, where the sequence is:
 
   // 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144 ...
@@ -11,7 +12,7 @@ export class Fibonacci {
       return n;
     }
 
-    let nMinusOne = 1
+    let nMinusOne = 1;
     let nMinusTwo = 0;
 
     for(let i = 2; i < n; i++) {
@@ -28,7 +29,15 @@ export class Fibonacci {
     if (n < 2) {
       return n;
     }
+    
+    let nMinusOne = this.fibonacciRecursive(n - 1);
+    let nMinusTwo = this.fibonacciRecursive(n - 2);
+
+    if (this.doLog) {
+      console.log(`n=${n};nMinusOne:${nMinusOne};nMinusTwo:${nMinusTwo};answer:${nMinusOne+nMinusTwo}`)
+    }
+    
     //code here;
-    return this.fibonacciRecursive(n - 1) + this.fibonacciRecursive(n - 2);
+    return nMinusOne + nMinusTwo;
   }
 }
