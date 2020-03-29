@@ -1,1 +1,69 @@
-<p>fibonacci works!</p>
+<div class="container">
+  <h1>Fibonacci</h1>
+  <div style="display: flex;margin-bottom: 10px;">
+    <input id="input-size" class="margin-5px-left" type="number" [(ngModel)]="inputValue" placeholder="Value" />
+    <button class="btn btn-primary margin-5px-left" type="button" (click)="calculate()">calculate</button>
+  </div>
+  <div>
+    <table class="table table-dark table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>
+            n =
+          </th>
+          <th *ngFor="let th of headers">
+            {{th}}
+          </th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th rowspan="3" style="vertical-align: middle;">
+            x<sub>n</sub> =
+          </th>
+          <td *ngFor="let td of bodyActual">
+            {{td}}
+          </td>
+          <th style="letter-spacing: 2px;font-variant:small-caps;">
+            Actual
+          </th>
+        </tr>
+        <tr>
+          <td *ngFor="let td of bodyInterative">
+            {{td}}
+          </td>
+          <th style="letter-spacing: 2px;font-variant:small-caps;">
+            Interative
+          </th>
+        </tr>
+        <tr>
+          <td *ngFor="let td of bodyRecursive">
+            {{td}}
+          </td>
+          <th style="letter-spacing: 2px;font-variant:small-caps;">
+            Recursive
+          </th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="alert alert-info" style="display: flex;margin: 10px;flex-wrap: wrap;">
+    <h3 *ngFor="let text of fibonacciEquation" style="margin-right: 5px;">{{text}}</h3>
+  </div>
+  <div style="display: flex; justify-content: center;align-content: center;">
+    <div class="alert alert-info" style="flex: 1;margin: 10px;">
+      <h2>Interative</h2>
+      <p>
+        Answer is = '{{answerIterative | number}}'
+      </p>
+    </div>
+    <div class="alert alert-info" style="flex: 1;margin: 10px;">
+      <h2>Recursive</h2>
+      <p>
+        Answer is = '{{answerRecursive | number}}'
+      </p>
+    </div>
+  </div> 
+</div>
+
