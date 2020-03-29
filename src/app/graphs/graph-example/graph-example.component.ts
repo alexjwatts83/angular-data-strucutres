@@ -18,9 +18,11 @@ export class GraphExampleComponent implements OnInit {
 
   initGraph() {
     const vertices = [0,1,2,3,4,5,6];
+
     for(let i = 0; i < vertices.length; i++) {
       this.graph.addVertex(vertices[i]);  
     }
+
     const edges = [
       { node1: 3, node2: 1 },
       { node1: 3, node2: 4 },
@@ -31,10 +33,12 @@ export class GraphExampleComponent implements OnInit {
       { node1: 0, node2: 2 },
       { node1: 6, node2: 5 },
     ]
+
     for(let i = 0; i < edges.length; i++) {
       const edge = edges[i];
       this.graph.addEdge(edge.node1, edge.node2);
     }
+    
     this.graph.showConnections();
     //Answer:
     // 0-->1 2 

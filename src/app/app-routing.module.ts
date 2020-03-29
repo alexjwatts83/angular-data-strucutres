@@ -47,6 +47,10 @@ const routes: Routes = [
     path: 'graphs',
     loadChildren: () => import('./graphs/graphs.module').then(m => m.GraphsModule)
   },
+  {
+    path: 'algorithms',
+    loadChildren: () => import('./algorithms/algorithms.module').then(m => m.AlgorithmsModule)
+  },
   { path: '**', component: PageNotFoundComponent }
 ];
 

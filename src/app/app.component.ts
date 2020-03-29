@@ -64,7 +64,21 @@ export class AppComponent {
     {
       name: 'Graphs',
       link: '/graphs'
-    }
+    },
+    {
+      name: 'Algorithms',
+      link: '/algorithms',
+      children: [
+        {
+          name: 'Info',
+          link: '/algorithms/info'
+        },
+        {
+          name: 'Factorials',
+          link: '/algorithms/factorials'
+        },
+      ]
+    },
   ];
   started = new Date(2020, 3, 22, 16, 50, 0, 0);
 }
