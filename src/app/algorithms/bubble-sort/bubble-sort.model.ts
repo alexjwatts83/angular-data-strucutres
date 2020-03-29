@@ -6,21 +6,23 @@ export class BubbleSort<T> {
 
     let sorted = [...items];
     let index = 0;
-    let maxIndex = items.length - 1;
+    let maxIndex = sorted.length - 1;
     let iterationCount = 0;
-    let maxLoop = items.length - 1;
+    let maxLoop = sorted.length - 1;
     while(iterationCount < maxIndex){
       console.log('===============================');
       console.log(`iterationCount: ${iterationCount}`);
+      console.log(`maxLoop: ${maxLoop}`);
       while(index < maxLoop) {
-        console.log(`index: ${index};maxLoop: ${maxLoop}`);
-        let n1 = items[index];
-        let n2 = items[index+1];
-        console.log(`n1: ${n1};n2: ${n2}`);
-        if (n2 > n1) {
-          items[index] = n2;
-          items[index+1] = n1;
-          console.log('swapping');
+        // console.log(`  index: ${index};maxLoop: ${maxLoop}`);
+        console.log(`  index: ${index};`);
+        let n1 = sorted[index];
+        let n2 = sorted[index+1];
+        console.log(`  sorted[${index}]: ${n1};sorted[${index+1}]: ${n2}`);
+        if (n1 > n2) {
+          sorted[index] = n2;
+          sorted[index+1] = n1;
+          console.log('    swapping');
         }
         index++;
       }

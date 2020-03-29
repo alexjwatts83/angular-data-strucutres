@@ -31,6 +31,8 @@ export class BubbleSortComponent implements OnInit {
     for(let i = 0; i < unsortedArrayAsString.length; i++) {
       this.unsortedArray.push(parseInt(unsortedArrayAsString[i]));
     }
+    console.log({unsortedArray: this.unsortedArray, })
     this.sortedArray = this.sort.sort(this.unsortedArray)
+    console.log({unsortedArray: this.unsortedArray, sortedArray: this.sortedArray});
   }
 }

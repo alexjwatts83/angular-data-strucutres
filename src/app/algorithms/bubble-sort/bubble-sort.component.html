@@ -5,18 +5,19 @@
 </div>
 
 <div class="alert alert-info" style="display: flex;margin: 10px;flex-wrap: wrap;">
+  <h3>{{inputValue}}</h3>
   <h3 *ngFor="let text of sortSequence" style="margin-right: 5px;">{{text}}</h3>
 </div>
 
 <div style="display: flex; justify-content: center;align-content: center;">
   <div class="alert alert-info" style="flex: 1;margin: 10px;">
-    <h2>Interative</h2>
+    <h2>Unsorted</h2>
     <p>
       Unsorted: '{{unsortedArray | json}}'
     </p>
   </div>
   <div class="alert alert-success" style="flex: 1;margin: 10px;">
-    <h2>Recursive</h2>
+    <h2>Sorted</h2>
     <p>
       Sorted '{{sortedArray | json}}'
     </p>
