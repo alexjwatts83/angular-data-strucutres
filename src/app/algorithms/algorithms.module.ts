@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FactorialsComponent } from './factorials/factorials.component';
+import { FactorialsComponent } from './factorials';
 import { AlgorithmsInfoComponent } from './algorithms-info/algorithms-info.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
@@ -20,7 +20,6 @@ const routes: Routes = [
     ]
   }
 ]
-
 
 @NgModule({
   declarations: [FactorialsComponent, AlgorithmsInfoComponent],
