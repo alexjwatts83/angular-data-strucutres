@@ -2,14 +2,17 @@
 
 export class Factorial {
   findFactorialRecursive(number: number): number {
-    //code here
-    // return answer;
-    return 0;
+    if (number === 1){
+      return number;
+    }
+    return number * this.findFactorialRecursive(number - 1);
   }
   
   findFactorialIterative(number: number): number {
-    //code here
-    // return answer;
-    return 1;
+    let answer = number;
+    for(let i = number - 1; i > 0; i--) {
+      answer = answer * i;
+    }
+    return answer;
   }
 }

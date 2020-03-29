@@ -4,20 +4,20 @@
     <input id="input-size" class="margin-5px-left" type="number" [(ngModel)]="inputValue" placeholder="Value" />
     <button class="btn btn-primary margin-5px-left" type="button" (click)="calculate()">calculate</button>
   </div>
-  <div class="alert alert-info" style="display: flex;margin: 10px;">
+  <div class="alert alert-info" style="display: flex;margin: 10px;flex-wrap: wrap;">
     <h3 *ngFor="let text of factorialEquation" style="margin-right: 5px;">{{text}}</h3>
   </div>
   <div style="display: flex; justify-content: center;align-content: center;">
     <div class="alert alert-info" style="flex: 1;margin: 10px;">
       <h2>Interative</h2>
       <p>
-        Answer is = '{{answerIterative}}'
+        Answer is = '{{answerIterative | number}}'
       </p>
     </div>
     <div class="alert alert-info" style="flex: 1;margin: 10px;">
       <h2>Recursive</h2>
       <p>
-        Answer is = '{{answerRecursive}}'
+        Answer is = '{{answerRecursive | number}}'
       </p>
     </div>
   </div>
