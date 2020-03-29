@@ -77,6 +77,10 @@ export class AppComponent {
           name: 'Factorials',
           link: '/algorithms/factorials'
         },
+        {
+          name: 'Fibonacci',
+          link: '/algorithms/fibonacci'
+        },
       ]
     },
   ];
