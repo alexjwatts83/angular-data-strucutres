@@ -1,11 +1,16 @@
 <h1>Bubble Sort</h1>
 <div style="display: flex;margin-bottom: 10px;">
-  <input id="input-size" class="margin-5px-left" type="text" [(ngModel)]="inputValue" placeholder="Value" />
+  <input id="input-value" class="margin-5px-left" min="0" type="number" [(ngModel)]="inputMin" placeholder="Min" />
+  <input id="input-value" class="margin-5px-left" max="1000" type="number" [(ngModel)]="inputMax" placeholder="Max" />
+  <input id="input-value" class="margin-5px-left" max="1000" type="number" [(ngModel)]="inputLength" placeholder="Length of Array" />
+  <button class="btn btn-primary margin-5px-left" type="button" (click)="createArray()">Create</button>
+  <input id="input-size" class="margin-5px-left" type="text" [(ngModel)]="inputValue" placeholder="Value" style="flex: 1" />
   <button class="btn btn-primary margin-5px-left" type="button" (click)="sortArray()">Sort</button>
 </div>
 
 <div class="alert alert-info" style="display: flex;margin: 10px;flex-wrap: wrap;">
-  <h3>{{inputValue}}</h3>
+
+  <h4>{{inputValue}}</h4>
   <h3 *ngFor="let text of sortSequence" style="margin-right: 5px;">{{text}}</h3>
 </div>
 
@@ -13,13 +18,13 @@
   <div class="alert alert-info" style="flex: 1;margin: 10px;">
     <h2>Unsorted</h2>
     <p>
-      Unsorted: '{{unsortedArray | json}}'
+      '{{unsortedArray | json}}'
     </p>
   </div>
   <div class="alert alert-success" style="flex: 1;margin: 10px;">
     <h2>Sorted</h2>
     <p>
-      Sorted '{{sortedArray | json}}'
+      '{{sortedArray | json}}'
     </p>
   </div>
 </div>
