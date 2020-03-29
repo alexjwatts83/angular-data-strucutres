@@ -1,1 +1,25 @@
-<p>reverse-string works!</p>
+<div class="container">
+  <h1>Reverse String</h1>
+  <div style="display: flex;margin-bottom: 10px;">
+    <input id="input-size" class="margin-5px-left" type="text" [(ngModel)]="inputValue" placeholder="Value" />
+    <button class="btn btn-primary margin-5px-left" type="button" (click)="reverse()">Reverse</button>
+  </div>
+
+  <div style="display: flex; justify-content: center;align-content: center;">
+    <div class="alert alert-success" style="flex: 1;margin: 10px;">
+      <h2>Interative</h2>
+      <p>
+        Answer is = '{{answerIterative}}'
+      </p>
+    </div>
+    <div class="alert alert-success" style="flex: 1;margin: 10px;">
+      <h2>Recursive</h2>
+      <p>
+        Answer is = '{{answerRecursive}}'
+      </p>
+    </div>
+  </div>
+</div>
+
+
+
