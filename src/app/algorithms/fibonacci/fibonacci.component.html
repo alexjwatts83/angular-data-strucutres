@@ -23,25 +23,25 @@
             x<sub>n</sub> =
           </th>
           <td *ngFor="let td of bodyActual">
-            {{td}}
+            {{td | number}}
           </td>
-          <th style="letter-spacing: 2px;font-variant:small-caps;">
+          <th style="font-variant:small-caps;">
             Actual
           </th>
         </tr>
         <tr>
-          <td *ngFor="let td of bodyInterative">
-            {{td}}
+          <td *ngFor="let td of bodyIterative">
+            {{td | number}}
           </td>
-          <th style="letter-spacing: 2px;font-variant:small-caps;">
-            Interative
+          <th style="font-variant:small-caps;">
+            Iterative
           </th>
         </tr>
         <tr>
           <td *ngFor="let td of bodyRecursive">
-            {{td}}
+            {{td | number}}
           </td>
-          <th style="letter-spacing: 2px;font-variant:small-caps;">
+          <th style="font-variant:small-caps;">
             Recursive
           </th>
         </tr>

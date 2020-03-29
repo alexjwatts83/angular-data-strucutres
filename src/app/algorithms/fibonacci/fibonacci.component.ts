@@ -15,16 +15,16 @@ export class FibonacciComponent implements OnInit {
 
   headers: number[] = [];
   bodyActual: number[] = [];
-  bodyInterative: number[] = [];
+  bodyIterative: number[] = [];
   bodyRecursive: number[] = [];
 
   constructor() {
     this.fibonacci = new Fibonacci();
     this.fibonacciEquation = [];
-    this.bodyActual = [0,1,1,2,3,5,8,13,21,34,55,89,144,233,377];
+    this.bodyActual = [0,1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,1597,2584,4181,6765];
     for(let i = 0; i <= this.bodyActual.length-1; i++) {
       this.headers.push(i);
-      this.bodyInterative.push(this.fibonacci.fibonacciIterative(i));
+      this.bodyIterative.push(this.fibonacci.fibonacciIterative(i));
       this.bodyRecursive.push(this.fibonacci.fibonacciRecursive(i));
     }
    }
