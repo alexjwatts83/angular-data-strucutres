@@ -80,9 +80,14 @@ export class AppComponent {
         {
           name: 'Fibonacci',
           link: '/algorithms/fibonacci'
-        },        {
+        },
+        {
           name: 'Reverse Strings',
           link: '/algorithms/reverse-string'
+        },
+        {
+          name: 'Bubble Sort',
+          link: '/algorithms/bubble-sort'
         },
       ]
     },

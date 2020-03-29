@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { FibonacciComponent } from './fibonacci';
 import { ReverseStringComponent } from './reverse-string/';
+import { BubbleSortComponent } from './bubble-sort/';
 
 const routes: Routes = [
   {
@@ -27,17 +28,21 @@ const routes: Routes = [
         path: 'reverse-string',
         component: ReverseStringComponent
       },
+      {
+        path: 'bubble-sort',
+        component: BubbleSortComponent
+      },
     ]
   }
 ]
 
 @NgModule({
-  declarations: [FactorialsComponent, AlgorithmsInfoComponent, FibonacciComponent, ReverseStringComponent],
+  declarations: [FactorialsComponent, AlgorithmsInfoComponent, FibonacciComponent, ReverseStringComponent, BubbleSortComponent],
   imports: [
     CommonModule,
     FormsModule,
     RouterModule.forChild(routes)
   ],
-  exports: [FactorialsComponent, AlgorithmsInfoComponent, FibonacciComponent, ReverseStringComponent]
+  exports: [FactorialsComponent, AlgorithmsInfoComponent, FibonacciComponent, ReverseStringComponent, BubbleSortComponent]
 })
 export class AlgorithmsModule { }
