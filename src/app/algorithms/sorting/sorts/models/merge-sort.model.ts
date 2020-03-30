@@ -13,52 +13,72 @@ export class MergeSort<T> implements SortAlgorithm<T> {
     const left = [];
     const right = [];
     const n = items.length;
-    const leftLimit = (n % 2) === 0 ? (n/2) : (n + 1 / 2);
+    const leftLimit =  Math.floor(n / 2);
 
-    for(let i = 0; i < n; i++) {
-      if(i < leftLimit) {
+    for (let i = 0; i < n; i++) {
+      if (i < leftLimit) {
         left.push(items[i]);
       } else {
         right.push(items[i]);
       }
     }
-    
+
     return this.merge(this.sort(left), this.sort(right));
   }
 
   merge(left: T[], right: T[]): T[] {
-    console.log('left',left);
-    console.log('right',right);
+    if (this.doLog) {
+      console.log('left', left);
+      console.log('right', right);
+    }
+    
     const result = [];
     let leftIndex = 0;
     let rightIndex = 0;
-    while(leftIndex < left.length && 
-          rightIndex < right.length){
-       if(left[leftIndex] < right[rightIndex]){
-         result.push(left[leftIndex]);
-         console.log('adding from left',left[leftIndex]);
-         leftIndex++;
-       } else{
-         result.push(right[rightIndex]);
-         console.log('adding from right',right[rightIndex]);
-         rightIndex++
+    while (leftIndex < left.length &&
+      rightIndex < right.length) {
+      if (left[leftIndex] < right[rightIndex]) {
+        result.push(left[leftIndex]);
+        if (this.doLog) {
+          console.log('adding from left', left[leftIndex]);
+        }
+        leftIndex++;
+      } else {
+        result.push(right[rightIndex]);
+
+        if (this.doLog) {
+          console.log('adding from right', right[rightIndex]);
+        }
+        rightIndex++
       }
     }
-    console.log('Finished Comparison, now add left');
-    while(leftIndex < left.length){
+    if (this.doLog) {
+      console.log('Finished Comparison, now add left');
+    }
+    while (leftIndex < left.length) {
       result.push(left[leftIndex]);
-      console.log('adding from left',left[leftIndex]);
+      if (this.doLog) {
+        console.log('adding from left', left[leftIndex]);
+      }
       leftIndex++;
     }
-    console.log('Finished Comparison, now add right');
-    while(rightIndex < right.length){
+    if (this.doLog) {
+      console.log('Finished Comparison, now add right');
+    }
+
+    while (rightIndex < right.length) {
       result.push(right[rightIndex]);
-      console.log('adding from right',right[rightIndex]);
+      if (this.doLog) {
+        console.log('adding from right', right[rightIndex]);
+      }
       rightIndex++;
     }
 
-    console.log('result',result);
-    console.log('============================');
+
+    if (this.doLog) {
+      console.log('result', result);
+      console.log('============================');
+    }
     return result;
   }
   merge3(left: T[], right: T[]): T[] {
@@ -75,7 +95,7 @@ export class MergeSort<T> implements SortAlgorithm<T> {
     let second: T = right[j];
     let breaker = 0;
     console.log(`lenLeft: ${lenLeft}; lenRight: ${lenRight}`);
-    while(second !== undefined || breaker >= 20) {      
+    while (second !== undefined || breaker >= 20) {
       if (first < second) {
         console.log(`pusing first, ${first}, to sorted`);
         sorted.push(first);
@@ -88,7 +108,7 @@ export class MergeSort<T> implements SortAlgorithm<T> {
 
       first = left[i];
       console.log(`setting first = left[${i}];`);
-      if (first === undefined){
+      if (first === undefined) {
         first = right[j];
         console.log(`resetting first = right[${j}];`);
         j++;
@@ -123,7 +143,7 @@ export class MergeSort<T> implements SortAlgorithm<T> {
     let lenLeft = left.length;
     let lenRight = right.length;
     console.log(`lenLeft: ${lenLeft}; lenRight: ${lenRight}`);
-    while((i < lenLeft) || (j < lenRight)) {      
+    while ((i < lenLeft) || (j < lenRight)) {
       let first: T;
       let second: T;
       if (i >= lenLeft) {
@@ -152,11 +172,11 @@ export class MergeSort<T> implements SortAlgorithm<T> {
         if (first) {
           sorted.push(first);
         }
-        
+
         i++;
       } else {
         console.log(`Adding ${second} to list`);
-        if (second){
+        if (second) {
           sorted.push(second);
         }
         j++;
