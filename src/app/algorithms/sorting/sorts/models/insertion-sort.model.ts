@@ -1,6 +1,7 @@
 import { SortAlgorithm } from './sorting.model';
 
 export class InsertionSort<T> implements SortAlgorithm<T> {
+  doLog: boolean = false;
   sort(items: T[]): T[]{
     if (items.length <= 1) {
       return items;
@@ -12,17 +13,31 @@ export class InsertionSort<T> implements SortAlgorithm<T> {
     for(let i = 1; i < n; i++) {
       let min = sorted[i];
       let j = i - 1;
-      console.log(`i = ${i}; j = ${j}; min = ${min}`);
-      console.log(JSON.stringify(sorted));
+      if (this.doLog) {
+        console.log(`i = ${i}; j = ${j}; min = ${min}`);
+        console.log(JSON.stringify(sorted));  
+      }
+      
       while(j >= 0 && sorted[j] > min){
-        console.log(` swapping '${sorted[j + 1]}' for '${sorted[j]}', where j=${j}`);
+        if (this.doLog) {
+          console.log(` swapping '${sorted[j + 1]}' for '${sorted[j]}', where j=${j}`);
+        }
+        
         sorted[j + 1] =  sorted[j];
         j--;
-        console.log(' ' + sorted);
+
+        if (this.doLog) {
+          console.log(' ' + sorted);
+        }
+        
       }
+      
       sorted[j + 1] = min;
-      console.log(`sorted[${j + 1}] = ${min}`);
-      console.log(`=================`);
+
+      if (this.doLog) {
+        console.log(`sorted[${j + 1}] = ${min}`);
+        console.log(`=================`);
+      }
     }
 
     return sorted;
