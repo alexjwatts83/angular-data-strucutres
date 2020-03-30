@@ -89,6 +89,10 @@ export class AppComponent {
           name: 'Sorting',
           link: '/algorithms/sorting'
         },
+        {
+          name: 'Searching',
+          link: '/algorithms/searching'
+        },
       ]
     },
   ];

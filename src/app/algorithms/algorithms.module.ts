@@ -7,7 +7,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { FibonacciComponent } from './fibonacci';
 import { ReverseStringComponent } from './reverse-string/';
 import { SortingModule } from './sorting/sorting.module';
-import { SortsComponent } from './sorting/sorts/sorts.component';
+import { SortsComponent } from './sorting/sorts';
+import { InfoComponent } from './searching/info';
 
 
 const routes: Routes = [
@@ -33,6 +34,10 @@ const routes: Routes = [
       {
         path: 'sorting',
         component: SortsComponent
+      },
+      {
+        path: 'searching',
+        component: InfoComponent
       },
     ]
   }
