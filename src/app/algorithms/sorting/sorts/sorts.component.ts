@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BubbleSort, SortAlgorithm, SelectionSort } from './models';
+import { BubbleSort, SortAlgorithm, SelectionSort, InsertionSort } from './models';
 
 @Component({
   selector: 'app-sorts',
@@ -31,6 +31,11 @@ export class SortsComponent implements OnInit {
         name: 'Selection Sort',
         sortedArray: [],
         sorter: new SelectionSort<number>()
+      },
+      {
+        name: 'Insertion Sort',
+        sortedArray: [],
+        sorter: new InsertionSort<number>()
       },
     );
   }

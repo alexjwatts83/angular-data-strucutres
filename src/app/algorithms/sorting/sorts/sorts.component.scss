@@ -1,0 +1,15 @@
+.sort-display-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  .alert{
+    border-radius: 0;
+    flex: 1;
+  }
+  .alert:first-child {
+    border-radius: 0.25rem 0px 0px 0.25rem ;
+  }
+  .alert:last-child {
+    border-radius: 0 0.25rem 0.25rem 0 ;
+  }
+}

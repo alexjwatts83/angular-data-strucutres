@@ -1,23 +1,24 @@
 <h1>Sorting</h1>
-<div style="display: flex;margin-bottom: 10px;">
-  <input id="input-value" class="margin-5px-left" min="0" type="number" [(ngModel)]="inputMin" placeholder="Min" />
-  <input id="input-value" class="margin-5px-left" max="1000" type="number" [(ngModel)]="inputMax" placeholder="Max" />
-  <input id="input-value" class="margin-5px-left" max="1000" type="number" [(ngModel)]="inputLength" placeholder="Length of Array" />
+<div class="d-flex mb-3">
+  <input class="margin-5px-left" min="0" type="number" [(ngModel)]="inputMin" placeholder="Min" />
+  <input class="margin-5px-left" max="1000" type="number" [(ngModel)]="inputMax" placeholder="Max" />
+  <input class="margin-5px-left" max="1000" type="number" [(ngModel)]="inputLength" placeholder="Length of Array" />
   <button class="btn btn-primary margin-5px-left" type="button" (click)="createArray()">Create</button>
-  <input id="input-size" class="margin-5px-left" type="text" [(ngModel)]="inputValue" placeholder="Value" style="flex: 1" />
+  <input class="margin-5px-left flex-fill" type="text" [(ngModel)]="inputValue" placeholder="Value" />
   <button class="btn btn-primary margin-5px-left" type="button" (click)="sortArray()">Sort</button>
 </div>
 
 <div class="alert alert-info">
-  <h2>Unsorted</h2>
+  <h3>Unsorted</h3>
   <h5>{{unsortedArray | json}}</h5>
 </div>
 
-<div style="display: flex; justify-content: center;align-content: center;">
-  <div *ngFor="let sortDisplay of sortDisplays" class="alert alert-success" style="flex: 1;margin: 10px;">
-    <h2>
+<div class="sort-display-container">
+  <div *ngFor="let sortDisplay of sortDisplays" class="alert alert-success">
+    <h4>
       {{sortDisplay.name}}
-    </h2>
+    </h4>
+    <hr />
     <p>
       {{sortDisplay.sortedArray | json}}
     </p>
