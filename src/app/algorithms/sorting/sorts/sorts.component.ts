@@ -33,7 +33,8 @@ export class SortsComponent implements OnInit {
       {
         name: 'Bubble Sort',
         description: [
-          'Compares adjacent numbers and swaps if left is greater than right. The highest number bubbles up to the top.'
+          'Compares adjacent numbers and swaps if left is greater than right. The highest number bubbles up to the top.',
+          'Do not use, mostly used to teach sort. Not very efficient',
         ],
         sortedArray: [],
         sorter: new BubbleSort<number>()
@@ -41,7 +42,8 @@ export class SortsComponent implements OnInit {
       {
         name: 'Selection Sort',
         description: [
-          'Finds min for the unsorted partion of the array. When it gets to the end. It replaces the min value at start of the unsorted array.'
+          'Finds min for the unsorted partion of the array. When it gets to the end. It replaces the min value at start of the unsorted array.',
+          'Do not use, mostly used to teach sort. Not very efficient',
         ],
         sortedArray: [],
         sorter: new SelectionSort<number>()
@@ -50,7 +52,8 @@ export class SortsComponent implements OnInit {
         name: 'Insertion Sort',
         description: [
           'Sort as you go, you travese the array until you find a number less than the number you first looked at then sort it accordingly.',
-          'This could mean either adding to the start or somewhere in between the section which is already sorted.'          
+          'This could mean either adding to the start or somewhere in between the section which is already sorted.',
+          'Good for when there are a few items or items are mostly sorted, uses little space',
         ],
         sortedArray: [],
         sorter: new InsertionSort<number>()
@@ -61,7 +64,9 @@ export class SortsComponent implements OnInit {
       {
         name: 'Merge Sort',
         description: [
-          'Divide and Conquer.'
+          'Divide and Conquer. ADD BETTER DESCRIPTION',
+          'Really good because of divide and conquer. Best, average and worst case if O(n log(n)).',
+          'Trade off being a space complexity of O(n)',
         ],
         sortedArray: [],
         sorter: new MergeSort<number>()
@@ -69,7 +74,10 @@ export class SortsComponent implements OnInit {
       {
         name: 'Quick Sort',
         description: [
-          'Divide and Conquer.'
+          'Divide and Conquer. ADD BETTER DESCRIPTION',
+          'Really good because of divide and conquer. Best and average worst case if O(n log(n))',
+          'Worst case of O(n ^ 2) if the wrong pivot is chosen',
+          'Space complexity of O(log(n))',
         ],
         sortedArray: [],
         sorter: new QuickSort<number>()
