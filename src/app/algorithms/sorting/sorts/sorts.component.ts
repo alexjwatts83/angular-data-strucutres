@@ -12,7 +12,7 @@ export class SortsComponent implements OnInit {
   inputMin: number;
   inputMax: number;
   inputLength: number;
-  sortDisplays: { name: string; sortedArray: number[]; sorter: SortAlgorithm<number> }[];
+  sortDisplays: { name: string; description: string[]; sortedArray: number[]; sorter: SortAlgorithm<number> }[];
 
   constructor() { 
     this.inputValue = '99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0, 8, 300, 55, 3';
@@ -24,16 +24,26 @@ export class SortsComponent implements OnInit {
     this.sortDisplays.push(
       {
         name: 'Bubble Sort',
+        description: [
+          'Compares adjacent numbers and swaps if left is greater than right. The highest number bubbles up to the top.'
+        ],
         sortedArray: [],
         sorter: new BubbleSort<number>()
       },
       {
         name: 'Selection Sort',
+        description: [
+          'Finds min for the unsorted partion of the array. When it gets to the end. It replaces the min value at start of the unsorted array.'
+        ],
         sortedArray: [],
         sorter: new SelectionSort<number>()
       },
       {
         name: 'Insertion Sort',
+        description: [
+          'Sort as you go, you travese the array until you find a number less than the number you first looked at then sort it accordingly.',
+          'This could mean either adding to the start or somewhere in between the section which is already sorted.'          
+        ],
         sortedArray: [],
         sorter: new InsertionSort<number>()
       },

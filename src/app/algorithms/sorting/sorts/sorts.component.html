@@ -19,6 +19,7 @@
       {{sortDisplay.name}}
     </h4>
     <hr />
+    <p style="text-align: left;" *ngFor="let text of sortDisplay.description">{{text}}</p>
     <p>
       {{sortDisplay.sortedArray | json}}
     </p>
