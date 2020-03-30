@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { BubbleSort, SortAlgorithm, SelectionSort, InsertionSort } from './models';
-import { MergeSort } from './models/merge-sort.model';
+import { 
+  BubbleSort,
+  SortAlgorithm,
+  SelectionSort,
+  InsertionSort,
+  MergeSort,
+  QuickSort
+} from './models';
 
 @Component({
   selector: 'app-sorts',
@@ -59,6 +65,14 @@ export class SortsComponent implements OnInit {
         ],
         sortedArray: [],
         sorter: new MergeSort<number>()
+      },
+      {
+        name: 'Quick Sort',
+        description: [
+          'Divide and Conquer.'
+        ],
+        sortedArray: [],
+        sorter: new QuickSort<number>()
       },
     );
   }
