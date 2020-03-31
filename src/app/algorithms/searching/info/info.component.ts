@@ -10,7 +10,8 @@ import { TreeNode } from 'src/app/trees/trees.model';
 
 export class InfoComponent implements OnInit {
   tree: BinarySearchTree<number>;
-  list: any[];
+  bfsList: any[];
+  bfsRecursiveList: any[];
   
   constructor() { }
 
@@ -26,6 +27,7 @@ export class InfoComponent implements OnInit {
   }
 
   displayTree() {
-    this.list = this.tree.traverseBreadthFirst();
+    this.bfsList = this.tree.traverseBreadthFirst();
+    this.bfsRecursiveList = this.tree.traverseBreadthFirstRecursive();
   }
 }

@@ -180,4 +180,31 @@ export class BinarySearchTree<T> {
 
     return list;
   }
+
+  traverseBreadthFirstRecursive(): T[] {
+    const list = [];
+    const queue = new Queue<TreeNode<T>>();
+    let currentNode = this.root;
+    queue.enqueue(currentNode);
+    return this.traverseBFSRecursive(queue, list);
+  }
+
+  traverseBFSRecursive(queue: Queue<TreeNode<T>>, list: T[] ): T[] {
+    if (queue.length === 0) {
+      return list;
+    }
+
+    let currentNode = queue.dequeue().value;
+    
+    list.push(currentNode.value);
+
+    if (currentNode.left) {
+      queue.enqueue(currentNode.left);
+    }
+    if (currentNode.right) {
+      queue.enqueue(currentNode.right);
+    }
+
+    return this.traverseBFSRecursive(queue, list);
+  }
 }
