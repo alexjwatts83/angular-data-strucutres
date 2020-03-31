@@ -209,4 +209,35 @@ export class BinarySearchTree<T> {
 
     return this.traverseBFSRecursive(queue, list);
   }
+
+  traverseDepthFirstSearchInOrder() {
+    return this.dfsInOrder(this.root, []);
+  }
+
+  private dfsInOrder(node: TreeNode<T>, list: T[]) {
+    if (node.left) {
+      this.dfsInOrder(node.left, list);
+    }
+    list.push(node.value);
+    if (node.right) {
+      this.dfsInOrder(node.right, list);
+    }
+    return list;
+  }
+
+  traverseDepthFirstSearchPostOrder() {
+    return this.dfsPostOrder(this.root, []);
+  }
+
+  private dfsPostOrder(node: TreeNode<T>, list: T[]) {
+    
+  }
+
+  traverseDepthFirstSearchPreOrder() {
+    return this.dfsPreOrder(this.root, []);
+  }
+
+  private dfsPreOrder(node: TreeNode<T>, list: T[]) {
+    
+  }
 }
