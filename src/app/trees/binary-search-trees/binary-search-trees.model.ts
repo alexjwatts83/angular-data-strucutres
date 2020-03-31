@@ -218,10 +218,13 @@ export class BinarySearchTree<T> {
     if (node.left) {
       this.dfsInOrder(node.left, list);
     }
+
     list.push(node.value);
+
     if (node.right) {
       this.dfsInOrder(node.right, list);
     }
+    
     return list;
   }
 
@@ -230,7 +233,16 @@ export class BinarySearchTree<T> {
   }
 
   private dfsPostOrder(node: TreeNode<T>, list: T[]) {
-    
+    if (node.left) {
+      this.dfsPostOrder(node.left, list);
+    }
+    if (node.right) {
+      this.dfsPostOrder(node.right, list);
+    }
+
+    list.push(node.value);
+
+    return list;
   }
 
   traverseDepthFirstSearchPreOrder() {
@@ -238,6 +250,15 @@ export class BinarySearchTree<T> {
   }
 
   private dfsPreOrder(node: TreeNode<T>, list: T[]) {
-    
+    list.push(node.value);
+
+    if (node.left) {
+      this.dfsPreOrder(node.left, list);
+    }
+    if (node.right) {
+      this.dfsPreOrder(node.right, list);
+    }
+
+    return list;
   }
 }

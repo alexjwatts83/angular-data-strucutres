@@ -14,6 +14,8 @@ export class InfoComponent implements OnInit {
   bfsRecursiveList: any[];
   list: any;
   dfsListInOrder: any[];
+  dfsListPostOrder: any[];
+  dfsListPreOrder: any[];
 
   constructor() { }
 
@@ -33,6 +35,8 @@ export class InfoComponent implements OnInit {
     this.bfsRecursiveList = this.tree.traverseBreadthFirstRecursive();
     this.list = this.traverseTree(this.tree);
     this.dfsListInOrder =  this.tree.traverseDepthFirstSearchInOrder();
+    this.dfsListPostOrder = this.tree.traverseDepthFirstSearchPostOrder();
+    this.dfsListPreOrder = this.tree.traverseDepthFirstSearchPreOrder();
   }
 
   traverseTree<T>(bst: BinarySearchTree<T>) {
