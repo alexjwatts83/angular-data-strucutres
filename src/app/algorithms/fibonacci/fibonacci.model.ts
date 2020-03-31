@@ -1,5 +1,6 @@
 export class Fibonacci {
   doLog = false;
+  cache: any = {};
   // Given a number N return the index value of the Fibonacci sequence, where the sequence is:
 
   // 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144 ...
@@ -7,7 +8,20 @@ export class Fibonacci {
 
   //For example: fibonacciRecursive(6) should return 8
 
+  iterativeCount: number;
+  recursiveCount: number;
+  recursiveCachedCount: number;
+
+  resetCounts(): void {
+    // console.log(this.cache);
+    this.iterativeCount = 0;
+    this.recursiveCount = 0;
+    this.recursiveCachedCount = 0;
+    this.cache = {};
+  }
+
   fibonacciIterative(n: number): number{
+    this.iterativeCount++;
     if (n < 2) {
       return n;
     }
@@ -16,6 +30,7 @@ export class Fibonacci {
     let nMinusTwo = 0;
 
     for(let i = 2; i < n; i++) {
+      this.iterativeCount++;
       let m1 = nMinusOne;
       let m2 = nMinusOne + nMinusTwo;
       nMinusTwo = m1;
@@ -26,6 +41,7 @@ export class Fibonacci {
   }
 
   fibonacciRecursive(n: number): number{
+    this.recursiveCount++;
     if (n < 2) {
       return n;
     }
@@ -38,6 +54,32 @@ export class Fibonacci {
     }
     
     //code here;
+    return nMinusOne + nMinusTwo;
+  }
+
+  fibonacciRecursiveCached(n: number): number{
+    if (n in this.cache) {
+      this.recursiveCachedCount++;
+      return this.cache[n];
+    }
+    
+    if (n < 2) {
+      this.cache[n] = n;
+      this.recursiveCachedCount++;
+      return n;
+    }
+    
+    let nMinusOne = this.fibonacciRecursiveCached(n - 1);
+    let nMinusTwo = this.fibonacciRecursiveCached(n - 2);
+
+    if (this.doLog) {
+      console.log(`n=${n};nMinusOne:${nMinusOne};nMinusTwo:${nMinusTwo};answer:${nMinusOne+nMinusTwo}`)
+    }
+
+
+    this.cache[n] = nMinusOne + nMinusTwo;
+    //code here;
+    this.recursiveCachedCount++;
     return nMinusOne + nMinusTwo;
   }
 }

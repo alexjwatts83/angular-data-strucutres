@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Fibonacci</h1>
   <div style="display: flex;margin-bottom: 10px;">
-    <input id="input-size" class="margin-5px-left" type="number" [(ngModel)]="inputValue" placeholder="Value" />
+    <input id="input-size" class="margin-5px-left" type="number" min="1" max="44" [(ngModel)]="inputValue" placeholder="Value" />
     <button class="btn btn-primary margin-5px-left" type="button" (click)="calculate(true)">calculate</button>
   </div>
   <div>
@@ -19,7 +19,7 @@
       </thead>
       <tbody>
         <tr>
-          <th rowspan="3" style="vertical-align: middle;">
+          <th rowspan="4" style="vertical-align: middle;">
             x<sub>n</sub> =
           </th>
           <td *ngFor="let td of bodyActual">
@@ -45,6 +45,14 @@
             Recursive
           </th>
         </tr>
+        <tr>
+          <td *ngFor="let td of bodyRecursiveCached">
+            {{td | number}}
+          </td>
+          <th style="font-variant:small-caps;">
+            Recursive Cached
+          </th>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -57,11 +65,26 @@
       <p>
         Answer is = '{{answerIterative | number}}'
       </p>
+      <p>
+        Count is {{fibonacci.iterativeCount | number}}
+      </p>
     </div>
     <div class="alert alert-info" style="flex: 1;margin: 10px;">
       <h2>Recursive</h2>
       <p>
         Answer is = '{{answerRecursive | number}}'
+      </p>
+      <p>
+        Count is {{fibonacci.recursiveCount | number}}
+      </p>
+    </div>
+    <div class="alert alert-info" style="flex: 1;margin: 10px;">
+      <h2>Cached</h2>
+      <p>
+        Answer is = '{{anwserCached | number}}'
+      </p>
+      <p>
+        Count is {{fibonacci.recursiveCachedCount | number}}
       </p>
     </div>
   </div> 
