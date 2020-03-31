@@ -21,9 +21,11 @@ export class InfoComponent implements OnInit {
     for(let i = 0; i < values.length; i++) {
       this.tree.insert(values[i]);
     }
+
+    this.displayTree();
   }
 
   displayTree() {
-
+    this.list = this.tree.traverseBreadthFirst();
   }
 }

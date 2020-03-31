@@ -1,4 +1,5 @@
 import { TreeNode } from '../trees.model';
+import { Queue } from 'src/app/queues/queue.model';
 
 export class BinarySearchTree<T> {
   root: TreeNode<T>;
@@ -50,8 +51,6 @@ export class BinarySearchTree<T> {
     }
     return currentNode;
   }
-
-
 
   remove2(value: T): {msg: string, node: TreeNode<T>, parent: TreeNode<T>} {
     const result = {
@@ -159,5 +158,26 @@ export class BinarySearchTree<T> {
     }
 
     return result;
+  }
+
+  traverseBreadthFirst(): T[] {
+    let currentNode = this.root;
+    const list = [];
+    const queue = new Queue<TreeNode<T>>();
+    
+    queue.enqueue(currentNode);
+
+    while(queue.length > 0) {
+      currentNode = queue.dequeue().value;
+      list.push(currentNode.value);
+      if (currentNode.left) {
+        queue.enqueue(currentNode.left);
+      }
+      if (currentNode.right) {
+        queue.enqueue(currentNode.right);
+      }
+    }
+
+    return list;
   }
 }
