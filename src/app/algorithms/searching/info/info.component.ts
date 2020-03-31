@@ -12,7 +12,8 @@ export class InfoComponent implements OnInit {
   tree: BinarySearchTree<number>;
   bfsList: any[];
   bfsRecursiveList: any[];
-  
+  list: any;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -29,5 +30,57 @@ export class InfoComponent implements OnInit {
   displayTree() {
     this.bfsList = this.tree.traverseBreadthFirst();
     this.bfsRecursiveList = this.tree.traverseBreadthFirstRecursive();
+    this.list = this.traverseTree(this.tree);
+  }
+
+  traverseTree<T>(bst: BinarySearchTree<T>) {
+    if (bst.root === null){
+      return [
+        {
+          title: `Root: EMPTY`,
+          children: [],
+          isNewNode: false
+        }
+      ];
+    }
+    const ls = [
+      {
+        title: `Root:${bst.root.value}`,
+        children: [],
+        isNewNode: false
+      }
+    ];
+
+    ls[0].children.push(this.traverseTreeNode(bst.root.left, 'L'));
+    ls[0].children.push(this.traverseTreeNode(bst.root.right, 'R'));
+
+    return ls;
+  }
+
+  traverseTreeNode<T>(node: TreeNode<T>, dir: string) {
+    if (node === null){
+      return [
+        {
+          title: `${dir}:EMPTY`,
+          children: [],
+          isNewNode: false
+        }
+      ];
+    }
+    let treeNode = {
+      title: `${dir}:${node.value}`,
+      children: [],
+      isNewNode: false
+    };
+
+    if (node.left !== null) {
+      treeNode.children.push(this.traverseTreeNode(node.left, 'L'));
+    }
+
+    if (node.right !== null) {
+      treeNode.children.push(this.traverseTreeNode(node.right, 'R'));
+    }
+
+    return treeNode;
   }
 }

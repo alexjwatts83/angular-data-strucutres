@@ -185,7 +185,9 @@ export class BinarySearchTree<T> {
     const list = [];
     const queue = new Queue<TreeNode<T>>();
     let currentNode = this.root;
+    
     queue.enqueue(currentNode);
+
     return this.traverseBFSRecursive(queue, list);
   }
 

@@ -32,12 +32,15 @@
 
 <div class="tree-container">
   <div class="alert alert-dark" role="alert">
-    <h5>BFS</h5>
-    <!-- <app-tree-display [nodeList]="list"></app-tree-display> -->
-    {{ bfsList }}
-    <hr />
-    <h5>BFS Recursive</h5>
-    <!-- <app-tree-display [nodeList]="list"></app-tree-display> -->
-    {{ bfsRecursiveList }}
+    <app-tree-display [nodeList]="list"></app-tree-display>
+  </div>
+  <div class="alert alert-dark" role="alert">
+    <div>
+      <h5>BFS</h5>
+      {{ bfsList }}
+      <hr />
+      <h5>BFS Recursive</h5>
+      {{ bfsRecursiveList }}
+    </div>
   </div>
 </div>

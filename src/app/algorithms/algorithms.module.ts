@@ -9,6 +9,7 @@ import { ReverseStringComponent } from './reverse-string/';
 import { SortingModule } from './sorting/sorting.module';
 import { SortsComponent } from './sorting/sorts';
 import { InfoComponent } from './searching/info';
+import { SearchingModule } from './searching';
 
 
 const routes: Routes = [
@@ -54,6 +55,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     SortingModule,
+    SearchingModule,
     RouterModule.forChild(routes)
   ],
   exports: [
