@@ -111,6 +111,7 @@ export class SinglyLinkedList<T> {
     this.length--;
     return this;
   }
+
   reverse() {
     if (this.head.next === null) {
       return this;
@@ -126,6 +127,59 @@ export class SinglyLinkedList<T> {
     }
     this.head = prev;
     return this;
+  }
+
+  push(value: T): void {
+    const newNode = new LinkedListNode<T>(value);
+    if (this.head === null) {
+      this.head = newNode;
+      this.tail = this.head;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
+    this.length++;
+  }
+
+  pop(): T {
+    if (this.head === null) {
+      return null;
+    }
+
+    let node = this.head;
+    let newTail = node;
+
+    while(node.next !== null) {
+      newTail = node;
+      node.next = node;
+    }
+
+    this.tail = newTail;
+    this.tail.next = null;
+    this.length--;
+
+    if(this.length ===0){
+      this.head = null;
+      this.tail = null;
+    }
+
+    return node.value;
+  }
+
+  shift(): T {
+    if (this.head === null) {
+      return null;
+    }
+    const currentHead = this.head;
+    this.head = currentHead.next;
+    this.length--;
+
+    if(this.length ===0){
+      this.head = null;
+      this.tail = null;
+    }
+    
+    return currentHead.value;
   }
 }
 

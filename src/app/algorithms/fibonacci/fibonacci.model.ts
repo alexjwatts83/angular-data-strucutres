@@ -59,7 +59,6 @@ export class Fibonacci {
 
   fibonacciRecursiveCached(n: number): number{
     if (n in this.cache) {
-      this.recursiveCachedCount++;
       return this.cache[n];
     }
     
