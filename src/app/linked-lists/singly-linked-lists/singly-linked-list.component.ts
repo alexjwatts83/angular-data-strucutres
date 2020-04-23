@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SinglyLinkedList } from '../linked-lists.model';
+import { SinglyLinkedList } from "../singly-linked-list-model";
 
 @Component({
   selector: 'app-singly-inked-list',

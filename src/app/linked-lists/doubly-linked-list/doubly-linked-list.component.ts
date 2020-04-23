@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DoublyLinkedList } from '../linked-lists.model';
+import { DoublyLinkedList } from "../doubly-linked-list-model";
 
 @Component({
   selector: 'app-doubly-linked-list',
