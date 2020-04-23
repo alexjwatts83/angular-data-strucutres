@@ -201,12 +201,13 @@ export class SinglyLinkedList<T> {
     }
     this.length++;
   }
+
   /**
    * Returns the Node at the given index
    * @param index index in Linked List
    */
-  get(index: number): LinkedListNode<T> {
-    if (this.length <= 0 || index >= this.length) {
+  getNodeAt(index: number): LinkedListNode<T> {
+    if (this.length < 0 || index >= this.length) {
       return null;
     }
     let counter = 0;
@@ -217,13 +218,22 @@ export class SinglyLinkedList<T> {
     }
     return current;
   }
+
+    /**
+   * Returns the Node at the given index
+   * @param index index in Linked List
+   */
+  getValueAt(index: number): T {
+    let node = this.getNodeAt(index);
+    return (node === null) ? null : node.value;
+  }
   /**
    * Sets the value of an item in the Linked list at the given index
    * @param index index in Linked List
    * @param value new value
    */
   set(index: number, value: T): boolean {
-    let found = this.get(index);
+    let found = this.getNodeAt(index);
     if (found === null) {
       return false;
     }
@@ -237,7 +247,7 @@ export class SinglyLinkedList<T> {
    */
   insertAt(index: number, value: T): boolean {
     // guards to check index
-    if (this.length <= 0 || index > this.length) {
+    if (this.length < 0 || index > this.length) {
       return false;
     }
     // add to start
@@ -251,7 +261,7 @@ export class SinglyLinkedList<T> {
       return true;
     }
     // add by index using the previous index
-    let found = this.get(index - 1);
+    let found = this.getNodeAt(index - 1);
     if (found ===  null) {
       return false;
     }
@@ -271,7 +281,7 @@ export class SinglyLinkedList<T> {
    * @param index 
    */
   remove(index: number): T{
-    if (this.length <= 0 || index >= this.length) {
+    if (this.length < 0 || index >= this.length) {
       return null;
     }
 
@@ -285,7 +295,7 @@ export class SinglyLinkedList<T> {
     }
 
     // add by index using the previous index
-    let found = this.get(index - 1);
+    let found = this.getNodeAt(index - 1);
     if (found ===  null) {
       return null;
     }
