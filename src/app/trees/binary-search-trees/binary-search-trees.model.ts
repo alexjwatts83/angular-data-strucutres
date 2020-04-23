@@ -1,5 +1,5 @@
-import { TreeNode } from '../trees.model';
-import { Queue } from 'src/app/queues/queue.model';
+import { TreeNode } from "../trees.model";
+import { Queue } from "src/app/queues/queue.model";
 
 export class BinarySearchTree<T> {
   root: TreeNode<T>;
@@ -19,15 +19,15 @@ export class BinarySearchTree<T> {
 
     let currentNode = this.root;
 
-    while(true) {
-      if(value < currentNode.value) {
-        if(currentNode.left === null) {
+    while (true) {
+      if (value < currentNode.value) {
+        if (currentNode.left === null) {
           currentNode.left = newNode;
           break;
         }
         currentNode = currentNode.left;
-      } else if(value > currentNode.value)  {
-        if(currentNode.right === null) {
+      } else if (value > currentNode.value) {
+        if (currentNode.right === null) {
           currentNode.right = newNode;
           break;
         }
@@ -40,9 +40,9 @@ export class BinarySearchTree<T> {
 
   lookup(value: T): TreeNode<T> {
     let currentNode = this.root;
-    while(currentNode !== null) {
-      if(currentNode.value === value) {
-        break
+    while (currentNode !== null) {
+      if (currentNode.value === value) {
+        break;
       } else if (value < currentNode.value) {
         currentNode = currentNode.left;
       } else {
@@ -52,18 +52,18 @@ export class BinarySearchTree<T> {
     return currentNode;
   }
 
-  remove2(value: T): {msg: string, node: TreeNode<T>, parent: TreeNode<T>} {
+  remove2(value: T): { msg: string; node: TreeNode<T>; parent: TreeNode<T> } {
     const result = {
       msg: `Node with value of ${value} not found`,
       node: null,
-      parent: null
+      parent: null,
     };
 
     let parentNode: TreeNode<T> = null;
     let nodeToDelete = this.root;
 
-    while(nodeToDelete !== null) {
-      if(nodeToDelete.value === value){
+    while (nodeToDelete !== null) {
+      if (nodeToDelete.value === value) {
         break;
       } else if (value < nodeToDelete.value) {
         parentNode = nodeToDelete;
@@ -82,7 +82,7 @@ export class BinarySearchTree<T> {
     result.parent = parentNode;
 
     if (nodeToDelete.left === null && nodeToDelete.right === null) {
-      if(nodeToDelete.value === this.root.value) {
+      if (nodeToDelete.value === this.root.value) {
         this.root = null;
         return result;
       }
@@ -111,8 +111,9 @@ export class BinarySearchTree<T> {
          \
           R
       */
-      const tempChild = (nodeToDelete.left === null ) ? nodeToDelete.right : nodeToDelete. left;
-      if(nodeToDelete.value === this.root.value) {
+      const tempChild =
+        nodeToDelete.left === null ? nodeToDelete.right : nodeToDelete.left;
+      if (nodeToDelete.value === this.root.value) {
         this.root = tempChild;
         return result;
       }
@@ -126,7 +127,7 @@ export class BinarySearchTree<T> {
       /*
       Has left and right 
       */
-      
+
       if (nodeToDelete.value === this.root.value) {
         const rootLeft = this.root.left;
         this.root = this.root.right;
@@ -137,9 +138,9 @@ export class BinarySearchTree<T> {
       // find left most node starting from the right
       let leftMostNode = nodeToDelete.right;
       let leftMostNodeParent = null;
-      while(leftMostNode.left !== null) {
+      while (leftMostNode.left !== null) {
         leftMostNodeParent = leftMostNode;
-        leftMostNode = leftMostNode.left
+        leftMostNode = leftMostNode.left;
       }
 
       if (leftMostNodeParent) {
@@ -164,10 +165,10 @@ export class BinarySearchTree<T> {
     let currentNode = this.root;
     const list = [];
     const queue = new Queue<TreeNode<T>>();
-    
+
     queue.enqueue(currentNode);
 
-    while(queue.length > 0) {
+    while (queue.length > 0) {
       currentNode = queue.dequeue().value;
       list.push(currentNode.value);
       if (currentNode.left) {
@@ -185,19 +186,19 @@ export class BinarySearchTree<T> {
     const list = [];
     const queue = new Queue<TreeNode<T>>();
     let currentNode = this.root;
-    
+
     queue.enqueue(currentNode);
 
     return this.traverseBFSRecursive(queue, list);
   }
 
-  traverseBFSRecursive(queue: Queue<TreeNode<T>>, list: T[] ): T[] {
+  traverseBFSRecursive(queue: Queue<TreeNode<T>>, list: T[]): T[] {
     if (queue.length === 0) {
       return list;
     }
 
     let currentNode = queue.dequeue().value;
-    
+
     list.push(currentNode.value);
 
     if (currentNode.left) {
@@ -224,7 +225,7 @@ export class BinarySearchTree<T> {
     if (node.right) {
       this.dfsInOrder(node.right, list);
     }
-    
+
     return list;
   }
 
