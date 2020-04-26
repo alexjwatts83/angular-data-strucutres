@@ -23,7 +23,7 @@ export class Graph<T> {
 
   private _addEdgeToNode(node1: T, node2: T) {
     if (this.adjacentList[node1] !== undefined) {
-      this.adjacentList[node1].push([node2]);
+      this.adjacentList[node1].push(node2);
     } else {
       console.log(`Node, '${node1}' does not exists`);
     }
@@ -49,12 +49,12 @@ export class Graph<T> {
 
   removeVertex(node: T) {
     var keys = Object.keys(this.adjacentList);
-    for(let key of keys) {
+    for (let key of keys) {
       if (key === node.toString()) {
         delete this.adjacentList[key];
         continue;
       }
-      // if 
+      // if
       let list = this.adjacentList[key].filter((x: T) => x != node);
       this.adjacentList[key] = list;
     }
@@ -72,4 +72,28 @@ export class Graph<T> {
       console.log(node + "-->" + connections);
     }
   }
-} 
+  traverseDepthFirstSearchInOrder(node: T) {
+    const result = [];
+    const visited = {};
+    const adjacentList = this.adjacentList;
+
+    this.dfsInOrder(node, result, visited, adjacentList);
+    // console.log({
+    //   result: result,
+    //   visited: visited
+    // });
+
+    return result;
+  }
+
+  private dfsInOrder(vertex: T, result: T[], visited: any, adjacencyList: any) {
+    if (!vertex) return null;
+    visited[vertex] = true;
+    result.push(vertex);
+    adjacencyList[vertex].forEach((neighbor) => {
+      if (!visited[neighbor]) {
+        return this.dfsInOrder(neighbor, result, visited, adjacencyList);
+      }
+    });
+  }
+}
