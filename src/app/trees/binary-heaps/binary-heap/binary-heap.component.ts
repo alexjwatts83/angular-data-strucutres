@@ -12,8 +12,15 @@ export class BinaryHeapComponent implements OnInit {
   prevArray: number[];
   message: string;
   inputValue: number;
+  showMax: boolean;
+  showInfo: boolean;
+  showMin: boolean;
 
-  constructor() { }
+  constructor() { 
+    this.showInfo = false;
+    this.showMax = true;
+    this.showMin = false;
+  }
 
   ngOnInit(): void {
     let values = [41,39,33,18,27,12,55,5];
@@ -32,5 +39,27 @@ export class BinaryHeapComponent implements OnInit {
     this.maxBinaryHeap.insert(value);
     this.message = `Added ${value}`;
     this.myArray = this.maxBinaryHeap.values;
+  }
+
+  enableTab(tabName: string) {
+    switch (tabName) {
+      case 'max':
+        this.showMax = true;
+        this.showMin = false;
+        this.showInfo = false;
+        break;
+      case 'min':
+        this.showMax = false;
+        this.showMin = true;
+        this.showInfo = false;
+        break;
+      case 'info':
+        this.showMax = false;
+        this.showMin = false;
+        this.showInfo = true;
+        break;
+      default:
+        break;
+    }
   }
 }
