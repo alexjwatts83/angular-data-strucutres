@@ -12,11 +12,15 @@ export class GraphExampleComponent implements OnInit {
   keys: string[];
   graphStringKeys: string[];
   graphStringTraverse: string[];
+  graphStringTraverseIterative: string[];
+  startKey: string;
 
   constructor() { 
     this.graph = new Graph<number>();
     this.graphString = new Graph<string>();
     this.graphStringTraverse = [];
+    this.graphStringTraverseIterative = [];
+    this.startKey = '';
   }
 
   ngOnInit(): void {
@@ -94,8 +98,8 @@ export class GraphExampleComponent implements OnInit {
 
     this.graphStringKeys = Object.keys(this.graphString.adjacentList);
 
-    let key = this.graphStringKeys[1];
-    key = 'F';
-    this.graphStringTraverse = this.graphString.traverseDepthFirstSearchInOrder(key);
+    this.startKey = this.graphStringKeys[0];
+    this.graphStringTraverse = this.graphString.traverseDepthFirstRecursive(this.startKey);
+    this.graphStringTraverseIterative =  this.graphString.traverseDepthFirstIterative(this.startKey)
   }
 }

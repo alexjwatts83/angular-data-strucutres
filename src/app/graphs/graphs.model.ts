@@ -72,28 +72,44 @@ export class Graph<T> {
       console.log(node + "-->" + connections);
     }
   }
-  traverseDepthFirstSearchInOrder(node: T) {
+
+  traverseDepthFirstRecursive(node: T) {
     const result = [];
     const visited = {};
-    const adjacentList = this.adjacentList;
 
-    this.dfsInOrder(node, result, visited, adjacentList);
-    // console.log({
-    //   result: result,
-    //   visited: visited
-    // });
+    this.dfsRecursive(node, result, visited);
 
     return result;
   }
 
-  private dfsInOrder(vertex: T, result: T[], visited: any, adjacencyList: any) {
-    if (!vertex) return null;
+  private dfsRecursive(vertex: T, result: T[], visited: any) {
     visited[vertex] = true;
     result.push(vertex);
-    adjacencyList[vertex].forEach((neighbor) => {
+    this.adjacentList[vertex].forEach((neighbor: T) => {
       if (!visited[neighbor]) {
-        return this.dfsInOrder(neighbor, result, visited, adjacencyList);
+        return this.dfsRecursive(neighbor, result, visited);
       }
     });
+  }
+
+  traverseDepthFirstIterative(start: T) {
+    const stack = [start];
+    const result = [];
+    const visited: any = {};
+    let currentVertex: string | number | T;
+
+    visited[start] = true;
+    while (stack.length) {
+      currentVertex = stack.pop();
+      result.push(currentVertex);
+
+      this.adjacentList[currentVertex].forEach((neighbor: T) => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          stack.push(neighbor);
+        }
+      });
+    }
+    return result;
   }
 }

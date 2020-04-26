@@ -37,11 +37,25 @@
 </table>
 
 <div class="alert alert-dark">
+  <h5>DFS Recursive</h5>
   <div *ngIf="graphStringTraverse.length === 0">graphStringTraverse is empty</div>
   <div *ngIf="graphStringTraverse.length > 0">
+    <div>Start Traverse at {{startKey}}</div>
     <div>Length of {{ graphStringTraverse.length }}</div>
     <span *ngFor="let item of graphStringTraverse; let i = index">
       [{{i}}] {{item}} <span *ngIf="i < graphStringTraverse.length - 1">=></span>
+    </span>
+  </div>
+</div>
+
+<div class="alert alert-info">
+  <h5>DFS Iterative</h5>
+  <div *ngIf="graphStringTraverseIterative.length === 0">EMPTY</div>
+  <div *ngIf="graphStringTraverseIterative.length > 0">
+    <div>Start Traverse at {{startKey}}</div>
+    <div>Length of {{ graphStringTraverseIterative.length }}</div>
+    <span *ngFor="let item of graphStringTraverseIterative; let i = index">
+      [{{i}}] {{item}} <span *ngIf="i < graphStringTraverseIterative.length - 1">=></span>
     </span>
   </div>
 </div>
