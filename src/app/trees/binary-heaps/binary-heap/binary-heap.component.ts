@@ -23,7 +23,7 @@ export class BinaryHeapComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let values = [41,39,33,18,27,12,55,5];
+    let values = [41,39,33,18,27,12,55];
     for(let i = 0; i < values.length; i++) {
       this.maxBinaryHeap.insert(values[i]);
     }
@@ -38,6 +38,13 @@ export class BinaryHeapComponent implements OnInit {
     const value = this.inputValue;
     this.maxBinaryHeap.insert(value);
     this.message = `Added ${value}`;
+    this.myArray = this.maxBinaryHeap.values;
+  }
+
+  extract(): void {
+    this.prevArray = [...this.myArray];
+    const value = this.maxBinaryHeap.extractMax();
+    this.message = `Extracted ${value}`;
     this.myArray = this.maxBinaryHeap.values;
   }
 
