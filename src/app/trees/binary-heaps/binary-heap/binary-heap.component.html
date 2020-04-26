@@ -40,6 +40,32 @@
     right(i) = (i&lt;&lt;1)+1, index i multiplied by 2 and added by 1.
   </li>
 </ul>
+
+<div style="display: flex;">
+  <input id="input-value" class="margin-5px-left" min="0" type="number" [(ngModel)]="inputValue" />
+  <button class="btn btn-primary margin-5px-left" type="button" (click)="insert()" [disabled]="!inputValue">Insert</button>
+  <!-- <button class="btn btn-secondary margin-5px-left" type="button" (click)="get()" [disabled]="!inputValue">Get</button>
+  <button class="btn btn-secondary margin-5px-left" type="button" (click)="addTen()">Add 10</button>
+  <button class="btn btn-danger margin-5px-left" type="button" (click)="pop()" [disabled]="myArray.length === 0">Pop</button>
+  <button class="btn btn-warning margin-5px-left" type="button" (click)="shiftItems()" [disabled]="myArray.length === 0 || inputValue === undefined">Shift Items</button> -->
+</div>
+
+<h1>Arrays</h1>
+
+<div class="alert alert-info" role="alert" *ngIf="message">
+  <div>{{message}}</div>
+</div>
+
+<div class="alert alert-dark">
+  <div *ngIf="prevArray.length === 0">Previous is empty</div>
+  <div *ngIf="prevArray.length > 0">
+    <div>Length of {{ prevArray.length }}</div>
+    <span *ngFor="let item of prevArray; let i = index">
+      [{{i}}] {{item}} <span *ngIf="i < prevArray.length - 1">=></span>
+    </span>
+  </div>
+</div>
+
 <div class="alert alert-success">
   <div *ngIf="myArray.length === 0">Current Array is empty</div>
   <div *ngIf="myArray.length > 0">

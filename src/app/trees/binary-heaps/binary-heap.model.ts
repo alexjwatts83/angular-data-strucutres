@@ -12,7 +12,7 @@ export class BinaryHeap<T> {
     // loop until its lower than its parent
     let i = this.values.length - 1;
     let parentIndex = this.getParentIndex(i);
-    
+
     while(i > 0 && this.values[parentIndex] <= value) {
       let parentValue = this.values[parentIndex];
       this.values[parentIndex] = value;
@@ -27,5 +27,11 @@ export class BinaryHeap<T> {
     const parentIndex = Math.floor(i - 1 / 2);
 
     return parentIndex;
+  }
+
+  extractMax(): T {
+    var max = this.values.shift();
+
+    return max;
   }
 }

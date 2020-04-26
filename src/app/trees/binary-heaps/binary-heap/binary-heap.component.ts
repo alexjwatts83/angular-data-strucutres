@@ -9,13 +9,28 @@ import { BinaryHeap } from '../binary-heap.model';
 export class BinaryHeapComponent implements OnInit {
   maxBinaryHeap = new BinaryHeap<number>();
   myArray: number[];
+  prevArray: number[];
+  message: string;
+  inputValue: number;
+
   constructor() { }
 
   ngOnInit(): void {
-    let values = [41,39,33,18,27,12,55];
+    let values = [41,39,33,18,27,12,55,5];
     for(let i = 0; i < values.length; i++) {
       this.maxBinaryHeap.insert(values[i]);
     }
+    this.myArray = this.maxBinaryHeap.values;
+    this.message = '';
+    this.inputValue = 60;
+    this.prevArray = [];
+  }
+
+  insert(): void {
+    this.prevArray = [...this.myArray];
+    const value = this.inputValue;
+    this.maxBinaryHeap.insert(value);
+    this.message = `Added ${value}`;
     this.myArray = this.maxBinaryHeap.values;
   }
 }
