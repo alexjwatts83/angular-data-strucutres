@@ -52,7 +52,7 @@ export class GraphExampleComponent implements OnInit {
       graph.addEdge(edge.node1, edge.node2);
     }
     let keys = Object.keys(graph.adjacentList);
-    let startKey = parseInt(keys[0]);
+    let startKey = parseInt(keys[1]);
     return {
       graph: graph,
       keys: keys,
@@ -95,5 +95,12 @@ export class GraphExampleComponent implements OnInit {
       dfsRecursive: graph.depthFirstSearchRecursive(startKey),
       startKey: startKey,
     };
+  }
+
+  traverse(graphDisplay: GraphDisplay<any>) {
+    //  console.log(graphDisplay.startKey);
+     graphDisplay.bfsIterative = graphDisplay.graph.breadthFirstSearch(graphDisplay.startKey);
+     graphDisplay.dfsIterative = graphDisplay.graph.depthFirstSearchIterative(graphDisplay.startKey);
+     graphDisplay.dfsRecursive = graphDisplay.graph.depthFirstSearchRecursive(graphDisplay.startKey);
   }
 }
