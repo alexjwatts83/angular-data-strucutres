@@ -75,7 +75,6 @@ export class BinaryHeap<T> {
   sinkDown(): void {
     let i = 0;
     let n = this.values.length;
-    let value = this.values[i];
     while (true) {
       let leftIndex = 2 * i + 1;
       let rightIndex = 2 * i + 2;

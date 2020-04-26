@@ -1,1 +1,155 @@
-<p>priority-queues works!</p>
+<div style="margin-bottom: 20px;">
+  <nav class="nav nav-pills nav-fill">
+    <a
+      class="nav-item nav-link"
+      [ngClass]="{ active: currentTabName === 'max' }"
+      style="cursor: pointer;"
+      (click)="enableTab('max')"
+      >Max</a
+    >
+    <a
+      class="nav-item nav-link"
+      [ngClass]="{ active: currentTabName === 'min' }"
+      style="cursor: pointer;"
+      (click)="enableTab('min')"
+      >Min</a
+    >
+    <a
+      class="nav-item nav-link"
+      [ngClass]="{ active: currentTabName === 'info' }"
+      style="cursor: pointer;"
+      (click)="enableTab('info')"
+      >Info</a
+    >
+  </nav>
+</div>
+
+<div *ngIf="currentTabName === 'info'">
+  <h1>Priority Queue</h1>
+  <p>
+    Priority Queue add nodes from left to right, if the node to be added is
+    greater than the parent node then it swaps until its not.
+  </p>
+  <p>
+    For <strong>Max Priority Queue</strong> the parent nodes are always greater
+    than the children
+  </p>
+  <p>
+    For <strong>Min Priority Queue</strong> the parent nodes are always less
+    than the children
+  </p>
+  <p>
+    At most, two children, hence Binary. Unlike a BST there is no order from
+    left to right just up and down
+  </p>
+  <p>
+    Tries to be as balanced as possibly, will add values from left to right
+  </p>
+  <p>
+    Store the data in an array, as the tree is meant to be balanced. Use the
+    formula Math.floor(2n + 1) to find the child node
+  </p>
+  <p>For any index of <strong>n</strong></p>
+  <p>The Left child is stored at <strong>2n + 1</strong></p>
+  <p>The Right child is stored at <strong>2n + 2</strong></p>
+  <p>
+    Simple analysis: The size <strong>N</strong> of a full (more than just a
+    complete) binary tree of height h is always N = 2<sup>(h+1)</sup>-1,
+    therefore h = log<sub>2</sub>(N+1)-1 ~= log<sub>2</sub> N.
+  </p>
+  <ul>
+    <li>
+      parent(i) = i&gt;&gt;1, index i divided by 2 (integer division),
+    </li>
+    <li>
+      left(i) = i&lt;&lt;1, index i multiplied by 2,
+    </li>
+    <li>
+      right(i) = (i&lt;&lt;1)+1, index i multiplied by 2 and added by 1.
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="current">
+  <div style="display: flex;">
+    <div>Value</div>
+    <input
+      id="input-value"
+      class="margin-5px-left"
+      min="0"
+      type="number"
+      [(ngModel)]="current.InputValue"
+    />
+    <div>Value</div>
+    <input
+      id="input-priority"
+      class="margin-5px-left"
+      min="0"
+      type="number"
+      [(ngModel)]="current.InputPriority"
+    />
+    <button
+      class="btn btn-primary margin-5px-left"
+      type="button"
+      (click)="enqueue()"
+      [disabled]="!current.InputValue"
+    >
+      Enqueue
+    </button>
+    <button
+      class="btn btn-secondary margin-5px-left"
+      type="button"
+      (click)="dequeue()"
+    >
+      Dequeue
+    </button>
+  </div>
+
+  <h1>{{ current.Title }}</h1>
+
+  <div class="alert alert-info" role="alert" *ngIf="current.Message">
+    <div>{{ current.Message }}</div>
+  </div>
+
+  <div class="alert alert-dark">
+    <div *ngIf="current.Previous.length === 0">Previous is empty</div>
+    <div *ngIf="current.Previous.length > 0">
+      <div>Length of {{ current.Previous.length }}</div>
+      <div style="display: flex;flex-wrap: wrap;">
+        <div *ngFor="let item of current.Previous; let i = index" 
+        style="padding: 0px;border: 1px solid grey;border-radius: 4px;margin: 5px 5px;">
+          <h6>[{{i}}]</h6>
+          <div style="display: flex;margin: 2px;">
+            <div style="flex: 1;margin: 2px;padding:2px;background-color: white;">
+              Priority<br />{{item.priority}}
+            </div>
+            <div style="flex: 1;margin: 2px;padding:2px;background-color: white;">
+              Value<br />{{item.value}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-success">
+    <div *ngIf="current.Current.length === 0">Current Array is empty</div>
+    <div *ngIf="current.Current.length > 0">
+      <div>Length of {{ current.Current.length }}</div>
+      <div style="display: flex;flex-wrap: wrap;">
+        <div *ngFor="let item of current.Current; let i = index" 
+        style="padding: 0px;border: 1px solid green;border-radius: 4px;margin: 5px 5px;">
+          <h6>[{{i}}]</h6>
+          <div style="display: flex;margin: 2px;">
+            <div style="flex: 1;margin: 2px;padding:2px;background-color: white;">
+              Priority<br />{{item.priority}}
+            </div>
+            <div style="flex: 1;margin: 2px;padding:2px;background-color: white;">
+              Value<br />{{item.value}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -10,16 +10,9 @@ import { BinaryHeap } from '../binary-heap.model';
 export class BinaryHeapComponent implements OnInit {
   data: HeapDisplay<number>[];
   current: HeapDisplay<number>;
-  showMax: boolean;
-  showInfo: boolean;
-  showMin: boolean;
   currentTabName: string;
 
-  constructor() { 
-    this.showInfo = false;
-    this.showMax = true;
-    this.showMin = false;
-  }
+  constructor() { }
 
   ngOnInit(): void {
     this.currentTabName = 'info';
@@ -83,7 +76,7 @@ export class BinaryHeapComponent implements OnInit {
   }
 }
 
-export interface HeapDisplay<T> {
+interface HeapDisplay<T> {
   Heap: BinaryHeap<T>;
   Current: T[];
   Previous: T[];
