@@ -12,8 +12,7 @@ export class GraphComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.showExample = false;
-    this.showInfo = true;
+    this.showExampleClick();
   }
 
   showExampleClick() {

@@ -8,6 +8,8 @@ import { Graph } from '../graphs.model';
 })
 export class GraphExampleComponent implements OnInit {
   graph: Graph<number>;
+  keys: string[];
+
   constructor() { 
     this.graph = new Graph<number>();
   }
@@ -40,6 +42,11 @@ export class GraphExampleComponent implements OnInit {
     }
     
     this.graph.showConnections();
+
+    console.log(this.graph.adjacentList);
+
+    this.keys = Object.keys(this.graph.adjacentList);
+    console.log(this.keys);
     //Answer:
     // 0-->1 2 
     // 1-->3 2 0 
@@ -48,5 +55,6 @@ export class GraphExampleComponent implements OnInit {
     // 4-->3 2 5 
     // 5-->4 6 
     // 6-->5
+    this.graph.removeEdge(5, 6);
   }
 }

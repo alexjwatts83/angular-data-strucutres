@@ -1,1 +1,23 @@
-<p>graph-example works!</p>
+<table>
+  <tr>
+    <th>
+      Node
+    </th>
+    <th>
+      Links
+    </th>
+  </tr>
+  <tr *ngFor="let item of keys">
+    <td>
+      {{item}}
+    </td>
+    <td>
+      {{graph.adjacentList[item]}}
+    </td>
+  </tr>
+</table>
+<!-- <pre>
+  <code>
+    {{  | json }} 
+  </code>
+</pre> -->
