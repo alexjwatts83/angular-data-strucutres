@@ -2,21 +2,21 @@
   <nav class="nav nav-pills nav-fill">
     <a
       class="nav-item nav-link"
-      [ngClass]="{ active: showMax }"
+      [ngClass]="{ active: currentTabName === 'max' }"
       style="cursor: pointer;"
       (click)="enableTab('max')"
       >Max</a
     >
     <a
       class="nav-item nav-link"
-      [ngClass]="{ active: showMin }"
+      [ngClass]="{ active: currentTabName === 'min' }"
       style="cursor: pointer;"
       (click)="enableTab('min')"
       >Min</a
     >
     <a
       class="nav-item nav-link"
-      [ngClass]="{ active: showInfo }"
+      [ngClass]="{ active: currentTabName === 'info' }"
       style="cursor: pointer;"
       (click)="enableTab('info')"
       >Info</a
@@ -24,7 +24,7 @@
   </nav>
 </div>
 
-<div *ngIf="showInfo">
+<div *ngIf="currentTabName === 'info'">
   <h1>Binary Heaps</h1>
   <p>
     Binary Heaps add nodes from left to right, if the node to be added is
@@ -70,23 +70,20 @@
   </ul>
 </div>
 
-<div *ngIf="showMin">
-  <h1>Min Binary Heaps</h1>
-</div>
-<div *ngIf="showMax" class="tree-container">
+<div *ngIf="current">
   <div style="display: flex;">
     <input
       id="input-value"
       class="margin-5px-left"
       min="0"
       type="number"
-      [(ngModel)]="inputValue"
+      [(ngModel)]="current.InputValue"
     />
     <button
       class="btn btn-primary margin-5px-left"
       type="button"
       (click)="insert()"
-      [disabled]="!inputValue"
+      [disabled]="!current.InputValue"
     >
       Insert
     </button>
@@ -95,32 +92,32 @@
       type="button"
       (click)="extract()"
     >
-      Extract Max
+      Extract {{ current.Name.toLocaleUpperCase() }}
     </button>
   </div>
 
-  <h1>Max Binary Heaps</h1>
+  <h1>{{ current.Title }}</h1>
 
-  <div class="alert alert-info" role="alert" *ngIf="message">
-    <div>{{ message }}</div>
+  <div class="alert alert-info" role="alert" *ngIf="current.Message">
+    <div>{{ current.Message }}</div>
   </div>
 
   <div class="alert alert-dark">
-    <div *ngIf="prevArray.length === 0">Previous is empty</div>
-    <div *ngIf="prevArray.length > 0">
-      <div>Length of {{ prevArray.length }}</div>
-      <span *ngFor="let item of prevArray; let i = index">
-        [{{ i }}] {{ item }} <span *ngIf="i < prevArray.length - 1">=></span>
+    <div *ngIf="current.Previous.length === 0">Previous is empty</div>
+    <div *ngIf="current.Previous.length > 0">
+      <div>Length of {{ current.Previous.length }}</div>
+      <span *ngFor="let item of current.Previous; let i = index">
+        [{{ i }}] {{ item }} <span *ngIf="i < current.Previous.length - 1">=></span>
       </span>
     </div>
   </div>
 
   <div class="alert alert-success">
-    <div *ngIf="myArray.length === 0">Current Array is empty</div>
-    <div *ngIf="myArray.length > 0">
-      <div>Length of {{ myArray.length }}</div>
-      <span *ngFor="let item of myArray; let i = index">
-        [{{ i }}] {{ item }} <span *ngIf="i < myArray.length - 1">=></span>
+    <div *ngIf="current.Current.length === 0">Current Array is empty</div>
+    <div *ngIf="current.Current.length > 0">
+      <div>Length of {{ current.Current.length }}</div>
+      <span *ngFor="let item of current.Current; let i = index">
+        [{{ i }}] {{ item }} <span *ngIf="i < current.Current.length - 1">=></span>
       </span>
     </div>
   </div>

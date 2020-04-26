@@ -1,10 +1,26 @@
-import { element } from "protractor";
-
 export class BinaryHeap<T> {
   values: T[];
+  _comparatorFn: any;
 
-  constructor() {
+  constructor(comparatorFn: any) {
     this.values = [];
+    this._comparatorFn = comparatorFn || this._defaultComparatorFn;
+  }
+
+  _defaultComparatorFn(x: T, y: T) {
+    if (x > y) {
+      return 1;
+    }
+
+    if (x < y) {
+      return -1;
+    }
+
+    return 0;
+  }
+
+  _compare(i: number, j: number) {
+    return this._comparatorFn(this.values[i], this.values[j]);
   }
 
   insert(value: T) {
@@ -15,7 +31,7 @@ export class BinaryHeap<T> {
     let i = this.values.length - 1;
     let parentIndex = this.getParentIndex(i);
 
-    while (i > 0 && this.values[parentIndex] <= value) {
+    while (i > 0 && this._compare(parentIndex, i) <= 0) {
       this.swap(i, parentIndex);
 
       i = parentIndex;
@@ -31,12 +47,12 @@ export class BinaryHeap<T> {
   }
 
   getParentIndex(i: number): number {
-    const parentIndex = Math.floor(i - 1 / 2);
+    const parentIndex = Math.floor((i - 1) / 2);
 
     return parentIndex;
   }
 
-  extractMax(): T {
+  extract(): T {
     if (this.values.length === 0) {
       return null;
     }
@@ -63,22 +79,18 @@ export class BinaryHeap<T> {
     while (true) {
       let leftIndex = 2 * i + 1;
       let rightIndex = 2 * i + 2;
-      let left = null;
-      let right = null;
       let swapIndex = null;
       // check left
       if (leftIndex < n) {
-        left = this.values[leftIndex];
-        if (left > value) {
+        if (this._compare(leftIndex, i)) {
           swapIndex = leftIndex;
         }
       }
       // check right
       if (rightIndex < n) {
-        right = this.values[rightIndex];
         if (
-          (swapIndex === null && right > value) ||
-          (swapIndex !== null && right > left)
+          (swapIndex === null && this._compare(rightIndex, i)) ||
+          (swapIndex !== null && this._compare(rightIndex, leftIndex))
         ) {
           swapIndex = rightIndex;
         }
@@ -87,7 +99,7 @@ export class BinaryHeap<T> {
       if (swapIndex === null) {
         break;
       }
-      
+
       this.swap(i, swapIndex);
       i = swapIndex;
     }

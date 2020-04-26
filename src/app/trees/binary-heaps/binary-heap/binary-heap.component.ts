@@ -6,15 +6,21 @@ import { BinaryHeap } from '../binary-heap.model';
   templateUrl: './binary-heap.component.html',
   styleUrls: ['./binary-heap.component.scss']
 })
+
 export class BinaryHeapComponent implements OnInit {
-  maxBinaryHeap = new BinaryHeap<number>();
-  myArray: number[];
-  prevArray: number[];
-  message: string;
-  inputValue: number;
+  data: HeapDisplay<number>[];
+  current: HeapDisplay<number>;
+
+  // maxBinaryHeap: BinaryHeap<number>;
+  // minBinaryHeap: BinaryHeap<number>;
+  // myArray: number[];
+  // prevArray: number[];
+  // message: string;
+  // inputValue: number;
   showMax: boolean;
   showInfo: boolean;
   showMin: boolean;
+  currentTabName: string;
 
   constructor() { 
     this.showInfo = false;
@@ -23,50 +29,83 @@ export class BinaryHeapComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let values = [41,39,33,18,27,12,55];
-    for(let i = 0; i < values.length; i++) {
-      this.maxBinaryHeap.insert(values[i]);
+    this.currentTabName = 'info';
+    var tabNames = ['min', 'max'];
+    this.data = [];
+
+    for(let i = 0; i < tabNames.length; i++) {
+      let heap: BinaryHeap<number>;
+      let tabName = tabNames[i];
+
+      if (tabName === 'min') {
+        heap = new BinaryHeap<number>((x: number,y: number) => {
+          let compareResult = x < y;
+          // console.log({
+          //   x: x,
+          //   y: y,
+          //   compareResult: compareResult
+          // });
+          return compareResult;
+        });
+      } else {
+        heap = new BinaryHeap<number>((x: number,y: number) => {
+          let compareResult = x > y;
+          // console.log({
+          //   x: x,
+          //   y: y,
+          //   compareResult: compareResult
+          // });
+          return compareResult;
+        });
+      }
+
+      let values = [41,39,33,18,27,12,55];
+      
+      for(let i = 0; i < values.length; i++) {
+        heap.insert(values[i]);
+      }
+
+      this.data.push({
+        Current: heap.values,
+        Previous: [],
+        Heap: heap,
+        InputValue: 60,
+        Message: '',
+        Name: tabName,
+        Title: `${tabName.toLocaleUpperCase()} Binary Heap`
+      });
     }
-    this.myArray = this.maxBinaryHeap.values;
-    this.message = '';
-    this.inputValue = 60;
-    this.prevArray = [];
+
+    this.enableTab('max');
   }
 
   insert(): void {
-    this.prevArray = [...this.myArray];
-    const value = this.inputValue;
-    this.maxBinaryHeap.insert(value);
-    this.message = `Added ${value}`;
-    this.myArray = this.maxBinaryHeap.values;
+    this.current.Previous = [...this.current.Current];
+    const value = this.current.InputValue;
+    this.current.Heap.insert(value);
+    this.current.Message = `Added ${value}`;
+    this.current.Current = this.current.Heap.values;
   }
 
   extract(): void {
-    this.prevArray = [...this.myArray];
-    const value = this.maxBinaryHeap.extractMax();
-    this.message = `Extracted ${value}`;
-    this.myArray = this.maxBinaryHeap.values;
+    this.current.Previous = [...this.current.Current];
+    const value = this.current.Heap.extract();
+    this.current.Message = `Extracted ${value}`;
+    this.current.Current = this.current.Heap.values;
   }
 
   enableTab(tabName: string) {
-    switch (tabName) {
-      case 'max':
-        this.showMax = true;
-        this.showMin = false;
-        this.showInfo = false;
-        break;
-      case 'min':
-        this.showMax = false;
-        this.showMin = true;
-        this.showInfo = false;
-        break;
-      case 'info':
-        this.showMax = false;
-        this.showMin = false;
-        this.showInfo = true;
-        break;
-      default:
-        break;
-    }
+    this.currentTabName = tabName;
+    this.current = this.data.find((x: HeapDisplay<number>) => x.Name === tabName);
   }
+}
+
+export interface HeapDisplay<T> {
+  Heap: BinaryHeap<T>;
+  Current: T[];
+  Previous: T[];
+  Message: string;
+  InputValue: number;
+  Name: string;
+  Title: string;
 }
