@@ -96,5 +96,6 @@ export class AppComponent {
       ]
     },
   ];
-  started = new Date(2020, 3, 22, 16, 50, 0, 0);
+  // lols months start at 0, setting month to 2 as I started in march
+  started = new Date(2020, 2, 22, 16, 50, 0, 0);
 }

@@ -3,5 +3,49 @@
   node then it swaps until its not.
 </p>
 <p>
-  Do this later on just for lols
+  For <strong>Max Binary Heaps</strong> the parent nodes are always greater than the children
 </p>
+<p>
+  For <strong>Min Binary Heaps</strong> the parent nodes are always less than the children
+</p>
+<p>
+  At most, two children, hence Binary. Unlike a BST there is no order from left to right just up and down
+</p>
+<p>
+  Tries to be as balanced as possibly, will add values from left to right
+</p>
+<p>
+  Store the data in an array, as the tree is meant to be balanced. Use the formula Math.floor(2n + 1) to find the child node
+</p>
+<p>
+  For any index of <strong>n</strong>
+</p>
+<p>
+  The Left child is stored at <strong>2n + 1</strong>
+</p>
+<p>
+  The Right child is stored at <strong>2n + 2</strong>
+</p>
+<p>
+  Simple analysis: The size <strong>N</strong> of a full (more than just a complete) binary tree of height h is always N = 2<sup>(h+1)</sup>-1, therefore h = log<sub>2</sub>(N+1)-1 ~= log<sub>2</sub> N.
+</p>
+<ul>
+  <li>
+    parent(i) = i&gt;&gt;1, index i divided by 2 (integer division),
+  </li>
+  <li>
+    left(i) = i&lt;&lt;1, index i multiplied by 2,
+  </li>
+  <li>
+    right(i) = (i&lt;&lt;1)+1, index i multiplied by 2 and added by 1.
+  </li>
+</ul>
+<div class="alert alert-success">
+  <div *ngIf="myArray.length === 0">Current Array is empty</div>
+  <div *ngIf="myArray.length > 0">
+    <div>Length of {{ myArray.length }}</div>
+    <span *ngFor="let item of myArray; let i = index">
+      [{{i}}] {{item}} <span *ngIf="i < myArray.length - 1">=></span>
+    </span>
+  </div>
+</div>
