@@ -73,7 +73,7 @@ export class Graph<T> {
     }
   }
 
-  traverseDepthFirstRecursive(node: T) {
+  depthFirstSearchRecursive(node: T) {
     const result = [];
     const visited = {};
 
@@ -92,7 +92,7 @@ export class Graph<T> {
     });
   }
 
-  traverseDepthFirstIterative(start: T) {
+  depthFirstSearchIterative(start: T) {
     const stack = [start];
     const result = [];
     const visited: any = {};
@@ -107,6 +107,25 @@ export class Graph<T> {
         if (!visited[neighbor]) {
           visited[neighbor] = true;
           stack.push(neighbor);
+        }
+      });
+    }
+    return result;
+  }
+
+  breadthFirstSearch(start: T) {
+    const queue = [start];
+    const result = [];
+    const visited: any = {};
+    let currentVertex;
+    visited[start] = true;
+    while (queue.length) {
+      currentVertex = queue.shift();
+      result.push(currentVertex);
+      this.adjacentList[currentVertex].forEach((neighbor) => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          queue.push(neighbor);
         }
       });
     }

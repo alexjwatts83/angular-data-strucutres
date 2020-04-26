@@ -1,38 +1,39 @@
 import { Component, OnInit } from '@angular/core';
 import { Graph } from '../graphs.model';
 
+interface GraphDisplay<T> {
+  graph: Graph<T>;
+  keys: string[];
+  startKey: T;
+  dfsRecursive: T[];
+  dfsIterative: T[];
+  bfsIterative: T[];
+}
+
 @Component({
   selector: 'app-graph-example',
   templateUrl: './graph-example.component.html',
   styleUrls: ['./graph-example.component.scss']
 })
+
 export class GraphExampleComponent implements OnInit {
-  graph: Graph<number>;
-  graphString: Graph<string>;
-  keys: string[];
-  graphStringKeys: string[];
-  graphStringTraverse: string[];
-  graphStringTraverseIterative: string[];
-  startKey: string;
+  graphDisplays: any[];
 
   constructor() { 
-    this.graph = new Graph<number>();
-    this.graphString = new Graph<string>();
-    this.graphStringTraverse = [];
-    this.graphStringTraverseIterative = [];
-    this.startKey = '';
+    this.graphDisplays = [];
   }
 
   ngOnInit(): void {
-    this.initGraph();
-    this.initGraphString();
+    this.graphDisplays.push(this.getNumberGraph());
+    this.graphDisplays.push(this.getStringGraph());
   }
 
-  initGraph() {
+  getNumberGraph(): GraphDisplay<number> {
+    let graph = new Graph<number>();
     const vertices = [0,1,2,3,4,5,6];
 
     for(let i = 0; i < vertices.length; i++) {
-      this.graph.addVertex(vertices[i]);  
+      graph.addVertex(vertices[i]);  
     }
 
     const edges = [
@@ -48,35 +49,26 @@ export class GraphExampleComponent implements OnInit {
 
     for(let i = 0; i < edges.length; i++) {
       const edge = edges[i];
-      this.graph.addEdge(edge.node1, edge.node2);
+      graph.addEdge(edge.node1, edge.node2);
     }
-    
-    // this.graph.showConnections();
-
-    // console.log(this.graph.adjacentList);
-
-    this.keys = Object.keys(this.graph.adjacentList);
-    // console.log(this.keys);
-    // //Answer:
-    // // 0-->1 2 
-    // // 1-->3 2 0 
-    // // 2-->4 1 0 
-    // // 3-->1 4 
-    // // 4-->3 2 5 
-    // // 5-->4 6 
-    // // 6-->5
-    // // this.graph.removeEdge(5, 6);
-    // this.graph.removeVertex(4);
-
-    // console.log(this.graph.adjacentList);
-    this.keys = Object.keys(this.graph.adjacentList);
+    let keys = Object.keys(graph.adjacentList);
+    let startKey = parseInt(keys[0]);
+    return {
+      graph: graph,
+      keys: keys,
+      bfsIterative: graph.breadthFirstSearch(startKey),
+      dfsIterative: graph.depthFirstSearchIterative(startKey),
+      dfsRecursive: graph.depthFirstSearchRecursive(startKey),
+      startKey: startKey,
+    };
   }
 
-  initGraphString() {
+  getStringGraph(): GraphDisplay<string> {
+    let graph = new Graph<string>();
     const vertices = ['A', 'B', 'C', 'D', 'E', 'F'];
 
     for(let i = 0; i < vertices.length; i++) {
-      this.graphString.addVertex(vertices[i]);  
+      graph.addVertex(vertices[i]);  
     }
 
     const edges = [
@@ -91,15 +83,17 @@ export class GraphExampleComponent implements OnInit {
 
     for(let i = 0; i < edges.length; i++) {
       const edge = edges[i];
-      this.graphString.addEdge(edge.node1, edge.node2);
+      graph.addEdge(edge.node1, edge.node2);
     }
-    
-    this.graphString.showConnections();
-
-    this.graphStringKeys = Object.keys(this.graphString.adjacentList);
-
-    this.startKey = this.graphStringKeys[0];
-    this.graphStringTraverse = this.graphString.traverseDepthFirstRecursive(this.startKey);
-    this.graphStringTraverseIterative =  this.graphString.traverseDepthFirstIterative(this.startKey)
+    let keys = Object.keys(graph.adjacentList);
+    let startKey = keys[0];
+    return {
+      graph: graph,
+      keys: keys,
+      bfsIterative: graph.breadthFirstSearch(startKey),
+      dfsIterative: graph.depthFirstSearchIterative(startKey),
+      dfsRecursive: graph.depthFirstSearchRecursive(startKey),
+      startKey: startKey,
+    };
   }
 }
