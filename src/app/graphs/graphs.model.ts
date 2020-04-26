@@ -47,6 +47,19 @@ export class Graph<T> {
     }
   }
 
+  removeVertex(node: T) {
+    var keys = Object.keys(this.adjacentList);
+    for(let key of keys) {
+      if (key === node.toString()) {
+        delete this.adjacentList[key];
+        continue;
+      }
+      // if 
+      let list = this.adjacentList[key].filter((x: T) => x != node);
+      this.adjacentList[key] = list;
+    }
+  }
+
   showConnections() {
     const allNodes = Object.keys(this.adjacentList);
     for (let node of allNodes) {

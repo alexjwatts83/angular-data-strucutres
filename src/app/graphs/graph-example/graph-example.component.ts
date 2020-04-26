@@ -55,6 +55,9 @@ export class GraphExampleComponent implements OnInit {
     // 4-->3 2 5 
     // 5-->4 6 
     // 6-->5
-    this.graph.removeEdge(5, 6);
+    // this.graph.removeEdge(5, 6);
+    this.graph.removeVertex(4);
+
+    console.log(this.graph.adjacentList);
   }
 }
