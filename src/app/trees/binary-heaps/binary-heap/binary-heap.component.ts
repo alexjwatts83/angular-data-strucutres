@@ -10,13 +10,6 @@ import { BinaryHeap } from '../binary-heap.model';
 export class BinaryHeapComponent implements OnInit {
   data: HeapDisplay<number>[];
   current: HeapDisplay<number>;
-
-  // maxBinaryHeap: BinaryHeap<number>;
-  // minBinaryHeap: BinaryHeap<number>;
-  // myArray: number[];
-  // prevArray: number[];
-  // message: string;
-  // inputValue: number;
   showMax: boolean;
   showInfo: boolean;
   showMin: boolean;
@@ -40,27 +33,17 @@ export class BinaryHeapComponent implements OnInit {
       if (tabName === 'min') {
         heap = new BinaryHeap<number>((x: number,y: number) => {
           let compareResult = x < y;
-          // console.log({
-          //   x: x,
-          //   y: y,
-          //   compareResult: compareResult
-          // });
           return compareResult;
         });
       } else {
         heap = new BinaryHeap<number>((x: number,y: number) => {
           let compareResult = x > y;
-          // console.log({
-          //   x: x,
-          //   y: y,
-          //   compareResult: compareResult
-          // });
           return compareResult;
         });
       }
 
       let values = [41,39,33,18,27,12,55];
-      
+
       for(let i = 0; i < values.length; i++) {
         heap.insert(values[i]);
       }

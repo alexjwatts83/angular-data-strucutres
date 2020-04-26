@@ -55,6 +55,10 @@ export class AppComponent {
           link: '/trees/binary-heaps'
         },
         {
+          name: 'Priority Queues',
+          link: '/trees/priority-queues'
+        },
+        {
           name: 'Tries',
           link: '/trees/tries'
         }

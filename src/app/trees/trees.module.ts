@@ -6,6 +6,7 @@ import { BinarySearchTreeComponent } from './binary-search-trees/';
 import { BinaryHeapComponent } from './binary-heaps/';
 import { TreeDisplayComponent } from './tree-display/tree-display.component';
 import { TrieComponent } from './tries/trie/trie.component';
+import { PriorityQueuesComponent } from './priority-queues/priority-queues.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
       {
         path: 'tries',
         component: TrieComponent
+      },
+      {
+        path: 'priority-queues',
+        component: PriorityQueuesComponent
       }
     ]
   }
@@ -32,7 +37,8 @@ const routes: Routes = [
     BinarySearchTreeComponent,
     BinaryHeapComponent,
     TreeDisplayComponent,
-    TrieComponent
+    TrieComponent,
+    PriorityQueuesComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +49,8 @@ const routes: Routes = [
     BinarySearchTreeComponent,
     BinaryHeapComponent,
     TreeDisplayComponent,
-    TrieComponent
+    TrieComponent,
+    PriorityQueuesComponent
   ]
 })
 export class TreesModule { }
