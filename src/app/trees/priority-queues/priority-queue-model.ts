@@ -61,7 +61,7 @@ export class PriorityQueue<T> {
     return parentIndex;
   }
 
-  dequeue(): T {
+  dequeue(): PriorityQueueNode<T> {
     if (this.values.length === 0) {
       return null;
     }
@@ -69,16 +69,16 @@ export class PriorityQueue<T> {
     // swap first and last values
     this.swap(0, this.values.length - 1);
 
-    // pop the last to get max
-    let max = this.values.pop();
+    // pop the last to get min/max
+    let last = this.values.pop();
     if (this.values.length === 1) {
-      return max.value;
+      return last;
     }
 
     // sink down
     this.sinkDown();
 
-    return max.value;
+    return last;
   }
 
   sinkDown(): void {

@@ -64,14 +64,14 @@ export class PriorityQueuesComponent implements OnInit {
     const value = this.current.InputValue;
     const priority = this.current.InputPriority;
     this.current.Heap.enqueue(value, priority);
-    this.current.Message = `Added ${value}`;
+    this.current.Message = `Added ${value} with priority of ${priority}`;
     this.current.Current = this.current.Heap.values;
   }
 
   dequeue(): void {
     this.current.Previous = [...this.current.Current];
     const value = this.current.Heap.dequeue();
-    this.current.Message = `Extracted ${value}`;
+    this.current.Message = `Dequeued ${value.value} with priority of ${value.priority}`;
     this.current.Current = this.current.Heap.values;
   }
 
