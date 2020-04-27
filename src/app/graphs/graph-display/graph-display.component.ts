@@ -139,11 +139,11 @@ export class GraphDisplayComponent implements OnInit {
       graphDisplay.dijkstraEnd
     )];
 
-    // console.log({
-    //   dijkstraStart: graphDisplay.dijkstraStart,
-    //   dijkstraEnd: graphDisplay.dijkstraEnd,
-    //   dfsRecursive: dfsRecursive
-    // });
+    console.log({
+      dijkstraStart: graphDisplay.dijkstraStart,
+      dijkstraEnd: graphDisplay.dijkstraEnd,
+      dfsRecursive: dfsRecursive
+    });
 
     graphDisplay.dijkstra = [];
     graphDisplay.dijkstra = dfsRecursive;
