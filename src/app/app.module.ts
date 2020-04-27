@@ -10,11 +10,18 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { ArraysModule } from './arrays';
 import { LinkedListsModule } from './linked-lists';
 
+/* d3 */
+import { D3Service } from './d3';
+import { D3Module } from './d3/d3.module';
+import { GraphsModule } from './graphs';
+// import { D3Module } from './d3/d3.module';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -22,9 +29,11 @@ import { LinkedListsModule } from './linked-lists';
     AppRoutingModule,
     TreesModule,
     ArraysModule,
-    LinkedListsModule
+    LinkedListsModule,
+    D3Module,
+    GraphsModule
   ],
-  providers: [],
+  providers: [D3Service],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -6,6 +6,7 @@ import { GraphDisplayComponent } from './graph-display/graph-display.component';
 import { FormsModule } from '@angular/forms';
 import { GraphInfoComponent } from './graph-info/graph-info.component';
 import { GraphExampleComponent } from './graph-example/graph-example.component';
+import { D3Module } from '../d3/d3.module';
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
     GraphExampleComponent
   ],
   imports: [
+    D3Module,
     CommonModule,
     FormsModule,
     RouterModule.forChild(routes)

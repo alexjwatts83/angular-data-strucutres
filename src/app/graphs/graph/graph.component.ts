@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class GraphComponent implements OnInit {
   showExample: boolean;
   showInfo: boolean;
+  showDisplay: boolean;
   
   constructor() { }
 
@@ -18,10 +19,18 @@ export class GraphComponent implements OnInit {
   showExampleClick() {
     this.showExample = true;
     this.showInfo = false;
+    this.showDisplay = false;
   }
 
   showInfoClick() {
     this.showExample = false;
     this.showInfo = true;
+    this.showDisplay = false;
+  }
+
+  showDisplayClick() {
+    this.showExample = false;
+    this.showInfo = false;
+    this.showDisplay = true;
   }
 }

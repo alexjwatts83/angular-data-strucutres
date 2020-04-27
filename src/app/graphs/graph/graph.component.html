@@ -4,11 +4,15 @@
     <h1>Graphs</h1>
     <button type="button" class="btn btn-info margin-5px-left" (click)="showInfoClick()">Info</button>
     <button type="button" class="btn btn-primary margin-5px-left" (click)="showExampleClick()">Example</button>
+    <button type="button" class="btn btn-primary margin-5px-left" (click)="showDisplayClick()">Display</button>
   </div>
   <div *ngIf="showInfo">
     <app-graph-info></app-graph-info>
   </div>
   <div *ngIf="showExample">
     <app-graph-example></app-graph-example>
+  </div>
+  <div *ngIf="showDisplay">
+    <app-graph-display></app-graph-display>
   </div>
 </div>
