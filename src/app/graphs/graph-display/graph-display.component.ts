@@ -24,6 +24,7 @@ export class GraphDisplayComponent implements OnInit {
 
   ngOnInit(): void {
     this.graphDisplays.push(this.getNumberGraph());
+    this.graphDisplays.push(this.getStringGraph());
   }
 
   getNumberGraph(): GraphDisplay<number> {
@@ -52,6 +53,38 @@ export class GraphDisplayComponent implements OnInit {
     
     let keys = Object.keys(graph.adjacentList);
     let startKey = parseInt(keys[0]);
+    let bfsIterative = graph.breadthFirstSearch(startKey);
+    let dfsIterative = graph.depthFirstSearchIterative(startKey);
+    let dfsRecursive = graph.depthFirstSearchRecursive(startKey);
+    return {
+      graph: graph,
+      keys: keys,
+      bfsIterative: bfsIterative,
+      dfsIterative: dfsIterative,
+      dfsRecursive: dfsRecursive,
+      startKey: startKey,
+    };
+  }
+
+  getStringGraph(): GraphDisplay<string> {
+    let graph = new WeightedGraph<string>();
+    const vertices = ['A','B','C','D','E','F'];;
+
+    for(let i = 0; i < vertices.length; i++) {
+      graph.addVertex(vertices[i]);  
+    }
+
+    graph.addEdge("A","B", 4);
+    graph.addEdge("A","C", 2);
+    graph.addEdge("B","E", 3);
+    graph.addEdge("C","D", 2);
+    graph.addEdge("C","F", 4);
+    graph.addEdge("D","E", 3);
+    graph.addEdge("D","F", 1);
+    graph.addEdge("E","F", 1);
+    
+    let keys = Object.keys(graph.adjacentList);
+    let startKey = keys[0];
     let bfsIterative = graph.breadthFirstSearch(startKey);
     let dfsIterative = graph.depthFirstSearchIterative(startKey);
     let dfsRecursive = graph.depthFirstSearchRecursive(startKey);
