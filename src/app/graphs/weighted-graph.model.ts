@@ -1,3 +1,8 @@
+import {
+  PriorityQueue,
+  PriorityQueueNode,
+} from "../trees/priority-queues/priority-queue-model";
+
 export class WeightedNode<T> {
   node: T;
   weight: number;
@@ -7,7 +12,7 @@ export class WeightedNode<T> {
   }
 }
 
-export class WeightedGraph<T>{
+export class WeightedGraph<T> {
   adjacentList: any;
 
   constructor() {
@@ -112,5 +117,61 @@ export class WeightedGraph<T>{
       });
     }
     return result;
+  }
+
+  dijkstra(start: T, finish: T): T[] {
+    const nodes = new PriorityQueue<T>(
+      (x: PriorityQueueNode<T>, y: PriorityQueueNode<T>) => {
+        let compareResult = x.priority < y.priority;
+        return compareResult;
+      }
+    );
+    const distances = {};
+    const previous = {};
+    let path: T[] = []; //to return at end
+    let smallest;
+    //build up initial state
+    for (let vertex in this.adjacentList) {
+      let key: any = vertex;
+      if (key === start) {
+        distances[vertex] = 0;
+        nodes.enqueue(key, 0);
+      } else {
+        distances[vertex] = Infinity;
+        nodes.enqueue(key, Infinity);
+      }
+      previous[vertex] = null;
+    }
+    // as long as there is something to visit
+    while (nodes.values.length) {
+      smallest = nodes.dequeue().value;
+      if (smallest === finish) {
+        //WE ARE DONE
+        //BUILD UP PATH TO RETURN AT END
+        while (previous[smallest]) {
+          path.push(smallest);
+          smallest = previous[smallest];
+        }
+        break;
+      }
+      if (smallest || distances[smallest] !== Infinity) {
+        for (let neighbor in this.adjacentList[smallest]) {
+          //find neighboring node
+          let nextNode = this.adjacentList[smallest][neighbor];
+          //calculate new distance to neighboring node
+          let candidate = distances[smallest] + nextNode.weight;
+          let nextNeighbor = nextNode.node;
+          if (candidate < distances[nextNeighbor]) {
+            //updating new smallest distance to neighbor
+            distances[nextNeighbor] = candidate;
+            //updating previous - How we got to neighbor
+            previous[nextNeighbor] = smallest;
+            //enqueue in priority queue with new priority
+            nodes.enqueue(nextNeighbor, candidate);
+          }
+        }
+      }
+    }
+    return path.concat(smallest).reverse();
   }
 }

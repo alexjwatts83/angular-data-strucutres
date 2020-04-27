@@ -5,9 +5,11 @@ interface GraphDisplay<T> {
   graph: WeightedGraph<T>;
   keys: string[];
   startKey: T;
+  endKey: T;
   dfsRecursive: T[];
   dfsIterative: T[];
   bfsIterative: T[];
+  dijkstra: T[]
 }
 
 @Component({
@@ -53,9 +55,11 @@ export class GraphDisplayComponent implements OnInit {
     
     let keys = Object.keys(graph.adjacentList);
     let startKey = parseInt(keys[0]);
+    let endKey = parseInt(keys[keys.length - 1]);
     let bfsIterative = graph.breadthFirstSearch(startKey);
     let dfsIterative = graph.depthFirstSearchIterative(startKey);
     let dfsRecursive = graph.depthFirstSearchRecursive(startKey);
+    let dijkstra = graph.dijkstra(startKey, endKey);
     return {
       graph: graph,
       keys: keys,
@@ -63,6 +67,8 @@ export class GraphDisplayComponent implements OnInit {
       dfsIterative: dfsIterative,
       dfsRecursive: dfsRecursive,
       startKey: startKey,
+      endKey: endKey,
+      dijkstra: dijkstra
     };
   }
 
@@ -88,6 +94,8 @@ export class GraphDisplayComponent implements OnInit {
     let bfsIterative = graph.breadthFirstSearch(startKey);
     let dfsIterative = graph.depthFirstSearchIterative(startKey);
     let dfsRecursive = graph.depthFirstSearchRecursive(startKey);
+    let endKey = keys[keys.length - 1];
+    let dijkstra = graph.dijkstra(startKey, endKey);
     return {
       graph: graph,
       keys: keys,
@@ -95,6 +103,8 @@ export class GraphDisplayComponent implements OnInit {
       dfsIterative: dfsIterative,
       dfsRecursive: dfsRecursive,
       startKey: startKey,
+      endKey: endKey,
+      dijkstra: dijkstra
     };
   }
 

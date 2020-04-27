@@ -63,6 +63,18 @@
           [{{i}}] {{item}} <span *ngIf="i < graphData.bfsIterative.length - 1">=></span>
         </span>
       </div>
+
+      <hr />
+
+      <h5>Dijkstra Algorithm</h5>
+      <h6>From {{ graphData.startKey }} to {{ graphData.endKey }}</h6>
+      <div *ngIf="graphData.dijkstra.length === 0">Is Empty</div>
+      <div *ngIf="graphData.dijkstra.length > 0">
+        <span *ngFor="let item of graphData.dijkstra; let i = index">
+          [{{i}}] {{item}} <span *ngIf="i < graphData.dijkstra.length - 1">=></span>
+        </span>
+      </div>
+
     </div>
   </div>
 </div>
