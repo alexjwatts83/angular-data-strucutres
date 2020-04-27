@@ -137,20 +137,24 @@ export class WeightedGraph<T> {
   }
 
   dijkstra(start: T, finish: T): T[] {
-    const nodes = new PriorityQueue<number>(
-      (x: PriorityQueueNode<number>, y: PriorityQueueNode<number>) => {
+    const nodes = new PriorityQueue<T>(
+      (x: PriorityQueueNode<T>, y: PriorityQueueNode<Text>) => {
         let compareResult = x.priority < y.priority;
         return compareResult;
       }
     );
-    const distances = {};
-    const previous = {};
+    console.log({
+      start: start,
+      finish: finish
+    });
+    const distances: any = {};
+    const previous: any = {};
     let path: T[] = []; //to return at end
-    let smallest;
+    let smallest: T;
     //build up initial state
     for (let vertex in this.adjacentList) {
       let key: any = vertex;
-      if (key === start) {
+      if (key == start) {
         distances[vertex] = 0;
         nodes.enqueue(key, 0);
       } else {
@@ -162,7 +166,7 @@ export class WeightedGraph<T> {
     // as long as there is something to visit
     while (nodes.values.length) {
       smallest = nodes.dequeue().value;
-      if (smallest === finish) {
+      if (smallest == finish) {
         //WE ARE DONE
         //BUILD UP PATH TO RETURN AT END
         while (previous[smallest]) {

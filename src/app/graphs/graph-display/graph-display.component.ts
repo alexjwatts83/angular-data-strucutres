@@ -27,7 +27,7 @@ export class GraphDisplayComponent implements OnInit {
 
   ngOnInit(): void {
     this.graphDisplays.push(this.getNumberGraph());
-    this.graphDisplays.push(this.getStringGraph());
+    // this.graphDisplays.push(this.getStringGraph());
   }
 
   getNumberGraph(): GraphDisplay<number> {
@@ -61,7 +61,10 @@ export class GraphDisplayComponent implements OnInit {
     let dfsIterative = graph.depthFirstSearchIterative(startKey);
     let dfsRecursive = graph.depthFirstSearchRecursive(startKey);
     let dijkstra = graph.dijkstra(startKey, endKey);
-
+    console.log({
+      startKey: startKey,
+      endKey: endKey
+    });
     return {
       graph: graph,
       keys: keys,
