@@ -1,4 +1,13 @@
-export class Graph<T> {
+export class WeightedNode<T> {
+  node: T;
+  weight: number;
+  constructor(node: T, weight: number) {
+    this.node = node;
+    this.weight = weight;
+  }
+}
+
+export class WeightedGraph<T>{
   adjacentList: any;
 
   constructor() {
@@ -13,22 +22,24 @@ export class Graph<T> {
     }
   }
 
-  addEdge(node1: T, node2: T) {
+  addEdge(node1Value: T, node2Value: T, weight: number) {
+    const node1 = new WeightedNode<T>(node1Value, weight);
+    const node2 = new WeightedNode<T>(node2Value, weight);
     this._addEdgeToNode(node1, node2);
     this._addEdgeToNode(node2, node1);
   }
 
-  protected _addEdgeToNode(node1: T, node2: T) {
-    if (this.adjacentList[node1] !== undefined) {
-      this.adjacentList[node1].push(node2);
+  protected _addEdgeToNode(node1: WeightedNode<T>, node2: WeightedNode<T>) {
+    if (this.adjacentList[node1.node] !== undefined) {
+      this.adjacentList[node1.node].push(node2);
     } else {
       console.log(`Node, '${node1}' does not exists`);
     }
   }
 
-  removeEdge(node1: T, node2: T) {
-    this._removeEdgeFromNode(node1, node2);
-    this._removeEdgeFromNode(node2, node1);
+  removeEdge(node1Value: T, node2Value: T) {
+    this._removeEdgeFromNode(node1Value, node2Value);
+    this._removeEdgeFromNode(node2Value, node1Value);
   }
 
   private _removeEdgeFromNode(node1: T, node2: T) {
@@ -44,32 +55,6 @@ export class Graph<T> {
     }
   }
 
-  removeVertex(node: T) {
-    var keys = Object.keys(this.adjacentList);
-    for (let key of keys) {
-      if (key === node.toString()) {
-        delete this.adjacentList[key];
-        continue;
-      }
-      // if
-      let list = this.adjacentList[key].filter((x: T) => x != node);
-      this.adjacentList[key] = list;
-    }
-  }
-
-  showConnections() {
-    const allNodes = Object.keys(this.adjacentList);
-    for (let node of allNodes) {
-      let nodeConnections = this.adjacentList[node];
-      let connections = "";
-      let vertex;
-      for (vertex of nodeConnections) {
-        connections += vertex + " ";
-      }
-      console.log(node + "-->" + connections);
-    }
-  }
-
   depthFirstSearchRecursive(node: T) {
     const result = [];
     const visited = {};
@@ -82,9 +67,9 @@ export class Graph<T> {
   private dfsRecursive(vertex: T, result: T[], visited: any) {
     visited[vertex] = true;
     result.push(vertex);
-    this.adjacentList[vertex].forEach((neighbor: T) => {
-      if (!visited[neighbor]) {
-        return this.dfsRecursive(neighbor, result, visited);
+    this.adjacentList[vertex].forEach((neighbor: WeightedNode<T>) => {
+      if (!visited[neighbor.node]) {
+        return this.dfsRecursive(neighbor.node, result, visited);
       }
     });
   }
@@ -100,10 +85,10 @@ export class Graph<T> {
       currentVertex = stack.pop();
       result.push(currentVertex);
 
-      this.adjacentList[currentVertex].forEach((neighbor: T) => {
-        if (!visited[neighbor]) {
-          visited[neighbor] = true;
-          stack.push(neighbor);
+      this.adjacentList[currentVertex].forEach((neighbor: WeightedNode<T>) => {
+        if (!visited[neighbor.node]) {
+          visited[neighbor.node] = true;
+          stack.push(neighbor.node);
         }
       });
     }
@@ -119,10 +104,10 @@ export class Graph<T> {
     while (queue.length) {
       currentVertex = queue.shift();
       result.push(currentVertex);
-      this.adjacentList[currentVertex].forEach((neighbor) => {
-        if (!visited[neighbor]) {
-          visited[neighbor] = true;
-          queue.push(neighbor);
+      this.adjacentList[currentVertex].forEach((neighbor: WeightedNode<T>) => {
+        if (!visited[neighbor.node]) {
+          visited[neighbor.node] = true;
+          queue.push(neighbor.node);
         }
       });
     }

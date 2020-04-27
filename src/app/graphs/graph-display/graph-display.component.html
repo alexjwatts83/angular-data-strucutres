@@ -1,1 +1,68 @@
-<p>graph-display works!</p>
+<div style="display: flex;">
+  <div *ngFor="let graphData of graphDisplays" style="padding: 10px; flex: 1;">
+    <table class="table table-striped table-bordered table-sm">
+      <thead class="thead-dark">
+        <tr>
+          <th>
+            Node
+          </th>
+          <th>
+            Links
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let key of graphData.keys">
+          <td>
+            {{ key }}
+          </td>
+          <td>
+            <span *ngFor="let node of graphData.graph.adjacentList[key]; let i = index" style="border: 1px dashed black;margin-right: 5px;padding: 3px;">
+              ({{ node.node }}, <strong>{{node.weight}}</strong>)
+            </span>
+            <!-- {{ graphData.graph.adjacentList[key] | json }} -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div class="alert alert-dark">
+      <div class="form-group" style="display: flex;">
+        <select name="startKey"  [(ngModel)]="graphData.startKey" class="form-control">
+          <option *ngFor="let key of graphData.keys" [selected]="key.toString() === graphData.startKey.toString()" [value]="key">{{key}}</option>
+        </select>
+        <button style="margin-left: 10px;" type="menu" class="btn btn-primary" (click)="traverse(graphData)">Traverse</button>
+      </div>
+      
+      <hr />
+      <h5>Depth First Search Recursive</h5>
+      <div *ngIf="graphData.dfsRecursive.length === 0">Is Empty</div>
+      <div *ngIf="graphData.dfsRecursive.length > 0">
+        
+        <!-- <div>Length of {{ graphData.dfsRecursive.length }}</div> -->
+        <span *ngFor="let item of graphData.dfsRecursive; let i = index">
+          [{{i}}] {{item}} <span *ngIf="i < graphData.dfsRecursive.length - 1">=></span>
+        </span>
+      </div>
+      <hr />
+      <h5>Depth First Search Iterative</h5>
+      <div *ngIf="graphData.dfsIterative.length === 0">Is Empty</div>
+      <div *ngIf="graphData.dfsIterative.length > 0">
+        <!-- <div>Length of {{ graphData.dfsIterative.length }}</div> -->
+        <span *ngFor="let item of graphData.dfsIterative; let i = index">
+          [{{i}}] {{item}} <span *ngIf="i < graphData.dfsIterative.length - 1">=></span>
+        </span>
+      </div>
+      <hr />
+
+      <h5>Breadth First Search Iterative</h5>
+      <div *ngIf="graphData.bfsIterative.length === 0">Is Empty</div>
+      <div *ngIf="graphData.bfsIterative.length > 0">
+        <!-- <div>Length of {{ graphData.bfsIterative.length }}</div> -->
+        <span *ngFor="let item of graphData.bfsIterative; let i = index">
+          [{{i}}] {{item}} <span *ngIf="i < graphData.bfsIterative.length - 1">=></span>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

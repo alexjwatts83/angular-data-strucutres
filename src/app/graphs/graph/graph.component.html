@@ -3,12 +3,16 @@
   <div style="display: flex;margin-bottom: 10px;">
     <h1>Graphs</h1>
     <button type="button" class="btn btn-info margin-5px-left" (click)="showInfoClick()">Info</button>
-    <button type="button" class="btn btn-primary margin-5px-left" (click)="showExampleClick()">Example</button>
+    <button type="button" class="btn btn-primary margin-5px-left" (click)="showExampleClick()">Unweighted</button>
+    <button type="button" class="btn btn-danger margin-5px-left" (click)="showWeightedClick()">Weighted</button>
   </div>
   <div *ngIf="showInfo">
     <app-graph-info></app-graph-info>
   </div>
   <div *ngIf="showExample">
     <app-graph-example></app-graph-example>
+  </div>
+  <div *ngIf="showWeightedExample">
+    <app-graph-display></app-graph-display>
   </div>
 </div>
