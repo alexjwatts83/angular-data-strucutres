@@ -1,7 +1,24 @@
-import {
-  PriorityQueue,
-  PriorityQueueNode,
-} from "../trees/priority-queues/priority-queue-model";
+// import {
+//   PriorityQueue,
+//   PriorityQueueNode,
+// } from "../trees/priority-queues/priority-queue-model";
+
+class PriorityQueue<T>{
+  values: {val: T, priority: number}[];
+  constructor(){
+    this.values = [];
+  }
+  enqueue(val: T, priority: number) {
+    this.values.push({val, priority});
+    this.sort();
+  };
+  dequeue() {
+    return this.values.shift();
+  };
+  sort() {
+    this.values.sort((a, b) => a.priority - b.priority);
+  };
+}
 
 export class WeightedNode<T> {
   node: T;
@@ -120,12 +137,7 @@ export class WeightedGraph<T> {
   }
 
   dijkstra(start: T, finish: T): T[] {
-    const nodes = new PriorityQueue<T>(
-      (x: PriorityQueueNode<T>, y: PriorityQueueNode<T>) => {
-        let compareResult = x.priority < y.priority;
-        return compareResult;
-      }
-    );
+    const nodes = new PriorityQueue<T>();
     const distances = {};
     const previous = {};
     let path: T[] = []; //to return at end
@@ -144,7 +156,7 @@ export class WeightedGraph<T> {
     }
     // as long as there is something to visit
     while (nodes.values.length) {
-      smallest = nodes.dequeue().value;
+      smallest = nodes.dequeue().val;
       if (smallest === finish) {
         //WE ARE DONE
         //BUILD UP PATH TO RETURN AT END
